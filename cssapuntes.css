@@ -1,0 +1,366 @@
+Cascade Style Sheet
+en CSS siempre se toma como verdad el último ingreso de datos, por eso se llama cascada.
+Cuando le agregamos estilo a un elemento dentro de nuestro HTML mediante el atributo style, priorizaremos ese estilo frente a cualquiera que le podamos aplicar en el CSS.
+
+El CSS es para agregarle estilo a nuestro HTML.
+
+
+Los elementos son el contenido dentro de las etiquetas.
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Para trabajar con CSS no hace falta hacer ninguna declaración, solo se empieza a escribir la estructura del código y luego este se conecta en el código HTML.
+Para conectar el archivo CSS en nuestro HTML, en el archivo HTML vamos a ingresar en la parte de HEAD el siguiente código:
+	<link rel="stylesheet" type="text/css" href="archivename.css">
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+La estructura de la codificación en CSS es la siguiente:
+
+	selector {
+		propiedad: valor;
+	}
+
+	una propiedad y un valor forman una declaración
+	una declaración y un el selector forman una regla
+
+Después de definir una declaración se se cierra con punto y coma;
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+SELECTORES
+
+El selector es el elemento o conjunto de elementos que queremos modificar. Los tipos de selectores son:
+
+	body: el body se puede modificar y darle estilo, todo el resto de los elementos que existan en el HTML heredarán el estilo que le demos al body.
+
+	universal: se utiliza con "*" y selecciona todos los elementos.
+
+	de tipo: es para elegir un determinado elemento, ejemplo h1. Todos los elementos que haya de ese mismo tipo reaccionarán igual. se manifiesta solo con el titulo del elemento/etiqueta: "text"
+
+	clases: las clases las definimos primero en el HTML y luego las referenciamos con "." ".nameclass". Si queremos un elemento que cuente con más de una clase las definiremos todas juntas: ".class1.class2". EJ buena práctica: ".blue-text" En el HTML las clases cuando es más de una en un mismo elemento irían separados por espacios.
+
+	ID: los elementos identificados por ID en el HTML los podemos referenciar con "#" "#id". El ID es más importante que las clases o sea tiene relevancia y el programa le dará la prioridad ante una contradicción.
+
+	por atributo: los atributos pueden ser existentes del lenguaje HTML o creados en el momento y son referenciados entre "[]" "[atributo]". Puede ser llamado unicamente el atributo o el atributo y su valor.
+
+	descendiente: se utiliza para poder editar un grupo de elementos que se encuentra dentro de otro elemento. El selector se define ordenado por prioridad de mayor a menor, si por ejemplo tenemos un h1 con un p dentro sería así "h1 p" es decir es para seleccionar un selector que está dentro de otro
+
+	varios: para seleccionar varios selectores los podemos separar por ", " "selector1, selector2"
+
+	hijos: para seleccionar a todos los selectores hijos de un selector lo haremos con el signo ">" "sel1 > sel2" y así seleccionaremos todos los sel2 que estén dentro de sel1.
+
+	hermanos: para seleccionar selectores hermanos, es decir que tienen el mismo elemento padre. "+" "sel1 + sel2"
+
+	pseudo-clases: se utiliza para darle un efecto a un elemento cuando le ponemos el mouse encima. Se define usando ":" "nombreElemento:hover"
+
+La propiedad es lo que queremos hacer con nuestro elemento, puede ser el color, tamaño, ancho, posicion, sombra, texto, bordes etc.
+	
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+PROPIEDADES
+
+
+Colores:
+
+	color: color del texto || valores: RGB, RSL, HEX, namecolor, RGBA, HSLA
+
+	background-color: color de fondo || valores: =color
+
+	background-image: imagen de fondo || valores:  url(vínculo local o externo)
+
+	backgound-repeat: repetición de la imagen de fondo || valores: repeat, repeat-x, repeat-y, no-repeat
+
+	background-attachment: despalazamiento de la imagen de fondo || valores: scroll, fixed
+
+	background-position: posición de la imagen de fondo || valores: percentage, length, left, center, right, top, bottom
+
+	background-size: tamaño de la imagen de fondo || valores: unidad de medida
+
+	opacity: transparencia de un elemento || valores: 0-1
+
+
+Texto:
+
+	text-indent: desplazamiento de la primera linea del texto || valores: longitud, porcentaje
+
+	text-align: alineamiento del texto || valores: left, right, center, justify
+
+	text-decoration: efectos de subrayado y tachado || valores: none, underline, overline, line-through, *.
+
+	letter-spacing: espacio entre caracteres || val: normal, longitud
+
+	word-spacing: espacio entre palabras || val: normal, longitud
+
+	text-transform: transformacion a mayus/minus || val: capitalize, uppercase, lowercase, none
+
+	line-height: tamaño del espacio entre lineas || longitud, porcentaje
+
+	vertical-align: alineación vertical || val: top, middle, bottom, baseline, sub, super, valor
+
+
+Fuentes:
+
+	font-family: familia de fuentes, tipo de fuente || valores: nombre-familia, nombre-familia-genérica, *. Los nombres de familia de fuentes son sensibles a mayúsculas y minúsculas, y si incluyen espacios deben estar envueltos entre comillas. Por ejemplo, necesitas comillas para usar la fuente "Open Sans", pero no las necesitas para usar la fuente Lobster.
+
+	font-style: estilo de la fuente || val: normal, italic, oblique
+
+	font-variant: convierte a mayúsculas manteniendo un tamaño inferior || normal, small-caps
+
+	font-weight: anchura/grosor de los caracteres, normal=400, negrita=700 || val: normal, bold, bolder, lighter, 100, 200..900
+
+	font-size: tamaño de la fuente || xx-small..xxlarge, larger, smaller, longitud, porcentaje
+
+Para utilizar todo tipo de fuentes hay que ir al fonts de google y copiar el codigo html para referenciar la fuente y luego poder usarla en CSS
+
+
+Listas:
+	
+	list-style-type: estilo aplicable a los marcadores visuales de las listas || disc, circle, square, decimal..etc..
+
+	list-style-image: imagen aplicable a los elementos de las listas || url("...") 
+
+	list-style-position: posición dentro de la lista de los elementos marcadores de las listas || inside, outside
+
+	list-style: permite establecer el estilo de la lista, la imagen y/o la posición || list-style-type, list-style-position, list-style-image
+
+
+Tablas:
+
+	caption-side: posición del titulo respecto a la tabla || top, bottom
+
+	table-layout: formato de las celdas, filas y columnas || auto, fixed
+
+	border-collapse: selección del modelo de los bordes || collapse, separate
+
+	border-spacing: espaciado entre los bordes de celdas adyacentes || longitud
+
+	empty-cells: visibilidad de los bordes de celdas sin contenido || show, hide
+
+
+Pseudo-clases para selección de hijos o hermanos:
+
+	:first-child || primer hijo
+	:last-child || ultimo hijo 
+	:first-of-type || primer hermano de su tipo
+	:last-of-type || ultimo "                "
+	:only-child || hijos unicos
+	:only-of-type || unicos hermanos de su tipo
+	:empty || elementos que no tienen hijos
+	:nth-child(n) || n elementos hijos
+	:nth-last-child(n) || "  " contando desde el último
+	:nth-of-type(n) || n elemento hijo de su tipo 
+	:nth-last-of-type(n) || "  " comenzando desde el ultimo
+
+
+Pseudo-clases para los estados de un elemento:
+
+	:link || no visitado por el usuario
+	
+	:visited || visitado por el usuario
+
+	:hover || modifica el estilo cuando un elemento apuntador pasa por encima
+
+	:active || se activa cuando el usuario pulsa el elemento
+
+	:focus || se activa cuando se tiene el foco sobre el elemento
+
+	:root || util para definir variables y que se puedan utilizar en todo el documento. Le darán un valor global a una variable pero esta podrá ser sobreeditada luego en cada elemento que se quiera
+
+Pseudo-elementos:
+
+	::first-line || primera linea de texto de un elemento
+
+	::first-letter || primera letra de la primera linea de texto de un elemento
+
+	::before || añade contenido al principio del documento
+
+	::after || añade contenido al final del documento
+
+
+Prefijo para los navegadores:
+	
+	-moz- Firefox
+	-webkit- Safari y Chrome
+	-o- Opera
+	-khtml- Konqueror
+	-ms- Internet Explorer
+	-chrome- Google Chrome
+
+
+Modelos de cajas: márgenes, rellenos y bordes:
+
+	Un contenedor tiene height y width y hacia afuera en el siguiente orden contiene:
+	
+			padding
+			border
+			margin
+
+			estas 3 propiedades son muy importantes y son las encargadas de controlar el espacio que rodea cada elemento.
+
+			padding: controla la cantidad de espacio que hay entre el contenido de un elemento y el border. EJ: En un elemento con texto, el padding será el espacio que habrá entre el texto y el borde.
+
+			margin: controla la cantidad de espacio que hay entre el border y los elementos que lo rodean. a mayor margen más pequeño parecerá. Si el valor de margin es negativo, aumentará su tamaño.
+
+
+	height; : alto
+
+	width; : ancho
+
+	paddint-top; padding-right; padding-bottom; padding-left; : tamaño del relleno superior, derecho, inferior e izquierdo || longitud, porcentaje
+
+	padding: tamaño del relleno || longitud, porcentaje {1,4}
+
+	El padding puede ser modificado en sus 4 lados solamente con la propiedad de 'padding' siguiendo las agujas del reloj definiéndolas todas juntas separadas por espacio.
+	EJ: selector {
+			padding: 5px 5px 5px 5px; top right bottom left
+		}
+
+	margin-top; marginm-right; margin-bottom; margin-left; : tamaño del margen superior, derechjo, inferior e izquierdo || longitud, porcentaje, auto 
+
+	margin: ancho de los margenes || longitud, porcentaje, auto {1,4}
+
+	El margin puede ser modificado en sus 4 lados solamente con la propiedad de 'margin' siguiendo las agujas del reloj definiéndolas todas juntas separadas por espacio.
+	EJ: selector {
+			margin: 5px 5px 5px 5px; top right bottom left
+		}
+
+	border-top-width; border-right-width; border-bottom-width; border-left-width; : anchura del borde superior, derecho, inferor o izquierdo || thin, medium, thick, longitud
+
+	border-with: anchura del borde (reducida) || thin, medium, thick, longitud {1,4}
+
+	border-color: color del borde (reducida) || color, transparent
+
+	border-top-style; border-right-style; border-bottom-style; border-left-style; : estilo del borde superior, derecho, inferior e izquierdo || none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset
+
+	border-style: estilo del borde (reducida) || =anterior + {1,4}
+
+	border-top; border-right; border-bottom; border-left; : ancho, estilo y color para los bordes || border-top-width, border-top-style, border-top-color
+
+	border: ancho, estilo y color para los bordes (reducida) || =anterior
+
+	border-radius: curvatura del borde || longitud, porcentaje {1,4}
+
+
+Comportamiento de los contenedores:
+
+	display: comportamiento del contenedor || inline, block, inline-block, none 
+
+	position: esquema de posicionamiento || static, relative, absolute, fixed
+
+	top; right; botom; left; : desplazamiento de la caja respecto al borde superior, derecho, inferior, izquierdo || longitud, porcentaje, alto 
+
+	float: posicionamiento flotante || left, right, none 
+
+	clear: control de cajas adyacentes a las float || none, left, right, both
+
+	z-index: nivel de la capa || auto, número entero 
+
+	box-sizing: control de bordes y relleno en el comportamiento del contenedor || content-box, border-box
+
+	visibility: muestra u oculta un elemento ocupando el espacio || visible, hidden
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+ESPECIFICIDAD
+
+Para explicar este concepto es importante recordar que CSS es hoja de estilo en cascada, en cascada significa que va de arriba hacia abajo y que lo último siempre es lo más importante. Si definimos en tres veces diferentes determinadas propiedades para un mismo elemento, el último será el más importante.
+A partir de acá entra el concepto de la especificidad como un sinónimo de jerarquía donde determinados tipos de elemento tienen mayor poder que otros. El rango de jerarquía es el siguiente:
+
+	1: !important; 
+	2:  estilos en linea; 
+	3: identificadores; 
+	4: clases, pseudoclases, atributos; 
+	5: elementos, pseudoelementos;
+
+Cuando la jerarquía del tipo de elementos son el mismo, funciona la cascada pero cuando son diferentes gana el que tenga mayor jerarquía.
+
+1: !important, este se declara seguido del valor que le asignamos a una propiedad en el CSS.
+2: estilos en linea, estos son los códigos dentro del atributo style redactados en nuestro HTML.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Metedología BEM
+
+La metodología BEM está hecha para evitar conflictos a la hora de editar determinadas clases de distintos bloques de elementos evitando justamente seleccionar muchas clases cuando solo queremos editar una sola. Darnos cuenta que elemento estamos seleccionando gracias al nombre de su clase. Esta metodología es ideal para modificar todos nuestros elementos según clase.
+Cuando nosotros tenemos varios elementos dentro de otros, ejemplo utilizando BEM:
+
+	<div class="contact-form">
+		<input type="text" class="contact-form__input">
+		<input type="text" class="contact-form__input">
+		<input type="text" class="contact-form__input--dif">
+	</div>
+	
+Acá lo que está pasando es que tenemos un div y varios input y cada uno de estos elementos debe tener su propia clase y las clases de los elementos hijos deben esta relacionadas con las clases de los elementos padres para que luego no tengamos problemas de edición si tenemos otros bloques de elementos parecidos. Entonces lo que hicimos en este ejemplo fue crear un formulario de contacto creando esta clase con nombre descriptivo y además donde cada input tiene su propia clase con nombre descriptivo a la clase a la que pertenece en primer lugar osea al formulario de contacto y a su función/elementName separado por "__". Si quisieramos hacer que uno de estos input o más de uno se diferenciara de los otros a la hora de hacer la edición, le agregaremos después de "--" en el nombre de su clase, la palabra distintiva y descriptiva.
+En resumen se separa el nombre de la clase padre con "__" del nombre del elemento y se utiliza "--" para agregarle un distintivo.
+
+Y en el caso de que tuvieramos tres elementos o más, cada uno dentro de otro, ejemplo utilizando BEM:
+	<div class="contact-form">
+		<p class="contact-form__p">
+			<h2 class="contact-form__p-h2"> TEXT </h2>
+		</p>
+	</div>
+
+En este caso como podemos ver lo que se hace es que el nombre de la clase del elemento nieto llevará en primer lugar el nombre de la clase del elemento abuelo, seguido del nombre del elemento padre con la separación "__" que corresponde y por último su propio nombre separado por un "-".
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+UNIDADES DE MEDIDA
+
+Para el tamaño de cualquier tipo de propiedad se utilizan varios tipos de unidades de medida.
+Hay dos tipos de medida, las fijas y las relativas.
+
+Las unidades de medidas fijas son:
+	in: pulgadas, 1 pulgada = 2.54cm
+	cm: centimetros
+	mm: milimetros
+	pt: puntos, 1pt = 1/72 pulgadas
+	pc: picas, 1 pica = 12 puntos
+
+Las unidades de medidas relativas son:
+
+	px: pixeles, relativo al dispositivo
+	em: relativo al tamaño de la fuente del elemento o su respectiva caja/elemento padre, 2em significaría 2 veces el tamaño de la fuente actual. Si no tenemos definido el tamaño de la fuente en su respectivo elemento padre, será el por defecto del navegador, generalmente 16px.
+	%: porcentaje, será relativo al elemento padre/la caja que la contiene.
+	vh y vw: son medidas de acuerdo al total del height y width de toda la pantalla, determinados por el porcentaje 1-100. 50vh será la mitad del alto y 50vw será la mitad del ancho.
+
+	Las unidades de medida relativas sirven para generar un risponsive-design lo que significa que los tamaños se adaptan a las pantallas.
+
+	-------------------------------------------------------------------------------------------------------------------------------------
+
+	VARIABLES CSS
+
+	Podemos utilizar las variables cuando queremos darle el mismo color por ejemplo a un grupo de elementos y entonces podremos modificarlos todos solamente cambiando la variable y no yendo 1x1, es útil para agrupar.
+
+	Se definen en el documento CSS mediante -- EJ:
+		--penguin-skin: gray;
+
+	Y luego para utilizarlo en un elemento al darle estilo podría ser like:
+		background: var(--penguin-skin);
+
+	Cuando queremos agrupar varios elementos podemos crear una variable y darle un nombre y por ejemplo un color entonces todos esos elementos tendrán de color la variable y funcionarán en conjunto compartiendo el mismo valor.
+
+	FALLBACK en variables: se utiliza para dar un valor de respaldo a una determinada propiedad en caso de que el navegador no pueda encontrar nuestra variable y se expresa separado por una coma, EJ:
+	background: var(--penguin-skin, gray);
+
+	Note that this can be useful for debugging.
+
+
+	
+	Las variables CSS pueden simplificar la forma en que utilizas "media queries" (consultas sobre el tipo de dispositivo donde se muestra el documento HTML).
+
+	Por ejemplo, cuando la pantalla es más pequeña o más grande que el breakpoint de tu media query, puedes cambiar el valor de una variable, y su estilo se aplicará dondequiera que la utilices.
+
+

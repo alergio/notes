@@ -1,0 +1,323 @@
+el archivo que va a ser la principal de la página siempre debe llamarse index.
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+los comandos se ejecutan mediante etiquetas (tag), de la siguiente manera:
+
+<tag attribute="value"></tag>
+
+Hay muchas etiquetas diferentes, una para cada función.
+
+Pero hay dos tipos de etiquetas, las que se cierran y las que no, ejemplos:
+<br> (no tiene cierre) (es una etiqueta para pasar linea)
+<h1></h1> (tiene apertura y cierre) (es una etiqueta para declarar un titulo en la web)
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+para comentar en HTML lo haremos de la siguiente manera
+
+<!╌
+dasdasdas
+╌> 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+Siempre que vamos a empezar un nuevo documento HTML hay que abrirlo con la siguiente etiqueta:
+
+<!DOCTYPE html>
+
+Esto lo que hace es declarar al documento como un HTML en su última versión.
+
+Después de esto hay que ingresar la etiqueta HTML y dentro de esta el HEAD y el BODY:
+
+<html>
+	<head>
+		
+	</head>
+
+	<body>
+
+	</body>
+</html>
+
+Adentro de HTML vamos a codificar toda la página, tanto lo que podemos ver como lo que podemos no ver. Lo que no podemos ver lo agregamos en el <head> y lo que si podemos ver va en el <body>.
+
+Dentro del <head> </head> podemos agregar la etiqueta <title> </title> que nos sirve para agregarle un título a la página. Esto no se va a ver en la web pero si será visible como titulo de la pestaña en el navegador.
+
+Dentro del <body> </body> podemos agregar todo el contenido de la página web. Ejemplos:
+
+
+Todo este contenido que está dentro de etiquetas son elementos.
+
+Estos elementos siempre podemos identificarlos de forma única para poder referenciarlos en otra parte del código agregándoles el atributo id. EJ:
+<element id="example"> EXAMPLE </element>
+
+Los elementos también pueden ser identificados de forma grupal por clase y así ser después referenciados, EJ:
+<element class="example"> EXAMPLE </element>
+Las clases pueden ser más de una, irían separadas por espacios dentro de las mismas comillas.
+
+
+<h1>  </h1> es para poner titulos y va del 1 hasta el 6.
+Generalmente el h1 va solo 1 vez por página, el 2 y 3 unas pocas veces y del 4 en adelante puede ser ilimitadas veces.
+
+
+<p> </p> es para escribir párrafos.
+0
+
+<b> </b> es para escribir en negrita.
+
+
+<i> </i> es para escribir inclinada.
+
+
+<strike> </strike> es para escribir tachada.
+
+
+<small> </small> letra chiquita.
+
+
+<center></center> Se utiliza para centralizar contenido.
+
+
+<br> para pasar a la siguiente linea.
+
+Los titulos y los párrafos ocupan en la página web toda la linea de izquierda a derecha indiferentemente del contenido que tengan. Esto quiere decir que lo que venga después de un titulo o un párrafo va a empezar por debajo y no al costado por más de que tenga espacio. Las otras etiquetas ocuparán el espacio directamente proporcional a su contenido y lo que venga después seguirá donde terminó lo anterior. Justamente para pasar a la siguiente linea (como si fuera un ENTER) se utiliza la etiquieta <br>.
+
+
+<a href="enlace o ruta" target="_BLANK">Texto</a> 
+es para dirigir hacia un enlace mediante un texto cualquiera, el tipico "click aquí".
+target es un atributo que define el objetivo del link y "_BLANK" es un valor que lo que hace es llevarnos a una nueva pestaña y no cambiar de página en la misma pestaña en la que estamos.
+Hay enlaces o rutas internas o externas. Las internas o locales son las que están dentro de nuestro servidor y las externas son las que no están necesariamente almacenadas dentro de nuestro servidor. 
+En las externas es necesario referenciar el https://. Si se trata de una ruta local solo es necesario escribir el nombre del archivo seguido del tipo ej "pagetwo.html". Y si está dentro de una carpeta, hay que escribir la ruta separando las carpetas por /, EJ: "carpeta/pagetwo.html". Y una vez estando ahí, para volver a atrás es necesario hacerlo con "../", esto ordena a que vuelva una carpeta hacia atrás. Ejemplo si queremos volver desde pagetwo al index: "../index.html". La misma orden se ejecuta según la cantidad de carpetas, si son dos carpetas sería "../../" y así sucesivamente.
+Podemos ir a cualquier elemento de la página web referenciandolo por su ID seguido de un #. EJ:
+<a href="#example">
+
+
+<ul>Lista Desordenada</ul> Utilizamos esta etiqueta para crear listas sin un orden específico.
+
+
+<ol>Lista Ordenada</ol> y esta etiqueta es para crear listas ordenadas o enumeradas.
+
+
+<li>Contenido de la lista</li> utilizamos la etiquieta "li" para cada uno de los items dentro de una lista.
+
+Ejemplo:
+	<h3>Lista cabrona</h3>
+	<ol>
+		<li>bong</li>
+		<li>vaporizador</li>
+	</ol>
+
+
+<img src="enlace o ruta">
+Utilizaremos esta etiquieta para colocar una imagen en nuestra página web. El enlace puede ser local o externo y los patrones son exactamentes los mismos que en el href. Dentro de esta misma etiqueta podemos modificar el ancho/largo pero es recomendable hacerlo en CSS y no en HTML.
+Además dentro del img se pueden agregar dos atributos, alt y title, title sirve para darle un titulo público a la imagen y alt sirve para agregarle una descripción o algo muy breve para referenciarla. EJ:
+<img src="example.png" alt="Example Image" title="Example">
+
+
+<figure><figcaption> aca iria un pie de foto, el img iria dentro de figure </figcaption></figure> 
+
+<em> sirve para enfatizar texto, emphasize </em>
+<strong> negrita </strong>
+
+
+<video src="enlace o ruta" controls></video>
+Esta etiqueta funciona igual que la anterior y los patrones de ruta o enlace también. El 'controls' sirve para que el navegador nos proporcione los botones para controlar el video (play, volumen etc).
+
+
+<audio src="enlace o ruta" controls></audio>
+Funciona exactamente igual que video.
+
+
+<div></div> se utiliza para separar y agrupar contenido. 
+
+<button></button> botones. (type="submit" (para enviar info))
+
+<form></form> es una etiqueta para generar formularios y se utiliza del siguiente modo:
+Además, si al form le agregamos la propiedad action y le damos el valor de una ruta determinada, podremos configurar un ingreso de datos al servidor utilizando solamente HTML.
+
+<form>
+	<input type="" name="">  es el ingreso de datos y se determina su tipo de dato y su nombre identificador de forma opcional para llamarlo luego en la parte de backend. El tipo de dato puede ser: text, password, number, email, color, range (configurable min y max), date, time, radio (opciones), button (¿¿¿ si o si tiene que tener un value ???), submit (es un type de button) etc.
+	Los imputs pueden tener un valor (value).
+	Además los input pueden tener atributos después de su tipo, ejemplos: required (obliga a ingresar datos).
+	
+	Al input se le puede agregar la propiedad placeholder y el valor que le demos será el texto que aparecerá en el input antes de que el usuario ingrese nada. (más comunmente usado en inputs de tipo text) 
+
+	Dentro de un form podemos agregar un input de type radio que lo que va hacer es darle al usuario distintas opciones con el objetivo de que elija solamente una de ellas. Estos type radio van a estar dentro de la etiqueta <label></label> que va a ser la que le dará un valor a nuestra opción y además se vinculará automáticamente con nuestro input de tipo radio. Este input debe tener valor de ID y este ID lo utilizaremos dentro de nuestra etiqueta <label for="id"></label> mediando con la palabra "for". Además, para poder hacer un grupo de opciones y que todos estén vinculados entre sí para poder elegir solamente uno de ellos, el input de tipo radio debe tener un valor de "name" que debe ser el mismo en todos los inputs que estarán en cada uno de sus label, de esta manera todos estarán vinculados. 
+	Ejemplo práctico:
+			<form action="ruta_al_servidor">
+				Te gusta el vino? 
+				<br>
+				<label for="si">
+					<input id="si" type="radio" name="tegustaelvino">
+					Si
+				</label>
+				<br>
+				<label for="no">
+					<input id="no" type="radio" name="tegustaelvino">
+					No
+				</label>
+			</form>
+
+				Acá hicimos un formulario donde el usuario solo puede elegir una de las dos respuestas y si a esto le agregaramos un botón podríamos enviar la información al servidor gracias a nuestra propiedad "action".
+
+	También tenemos el type de input "checkbox" (<input type="checkbox">) que nos va a ser muy útil cuando queremos darle al usuario varias opciones y que pueda elegir todas las que quiera. Cada checkbox al igual que los radios pueden estar anidados en un tag <label></label>. Si trabajamos con el input within label se relacionarán automáticamente. Para hacer un grupo de checkbox todos los input de ese grupo deben tener el mismo name. Es una buena práctica relacionar cada label con el mismo id que le asignemos al input mediante la palabra for.
+		Ejemplo práctico
+			<form action="route_to_server">
+				
+				Choose your favourite technologies.
+				<br>
+				<label for="JS"><input id="JS" type="checkbox" name="technologies">
+					JS
+				</label>
+				<br>
+				<label for="Python"><input id="Python" type="checkbox" name="technologies">
+					Python
+				</label>
+				<br>
+				<label for="C#"><input id="C#" type="checkbox" name="technologies">
+					C#
+				</label>
+			</form>
+
+			Si a este código le asociamos un botón de tipo submit podremos configurarlo para enviar datos al servidor.
+
+Los chetbox y los radios pueden estar seleccionados de manera predeterminada (defoult) tan solo añadiendo la palabra "checked" dentro del <input>
+
+
+Cuando se envía un formulario los datos se envían al servidor y los input de tipo radio o checkbox reportan sus valores desde el atributo values, esto significa que todos los input deben tener un determinado values, para que cuando sean seleccionados por el usuario el servidor recibirá los datos de la siguiente manera: name="..."="values" (es decir el valor de values (values="..")). Si no le asignamos un valor, el servidor recibirá los datos como "name"="on" en lugar de "name"="value".
+Ejemplo:
+	<label for="indoor"><input id="indoor" value="indoor" type="radio" name="indoor-outdoor">
+		Indoor
+	</label>
+	<label for="outdoor"><input id="outdoor" value="outdoor" type="radio" name="indoor-outdoor">
+		Outdoor
+	</label>
+	Inputs de type radio. Cuando el usuario envía el formulario con la opción indoor seleccionada, los datos del formulario incluirán la línea: indoor-outdoor=indoor. Esto proviene de los atributos name y value del input "indoor".
+
+	<textarea></textarea> es para que un usuario ingrese texto a menos que le agreguemos el atributo "readonly" entonces será solo un espacio de texto que el usuario podrá leer.
+</form> 	
+
+el elemento <fieldset></fieldset> sirve para crear una caja y unificar todos los input dentro de un form.
+	<legend></legend> es para crear un titulo/subtitulo para un grupo de campos dentro de fieldset. 
+
+
+	Los Metadatos son elementos HTML que muestran información sobre la propia página web que los contiene. Son usados por los buscadores para definir la información principal de nuestra web (temática, descripción), por lo que será muy importante que lo tengamos correctamente configurados:
+
+<meta charset="utf-8"> esta etiqueta meta con atributo charset de valor utf-8 sirve para definir la codificación de toda la página web. Es para que permita caracteres que el lenguaje en si mismo no contiene, ejemplo letras con ácéntó.
+
+Existen otros tipos de metas con otras funciones, ejemplos:
+<meta name="keywords" content="palabras,relevantes"> esto serviría para tratar a estas palabras como palabras clave de la página web.
+<meta name="description" content="toda la descripción de la página web entre 70 y 140 caracteres">
+<meta name="author" content="nombre del autor de la página web">
+<meta name="copyright" content="nombre de la empresa dueña del copyright">
+<meta name="robots" content="index/noindex"> esto sirve para indexar la página o no hacerlo. Si está indexada saldrá en el buscador de google buscando sus palabras clave pero si no lo está no lo hará.
+
+
+<table>Esta etiqueta se utiliza para crear tablas</table> Dentro de la etiqueta table declaramos una fila con <tr></tr> y dentro de la fila declaramos cada uno de los datos con <td></td>. Ejemplo:
+<table>
+	<tr>
+		<td>Nombre</td>
+		<td>Apellido</td>
+	</tr>
+	<tr>
+		<td>Alejo</td>
+		<td>Maya</td>
+	</tr>
+</table>
+Las tablas pueden tener propiedades, como por ejemplo un borde y su grosor (border="1px"), pero lo mejor es hacer los estilos en CSS.
+
+
+<link rel="icon" href="rutadelicono.ico"> En este caso la etiqueta link con el atributo rel en valor icon seguido del atributo href para llamar al valor de la etiqueta rel, es utilizado para agregarle un icono a la pagina web.
+Las etiquetas link son configuraciones del código que si bien involucra cierta visibilidad, no va dentro de la página web ya que este icono se ubica en la pestaña y por eso va en la parte de <head></head>
+
+<link rel="stylesheet" type="text/css" href="example.css"> De esta manera vamos a conectar nuestro archivo CSS para darle estilo a nuestra página web.
+
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css"> de esta manera importaremos una fuente de google para ser utilizada en los estilos de nuestro  HTML.
+
+<title></title>
+<style></style>
+Para utilizar todo tipo de fuentes hay que ir al fonts de google y copiar el codigo html para referenciar la fuente y después usarla en el CSS.
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Las páginas web en HTML deben tener una estructura/arquitectura, un orden en el cual debe estar todo correctamente organizado para mejorar su legibilidad.
+Para estructurar distintas páginas web tenemos una serie de etiquetas:
+
+
+<header>
+	Es el encabezado de la págima web. Lo principal o lo primero que se ve, la bienvenida a la pág.
+</header>
+
+<nav>
+	El nav es la barra de navegación de la página web y casi siempre va dentro del encabezado. El nav te permite ir a distintas partes de la página y siempre está presente para utilizar desde cualquier punto de la página. Ejemplos "ajustes de mi cuenta", un buscador, etc. Generalmente el contenido de una barra de navegación son puros enlaces y se colocan en forma de lista, un ejemplo sería el siguiente:
+</nav>
+
+<header>
+	<nav>
+		<ul>
+			<li><a href="index.html">Inicio</a></li>
+			<li><a href="micuenta.html">Mi cuenta</a></li>
+			<li><a href="sobrenosotros.html">Sobre Nosotros</a></li>
+		</ul>
+	</nav>
+</header>
+
+
+Luego de nuestro header podremos pasar a definir en nuestra página web los articulos y dentro de estos artículos siempre va una sección, porque eso nos permitirá crear varios artículos en una sola pág.
+
+<article>
+	<section>
+		Aquí pondremos todo el contenido de nuestro artículo/sección.
+	</section>	
+</article>
+
+
+Para continuar con la estructura de nuestra página web, tenemos el aside. Que servirá como función similar al artículo pero de menor importancia, por lo que será más pequeño y/o probablemente se encuentre a un costado de la página.
+
+<aside>
+	Aquí rellenaremos con todo el contenido de nuestro aside.
+</aside>
+
+
+Y otro elemento de la estructura es el footer. Que funcionará como pie de página, aquí colocaremos enlaces de contacto o descripciones del desarrollador, citaremos si la página tiene o no copyright, etc.
+
+<footer>
+	Desarrollaremos el pie de página
+</footer>
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Metedología BEM
+
+La metodología BEM está hecha para evitar conflictos a la hora de editar determinadas clases de distintos bloques de elementos evitando justamente seleccionar muchas clases cuando solo queremos editar una sola. Darnos cuenta que elemento estamos seleccionando gracias al nombre de su clase. Esta metodología es ideal para modificar todos nuestros elementos según clase.
+Cuando nosotros tenemos varios elementos dentro de otros, ejemplo utilizando BEM:
+
+	<div class="contact-form">
+		<input type="text" class="contact-form__input">
+		<input type="text" class="contact-form__input">
+		<input type="text" class="contact-form__input--dif">
+	</div>
+	
+Acá lo que está pasando es que tenemos un div y varios input y cada uno de estos elementos debe tener su propia clase y las clases de los elementos hijos deben esta relacionadas con las clases de los elementos padres para que luego no tengamos problemas de edición si tenemos otros bloques de elementos parecidos. Entonces lo que hicimos en este ejemplo fue crear un formulario de contacto creando esta clase con nombre descriptivo y además donde cada input tiene su propia clase con nombre descriptivo a la clase a la que pertenece en primer lugar osea al formulario de contacto y a su función/elementName separado por "__". Si quisieramos hacer que uno de estos input o más de uno se diferenciara de los otros a la hora de hacer la edición, le agregaremos después de "--" en el nombre de su clase, la palabra distintiva y descriptiva.
+En resumen se separa el nombre de la clase padre con "__" del nombre del elemento y se utiliza "--" para agregarle un distintivo.
+
+Y en el caso de que tuvieramos tres elementos o más, cada uno dentro de otro, ejemplo utilizando BEM:
+	<div class="contact-form">
+		<p class="contact-form__p">
+			<h2 class="contact-form__p-h2"> TEXT </h2>
+		</p>
+	</div>
+
+En este caso como podemos ver lo que se hace es que el nombre de la clase del elemento nieto llevará en primer lugar el nombre de la clase del elemento abuelo, seguido del nombre del elemento padre con la separación "__" que corresponde y por último su propio nombre separado por un "-".
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Podemos agregarle estilo a nuestro HTML aplicando la propiedad "style" en cualquiera de nuestros elementos.
+También podemos hacerlo mediante la etiqueta <style></style> 
