@@ -1,0 +1,29 @@
+apuntes de manejo de terminal
+
+----------------------------------------------------------------------------------------------------------------------------
+
+pwd 
+    printworkdirectory
+    es el comando que me devuelve la ruta en la que esta trabajando la terminal o la home del usuario
+
+woami
+    returna el nombre de usuario que esta usando la pc 
+
+help
+    te tira los comandos
+    help + comando te retorna opciones o detalles de ese comando.
+    tambien puede ser comando -- help
+
+clear
+    limpia la consola
+
+ls 
+    lista todos los archivos dada la ruta en la que estemos posicionados
+    ls -l 
+        muestra todos los archivos y detalles
+    ls -a 
+        muestra tambien los archivos ocultos
+    para combinarlos seria ls -la
+
+cd changedirectory
+    es utilizado para cambiar el directorio
