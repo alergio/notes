@@ -27,3 +27,118 @@ ls
 
 cd changedirectory
     es utilizado para cambiar el directorio
+
+cd ~
+    para volver a la home
+
+
+el "." es utilizado para referenciar el directorio actual
+
+cd . 
+    te lleva al directorio actual
+
+cd ..
+    lleva al directorio padre
+
+cd ../..
+    lleva dos directorios atras, directorio abuelo
+
+cd /
+    te lleva a la raiz...
+        /
+        (en git bash seguramente te lleva a la raiz de git bash)
+
+cd c 
+    para acceder al disco duro c desde git bash
+        si hay otro disco duro ejemplo d seria cd d 
+
+cd /c 
+    para ir al disco duro c desde cualquier parte
+
+cd -
+    te lleva a la carpeta anterior, a la que estabas antes de la que estas sahora
+
+cd nombreDelDirectorio
+    te lleva al directorio especificado
+    ej: cd HTML-CSS/
+
+if directorio tiene espacios en blanco
+    se utilizan comillas "" para el nombre
+
+touch nombreDelDirectorio
+    comando para crear un directorio
+        ej touch hola-mundo.txt
+
+echo contenido
+    es el comando para crear directorios con contenido o para crear contenido
+        ej echo "hola soy tu amigo juan" > hola.txt
+        entonces va guardar el texto en un archivo que va a crear
+
+cat
+    para abrir archivos, te muestra en la consola el contenido
+    
+
+mkdir nombreDelDirectorio
+    de makedirectory para crear directorios / carpetas
+
+rmdir nombreDelDirectorio
+    para eliminar un directorio
+
+rm nombreDelArchivo
+    para eliminar archivos
+
+    si pongo rm --help me va a decir todas las cosas q puedo hacer y me va decir que 
+        rm -r nombreDelDirectorio
+            va eliminar directorio con archivos dentro
+
+        rm -rf nombreDelDirectorio o archivo
+            es para forzar el eliminado
+
+mv nombreDelArchivo nombreDelDirectorio
+    para mover un archivo a un directorio
+
+    tamnbien sirve para renombrar
+        mv nombreDelArchivo nombreDelArchivo
+            el archivo que seleccionamos como primer parametro sera renombrado por el dato que dimos como 2do parametro
+
+cp nombreDelArchivo nombreDelDirectorio
+    copia el archivo en el directorio asignado
+
+    a esto le podemos asignar un nombre al archivo que va a ser copiado seguido del directorio ejemplo:
+        cp ola.txt ../olanewname.txt
+
+cp -r nombreDelDirectorio nombreDelDirectorio
+    lo que hace es copiar un directorio y le asignamos un nombre al nuevo directorio, todo esto sera dentro de otro directorio padre
+
+find 
+    para buscar archivos o directorios
+    ejemplo
+        find j*
+        va encontrar todos los archivos o directorios q empiezen con j
+
+ps 
+    muestra procesos activos del computador
+    gitbash no muestra muchos pero desde powershell u otra terminal van aparecer muchos mas 
+
+kill idDelProceso
+    para matar un proceso
+        WARNING
+
+git bash viene con un editor de codigo de consola que podemos acceder a el typeando
+    nano
+
+    tambien podemos acceder a un vsc si tenemos instalado en la pc con la palabra
+        code 
+
+    y a estos les podemos agregar un directorio para que cuando ingresemos al editor estemos parados ahi 
+    esto seria muy util para abrir un editor de codigo y situarlo en un folder donde tenemos x proyectos armados
+
+alias
+    te muestra los alias, que son como unas variables que guardan determinados comandos
+
+    para crear un alias
+        alias nombreDelAlias="contenido, pueden ser comandos o lo q sea"
+
+unalias nombreDelAlias
+    para eliminar un alias
+    
