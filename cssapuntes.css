@@ -48,7 +48,8 @@ El selector es el elemento o conjunto de elementos que queremos modificar. Los t
 
 	por atributo: los atributos pueden ser existentes del lenguaje HTML o creados en el momento y son referenciados entre "[]" "[atributo]". Puede ser llamado unicamente el atributo o el atributo y su valor.
 
-	descendiente: se utiliza para poder editar un grupo de elementos que se encuentra dentro de otro elemento. El selector se define ordenado por prioridad de mayor a menor, si por ejemplo tenemos un h1 con un p dentro sería así "h1 p" es decir es para seleccionar un selector que está dentro de otro
+	descendiente: se utiliza para poder editar un grupo de elementos que se encuentra dentro de otro elemento. El selector se define ordenado por prioridad de mayor a menor, si por ejemplo tenemos un h1 con un p dentro sería así "h1 p" es decir es para seleccionar un selector que está dentro de otro.
+		tambien podemos utilizarlo para seleccionar determinados elementos que tienen x clase podemos hacerlo asi ej: .meme p entonces todos los elementos p que tengan la clase meme van a estar seleccionados
 
 	varios: para seleccionar varios selectores los podemos separar por ", " "selector1, selector2"
 
@@ -60,6 +61,21 @@ El selector es el elemento o conjunto de elementos que queremos modificar. Los t
 
 La propiedad es lo que queremos hacer con nuestro elemento, puede ser el color, tamaño, ancho, posicion, sombra, texto, bordes etc.
 	
+
+	nota: 
+		siempre que seleccionemos un elemento que sea padre de otros y a este le asignemos determinadas propiedades, todos los hijos se van a ver afectados con esta modificacion.
+			pero como estamos en CSS (hojas de estilo en cascada) si especificamos por debajo algun elemento por mas que sea hijo del anterior podemos sobreescribir la modificacion y asignarle lo que querramos.
+
+			ejemplo
+				body {
+					font-family: sans-serif;
+				}
+				
+				h1 {
+					font-family:Impact;
+				}
+
+			por mas de que h1 sea hijo de body, al estarle asignando otra propiedad por debajo, el navegador leera Impact
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
@@ -107,7 +123,7 @@ Texto:
 
 Fuentes:
 
-	font-family: familia de fuentes, tipo de fuente || valores: nombre-familia, nombre-familia-genérica, *. Los nombres de familia de fuentes son sensibles a mayúsculas y minúsculas, y si incluyen espacios deben estar envueltos entre comillas. Por ejemplo, necesitas comillas para usar la fuente "Open Sans", pero no las necesitas para usar la fuente Lobster.
+	font-family: familia de fuentes, tipo de fuente || valores: nombre-familia, nombre-familia-genérica, *. Los nombres de familia de fuentes son sensibles a mayúsculas y minúsculas, y si incluyen espacios deben estar envueltos entre comillas. Por ejemplo, necesitas comillas para usar la fuente "Open Sans", pero no las necesitas para usar la fuente Lobster. se pueden tener fuentes de "fallback" en caso de que la primera falle o whatever, separadas por comas podemos poner todas las que querramos.
 
 	font-style: estilo de la fuente || val: normal, italic, oblique
 
@@ -213,9 +229,11 @@ Modelos de cajas: márgenes, rellenos y bordes:
 
 	width; : ancho
 
+	max-width; max-height; / min-width; min-height; estas propiedades son utiles cuando definimos un width o un height en porcentaje y queremos generar adaptaciones para distintas pantallas le podemos asignar un max width en pixeles para que en pantallas muy grandes se adapten al contenido, lo mismo a la inversa con el min.
+
 	paddint-top; padding-right; padding-bottom; padding-left; : tamaño del relleno superior, derecho, inferior e izquierdo || longitud, porcentaje
 
-	padding: tamaño del relleno || longitud, porcentaje {1,4}
+	padding: tamaño del relleno de los 4 lados || longitud, porcentaje {1,4}
 
 	El padding puede ser modificado en sus 4 lados solamente con la propiedad de 'padding' siguiendo las agujas del reloj definiéndolas todas juntas separadas por espacio.
 	EJ: selector {
