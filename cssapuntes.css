@@ -86,6 +86,17 @@ PROPIEDADES
 Colores:
 
 	color: color del texto || valores: RGB, RSL, HEX, namecolor, RGBA, HSLA
+				ejemplo de rgb seria: rgb(0, 0, 0)
+
+					HEX funciona con el codigo RGB pero de la siguiente manera.
+					se utiliza con un # al principio y 6 digitos donde los 2 primeros representan Red, los 2 del medio Green y los 2 ultimos Blue. Se utilizan valores de 0-9 y A-F donde 0 es 0% y F 100%.
+
+					HSL es hue, saturation and lightness. (tono, saturacion y luminosidad)
+						H es numerico de 0 a 360. es la intensidad de un color desde 0 %, o gris, hasta 100 % para un color puro.
+						S es porcentaje de 0% a 100%. es lo brillante que aparece un color, desde el 0 %, o negro completo, hasta el 100 %, blanco completo, siendo el 50 % neutral.
+						L es porcentaje de 0% a 100%
+
+						
 
 	background-color: color de fondo || valores: =color
 
@@ -232,13 +243,13 @@ Modelos de cajas: márgenes, rellenos y bordes:
 	max-width; max-height; / min-width; min-height; estas propiedades son utiles cuando definimos un width o un height en porcentaje y queremos generar adaptaciones para distintas pantallas le podemos asignar un max width en pixeles para que en pantallas muy grandes se adapten al contenido, lo mismo a la inversa con el min.
 
 	paddint-top; padding-right; padding-bottom; padding-left; : tamaño del relleno superior, derecho, inferior e izquierdo || longitud, porcentaje
-
-	padding: tamaño del relleno de los 4 lados || longitud, porcentaje {1,4}
-
-	El padding puede ser modificado en sus 4 lados solamente con la propiedad de 'padding' siguiendo las agujas del reloj definiéndolas todas juntas separadas por espacio.
-	EJ: selector {
-			padding: 5px 5px 5px 5px; top right bottom left
-		}
+	
+		padding: tamaño del relleno de los 4 lados || longitud, porcentaje {1,4}
+			El padding puede ser modificado en sus 4 lados solamente con la propiedad de 'padding' siguiendo las agujas del reloj definiéndolas todas juntas separadas por espacio.
+				EJ: selector {
+					padding: 5px 5px 5px 5px; top right bottom left
+					}
+				tambien se puede modificar en dos parametros donde el primero es top y bot y el segundo es r y l
 
 	margin-top; marginm-right; margin-bottom; margin-left; : tamaño del margen superior, derechjo, inferior e izquierdo || longitud, porcentaje, auto 
 
@@ -248,6 +259,7 @@ Modelos de cajas: márgenes, rellenos y bordes:
 	EJ: selector {
 			margin: 5px 5px 5px 5px; top right bottom left
 		}
+		tambien se puede utilizar solo con 2 parametros donde el primero sera top y bottom y el segundo sera right y left
 
 	border-top-width; border-right-width; border-bottom-width; border-left-width; : anchura del borde superior, derecho, inferor o izquierdo || thin, medium, thick, longitud
 
