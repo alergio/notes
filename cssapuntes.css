@@ -395,3 +395,332 @@ Las unidades de medidas relativas son:
 	Por ejemplo, cuando la pantalla es más pequeña o más grande que el breakpoint de tu media query, puedes cambiar el valor de una variable, y su estilo se aplicará dondequiera que la utilices.
 
 
+
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+FUNCIONES CSS
+	las funciones se utilizan con determinados parametros que no estan en estos apuntes pero facilmente se puede buscar
+
+
+	Transform functions
+	These functions are used when the <transform-function> CSS data type is used as a value of transform.
+
+	matrix()
+	Describes a homogeneous 2D transformation matrix.
+
+	matrix3d()
+	Describes a 3D transformation as a 4×4 homogeneous matrix.
+
+	perspective()
+	Sets the distance between the user and the z=0 plane.
+
+	rotate()
+	Rotates an element around a fixed point on the 2D plane.
+
+	rotate3d()
+	Rotates an element around a fixed axis in 3D space.
+
+	rotatex()
+	Rotates an element around the horizontal axis.
+
+	rotatey()
+	Rotates an element around the vertical axis.
+
+	rotatez()
+	Rotates an element around the z-axis.
+
+	scale()
+	Scales an element up or down on the 2D plane.
+
+	scale3d()
+	Scales an element up or down in 3D space.
+
+	scalex()
+	Scales an element up or down horizontally.
+
+	scaley()
+	Scales an element up or down vertically.
+
+	scalez()
+	Scales an element up or down along the z-axis.
+
+	skew()
+	Skews an element on the 2D plane.
+
+	skewx()
+	Skews an element in the horizontal direction.
+
+	skewy()
+	Skews an element in the vertical direction.
+
+	translate()
+	Translates an element on the 2D plane.
+
+	translate3d()
+	Translates an element in 3D space.
+
+	translatex()
+	Translates an element horizontally.
+
+	translatey()
+	Translates an element vertically.
+
+	translatez()
+	Translates an element along the z-axis.
+
+	Math functions
+	The math functions allow CSS numeric values to be written as mathematical expressions.
+
+	calc()
+	A math function that allows basic arithmetic to be performed on numerical CSS values.
+
+	clamp()
+	A comparison function that takes a minimum, central, and maximum value and represents its central calculation.
+
+	max()
+	A comparison function that represents the largest of a list of values.
+
+	min()
+	A comparison function that represents the smallest of a list of values.
+
+	abs() Experimental
+	Takes a calculation and returns the absolute value.
+
+	acos() Experimental
+	An inverse trigonometric function the angle returned must be normalized to the range [0deg, 180deg].
+
+	asin() Experimental
+	An inverse trigonometric function the angle returned must be normalized to the range [-90deg, 90deg].
+
+	atan() Experimental
+	An inverse trigonometric function the angle returned must be normalized to the range [-90deg, 90deg].
+
+	atan2() Experimental
+	Contains two comma-separated calculations, A and B. A and B can resolve to any <number>, <dimension>, or <percentage>, but must have the same type, or else the function is invalid.
+
+	cos() Experimental
+	Contains a single calculation which must resolve to either a <number> or an <angle>.
+
+	exp() Experimental
+	Contains one calculation which must resolve to a <number>, and returns the same value as pow(e, A) as a <number>.
+
+	hypot() Experimental
+	Contains one or more comma-separated calculations, and returns the length of an N-dimensional vector with components equal to each of the calculations.
+
+	log() Experimental
+	Contains one or two calculations (representing the value to be logarithmed, and the base of the logarithm, defaulting to e), which must both resolve as a <number>, and returns the logarithm base B of the value A, as a <number>.
+
+	mod() Experimental
+	A modulus function that contains two calculations A and B, and returns the difference between A and the nearest integer multiple of B either above or below A.
+
+	pow() Experimental
+	Contains two comma-separated calculations A and B, both of which must resolve as a <number>, and returns the result of raising A to the power of B, returning the value as a <number>.
+
+	rem() Experimental
+	A modulus function that contains two calculations A and B, and returns the difference between A and the nearest integer multiple of B either above or below A.
+
+	round() Experimental
+	Contains an optional rounding strategy, and two calculations A and B, and returns the value of A, rounded according to the rounding strategy, to the nearest integer multiple of B either above or below A.
+
+	sign() Experimental
+	Takes a calculation and returns -1 if the numeric value is negative, +1 if the numeric value is positive, 0⁺ if the numeric value is 0⁺, and 0⁻ if the numeric value is 0⁻.
+
+	sin() Experimental
+	Contains a single calculation which must resolve to either a <number> or an <angle>.
+
+	sqrt() Experimental
+	Contains a single calculation which must resolve to a <number>, and returns the square root of the value as a <number>.
+
+	tan() Experimental
+	Contains a single calculation which must resolve to either a <number> or an <angle>.
+
+	Filter functions
+	The <filter-function> CSS data type represents a graphical effect that can change the appearance of an input image. It is used in the filter and backdrop-filter properties.
+
+	blur()
+	Blurs the image.
+
+	brightness()
+	Makes the image brighter or darker.
+
+	contrast()
+	Increases or decreases the image's contrast.
+
+	drop-shadow()
+	Applies a drop shadow behind the image.
+
+	grayscale()
+	Converts the image to grayscale.
+
+	hue-rotate()
+	Changes the overall hue of the image.
+
+	invert()
+	Inverts the colors of the image.
+
+	opacity()
+	Makes the image transparent.
+
+	saturate()
+	Super-saturates or desaturates the input image.
+
+	sepia()
+	Converts the image to sepia.
+
+	Color functions
+	Functions which specify different color representations. These may be used anywhere a <color> is valid.
+
+	color() Experimental
+	Allows a color to be specified in a particular, specified colorspace (rather than the implicit sRGB colorspace that most of the other color functions operate in).
+
+	color-mix() Experimental
+	Takes two color values and returns the result of mixing them in a given colorspace by a given amount.
+
+	color-contrast() Experimental
+	Takes a color value and compares it to a list of other color values, selecting the one with the highest contrast from the list.
+
+	device-cmyk() Experimental
+	Used to express CMYK colors in a device-independent way.
+
+	hsl()
+	The HSL color model defines a given color according to its hue, saturation, and lightness components. An optional alpha component represents the color's transparency.
+
+	hsla()
+	The HSL color model defines a given color according to its hue, saturation, and lightness components. The alpha component represents the color's transparency.
+
+	hwb() Experimental
+	HWB (short for Hue-Whiteness-Blackness) is another method of specifying colors, similar to HSL.
+
+	lab() Experimental
+	Lab color is device-independent and specifies physical measurements of color.
+
+	lch() Experimental
+	LCH color is device-independent and specifies color using polar coordinates for chroma and hue.
+
+	oklab() Experimental
+	OKLab color is device-independent and specifies physical measurements of color.
+
+	oklch() Experimental
+	OKLCH color is device-independent and specifies color using polar coordinates for chroma and hue.
+
+	rgb()
+	The RGB color model defines a given color according to its red, green, and blue components. An optional alpha component represents the color's transparency.
+
+	rgba()
+	The RGB color model defines a given color according to its red, green, and blue components. The alpha component represents the color's transparency.
+
+	Image functions
+	These functions may be used wherever an <image> is valid as the value for a property.
+
+	conic-gradient()
+	Conic gradients transition colors progressively around a circle.
+
+	image() Experimental
+	Defines an <image> in a similar fashion to the url() function, but with added functionality including specifying the image's directionality and fallback images for when the preferred image is not supported.
+
+	image-set() Experimental
+	A method of letting the browser pick the most appropriate CSS image from a given set, primarily for high pixel density screens.
+
+	linear-gradient()
+	Linear gradients transition colors progressively along an imaginary line.
+		funcionan bien en la propiedad background
+		lleva un primer parametro que significa la direccion hacia donde va a hacer el gradient y eso puede ser en diferentes medidas pero generalmente se usa grados y se describe como xdeg ej: 90deg. El segundo y tercer parametro son colores y es obligatorio minimo 2, y no tiene tope. A los colores se le puede dar un lenght en PX o % que va a representar la ubicacion que va a ocupar.
+
+	radial-gradient()
+	Radial gradients transition colors progressively from a center point (origin).
+
+	repeating-linear-gradient()
+	Is similar to linear-gradient() and takes the same arguments, but it repeats the color stops infinitely in all directions so as to cover its entire container.
+
+	repeating-radial-gradient()
+	Is similar to radial-gradient() and takes the same arguments, but it repeats the color stops infinitely in all directions so as to cover its entire container.
+
+	repeating-conic-gradient()
+	Is similar to conic-gradient() and takes the same arguments, but it repeats the color stops infinitely in all directions so as to cover its entire container.
+
+	cross-fade()
+	Can be used to blend two or more images at a defined transparency.
+
+	element()
+	Defines an <image> value generated from an arbitrary HTML element.
+
+	paint()
+	Defines an <image> value generated with a PaintWorklet.
+
+	Counter functions
+	The counter functions are generally used with the content property, although in theory may be used wherever a <string> is supported.
+
+	counter()
+	Returns a string representing the current value of the named counter, if there is one.
+
+	counters()
+	Enables nested counters, returning a concatenated string representing the current values of the named counters, if there are any.
+
+	symbols()
+	Lets you define counter styles inline, directly as the value of a property.
+
+	Font functions
+	The font-variant-alternates property controls the use of alternate glyphs, the following functions are values for this property.
+
+	stylistic()
+	This function enables stylistic alternates for individual characters. The parameter is a font-specific name mapped to a number. It corresponds to the OpenType value salt, like salt 2.
+
+	styleset()
+	This function enables stylistic alternatives for sets of characters. The parameter is a font-specific name mapped to a number. It corresponds to the OpenType value ssXY, like ss02.
+
+	character-variant()
+	This function enables specific stylistic alternatives for characters. It is similar to styleset(), but doesn't create coherent glyphs for a set of characters; individual characters will have independent and not necessarily coherent styles. The parameter is a font-specific name mapped to a number. It corresponds to the OpenType value cvXY, like cv02.
+
+	swash()
+	This function enables swash glyphs. The parameter is a font-specific name mapped to a number. It corresponds to the OpenType values swsh and cswh, like swsh 2 and cswh 2.
+
+	ornaments()
+	This function enables ornaments, like fleurons and other dingbat glyphs. The parameter is a font-specific name mapped to a number. It corresponds to the OpenType value ornm, like ornm 2.
+
+	annotation()
+	This function enables annotations, like circled digits or inverted characters. The parameter is a font-specific name mapped to a number. It corresponds to the OpenType value nalt, like nalt 2.
+
+	Shape functions
+	The following functions may be used as values for the <basic-shape> data type, which is used in the clip-path, offset-path, and shape-outside properties.
+
+	circle()
+	Defines a circle.
+
+	ellipse()
+	Defines an ellipse.
+
+	inset()
+	Defines an inset rectangle.
+
+	polygon()
+	Defines a polygon.
+
+	path()
+	Accepts an SVG path string to enable a shape to be drawn.
+
+	Reference functions
+	The following functions are used as a value of properties to reference a value defined elsewhere.
+
+	attr()
+	Used to retrieve the value of an attribute of the selected element and use it in the stylesheet.
+
+	env()
+	Used to insert the value of a user agent-defined environment variable.
+
+	url()
+	Used to include a file.
+
+	var()
+	Used to insert a value of a custom property instead of any part of a value of another property.
+
+	CSS grid functions
+	The following functions are used to define a CSS grid.
+
+	fit-content()
+	Clamps a given size to an available size according to the formula min(maximum size, max(minimum size, argument)).
+
+	minmax()
+	Defines a size range greater than or equal to min and less than or equal to max.
+
+	repeat()
+	Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern.
