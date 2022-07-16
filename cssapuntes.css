@@ -1,4 +1,4 @@
-a verte
+
 Cascade Style Sheet
 en CSS siempre se toma como verdad el último ingreso de datos, por eso se llama cascada.
 Cuando le agregamos estilo a un elemento dentro de nuestro HTML mediante el atributo style, priorizaremos ese estilo frente a cualquiera que le podamos aplicar en el CSS.
@@ -90,11 +90,17 @@ Colores:
 
 					HEX funciona con el codigo RGB pero de la siguiente manera.
 					se utiliza con un # al principio y 6 digitos donde los 2 primeros representan Red, los 2 del medio Green y los 2 ultimos Blue. Se utilizan valores de 0-9 y A-F donde 0 es 0% y F 100%.
+						con la funcion HEX se le puede agregar un cuarto parametro de dos digitos gracias a la funcion alpha-channel y lo que hacemos con esto es agregarle opacidad al color.
+								#RRGGBBOP
+									(RR = red, GG = green, BB = blue, OP = opacity)
 
 					HSL es hue, saturation and lightness. (tono, saturacion y luminosidad)
 						H es numerico de 0 a 360. es la intensidad de un color desde 0 %, o gris, hasta 100 % para un color puro.
 						S es porcentaje de 0% a 100%. es lo brillante que aparece un color, desde el 0 %, o negro completo, hasta el 100 %, blanco completo, siendo el 50 % neutral.
 						L es porcentaje de 0% a 100%
+							tambien podemos utilizar la funcion HSLA agregandole la funcion alpha-channel para agregarle opacidad.
+								hsla(0-360, %, %, 0-1.0)
+									hsla(125, 75%, 75%, 0.5)
 
 						
 
@@ -110,7 +116,7 @@ Colores:
 
 	background-size: tamaño de la imagen de fondo || valores: unidad de medida
 
-	opacity: transparencia de un elemento || valores: 0-1
+	opacity: transparencia de un elemento || valores: 0 al 1.0 or %
 
 
 Texto:
@@ -272,6 +278,9 @@ Modelos de cajas: márgenes, rellenos y bordes:
 	border-style: estilo del borde (reducida) || =anterior + {1,4}
 
 	border-top; border-right; border-bottom; border-left; : ancho, estilo y color para los bordes || border-top-width, border-top-style, border-top-color
+		dentro del border podemos agregarle el width el style y el color separandolos por espacio. 
+			ej: border-left: width style color;
+			border-left: 10px solid black;
 
 	border: ancho, estilo y color para los bordes (reducida) || =anterior
 
@@ -296,7 +305,17 @@ Comportamiento de los contenedores:
 
 	visibility: muestra u oculta un elemento ocupando el espacio || visible, hidden
 
-
+	box-shadow: aplica una o mas sombras alrededor de un elemento.
+		box-shadow: offsetX offsetY color;
+			box-shadow: 5px 5px red;
+		ademas el box shadow tiene un valor opcional llamado blurRadius que va como tercer parametro despues de los valores X e Y.
+			este blurRadius tiene la funcion de agregarle un borde difuminado al box shadow.
+			box-shadow: offsetX offsetY blurRadius color;
+				box-shadow: 5px 5px 5px green;
+		hay otro valor opcional llamado spreadRadius que cumple la funcion de agrandar/expandir el box-shadow.
+			se utiliza como cuarto parametro
+				box-shadow: offsetX offsetY blurRadius spreadRadius color;
+					box-shadow: 0px 0px 0px 5px green;
 
 
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -363,6 +382,7 @@ Las unidades de medidas fijas son:
 Las unidades de medidas relativas son:
 
 	px: pixeles, relativo al dispositivo
+	rem: están basadas en el tamaño de la fuente del elemento html
 	em: relativo al tamaño de la fuente del elemento o su respectiva caja/elemento padre, 2em significaría 2 veces el tamaño de la fuente actual. Si no tenemos definido el tamaño de la fuente en su respectivo elemento padre, será el por defecto del navegador, generalmente 16px.
 	%: porcentaje, será relativo al elemento padre/la caja que la contiene.
 	vh y vw: son medidas de acuerdo al total del height y width de toda la pantalla, determinados por el porcentaje 1-100. 50vh será la mitad del alto y 50vw será la mitad del ancho.
@@ -608,6 +628,7 @@ FUNCIONES CSS
 
 	rgba()
 	The RGB color model defines a given color according to its red, green, and blue components. The alpha component represents the color's transparency.
+		la a hace referencia a la funcion alpha channel para agregarle la propiedad opacity dentro de los valores de un color
 
 	Image functions
 	These functions may be used wherever an <image> is valid as the value for a property.
