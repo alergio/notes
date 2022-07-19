@@ -140,7 +140,9 @@ Funciona exactamente igual que video.
 Además, si al form le agregamos la propiedad action y le damos el valor de una ruta determinada, podremos configurar un ingreso de datos al servidor utilizando solamente HTML.
 
 <form>
-	<input type="" name="">  es el ingreso de datos y se determina su tipo de dato y su nombre identificador de forma opcional para llamarlo luego en la parte de backend. El tipo de dato puede ser: text, password, number, email, color, range (configurable min y max), date, time, radio (opciones), button (¿¿¿ si o si tiene que tener un value ???), submit (es un type de button) etc.
+	<input type="" name="">  es el ingreso de datos y se determina su tipo de dato y su nombre identificador de forma opcional para llamarlo luego en la parte de backend. El tipo de dato puede ser: text, password, number, email, color, range (configurable min y max para varios), date, time, radio (opciones), button (¿¿¿ si o si tiene que tener un value ???), submit (es un type de button) etc.
+		tipo file, para subir archivos
+		los atributos tipo file generalmente en algunos navegadores le dan un valor predeterminado de padding que lo hace diferente al predeterminado del resto de inputs por lo que hay que asignarle manual un padding de 1px 2px para que sea igual al default de los inputs de tipo text porej.
 	Los imputs pueden tener un valor (value).
 	Además los input pueden tener atributos después de su tipo, ejemplos: required (obliga a ingresar datos).
 	
@@ -184,6 +186,7 @@ Además, si al form le agregamos la propiedad action y le damos el valor de una 
 			</form>
 
 			Si a este código le asociamos un botón de tipo submit podremos configurarlo para enviar datos al servidor.
+				With form submissions, it is useful, and good practice, to provide each submittable element with a name attribute. This attribute is used to identify the element in the form submission.
 
 Los chetbox y los radios pueden estar seleccionados de manera predeterminada (defoult) tan solo añadiendo la palabra "checked" dentro del <input>
 
@@ -199,6 +202,13 @@ Ejemplo:
 	Inputs de type radio. Cuando el usuario envía el formulario con la opción indoor seleccionada, los datos del formulario incluirán la línea: indoor-outdoor=indoor. Esto proviene de los atributos name y value del input "indoor".
 
 	<textarea></textarea> es para que un usuario ingrese texto a menos que le agreguemos el atributo "readonly" entonces será solo un espacio de texto que el usuario podrá leer.
+		The textarea element acts like an input element of type text, but comes with the added benefit of being able to receive multi-line text, and an initial number of text rows and columns.
+
+		like a input se le puede agregar el atributo placeholder.
+
+		el textarea puede tener atributos de rows and cols para asignarle un valor de filas y columnas.
+
+
 </form> 	
 
 el elemento <fieldset></fieldset> sirve para crear una caja y unificar todos los input dentro de un form.
@@ -291,6 +301,18 @@ Y otro elemento de la estructura es el footer. Que funcionará como pie de pági
 	Desarrollaremos el pie de página
 </footer>
 
+<select> 
+	el elemento select lo utilizamos para crear un menu desplegable donde el usuario puede elegir opciones que las declaramos dentro del elemento option like a label.
+
+	<option>opcion 1</option>
+	<option>opcion 2</option>
+	<option>opcion 3</option>
+	<option>opcion 4</option>
+	<option>opcion 5</option>
+</select>
+	estas opciones no enviaran informacion valida al server a menos que se le asigne un valor al elemento.
+		<option value="1">opcion 1</option>
+	
 
 -------------------------------------------------------------------------------------------------------------------------------------
 

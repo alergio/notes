@@ -47,6 +47,9 @@ El selector es el elemento o conjunto de elementos que queremos modificar. Los t
 	ID: los elementos identificados por ID en el HTML los podemos referenciar con "#" "#id". El ID es más importante que las clases o sea tiene relevancia y el programa le dará la prioridad ante una contradicción.
 
 	por atributo: los atributos pueden ser existentes del lenguaje HTML o creados en el momento y son referenciados entre "[]" "[atributo]". Puede ser llamado unicamente el atributo o el atributo y su valor.
+		tambien puede ser el atributo de un elemento, por ejemplo
+			input[name="password"]
+		estoy llamando al atributo name de valor password que existe en un elemento input.
 
 	descendiente: se utiliza para poder editar un grupo de elementos que se encuentra dentro de otro elemento. El selector se define ordenado por prioridad de mayor a menor, si por ejemplo tenemos un h1 con un p dentro sería así "h1 p" es decir es para seleccionar un selector que está dentro de otro.
 		tambien podemos utilizarlo para seleccionar determinados elementos que tienen x clase podemos hacerlo asi ej: .meme p entonces todos los elementos p que tengan la clase meme van a estar seleccionados
@@ -191,6 +194,8 @@ Pseudo-clases para selección de hijos o hermanos:
 	:nth-of-type(n) || n elemento hijo de su tipo 
 	:nth-last-of-type(n) || "  " comenzando desde el ultimo
 
+		EJ: p:last-child
+			to select the last child of p element.
 
 Pseudo-clases para los estados de un elemento:
 
@@ -260,6 +265,7 @@ Modelos de cajas: márgenes, rellenos y bordes:
 	margin-top; marginm-right; margin-bottom; margin-left; : tamaño del margen superior, derechjo, inferior e izquierdo || longitud, porcentaje, auto 
 
 	margin: ancho de los margenes || longitud, porcentaje, auto {1,4}
+		si aplicamos un valor de 0 auto en margin vamos a centrar un elemento.
 
 	El margin puede ser modificado en sus 4 lados solamente con la propiedad de 'margin' siguiendo las agujas del reloj definiéndolas todas juntas separadas por espacio.
 	EJ: selector {
@@ -289,7 +295,14 @@ Modelos de cajas: márgenes, rellenos y bordes:
 
 Comportamiento de los contenedores:
 
-	display: comportamiento del contenedor || inline, block, inline-block, none 
+	display: comportamiento del contenedor || inline, block, inline-block, none y mas..
+		block significa que el elemento ocupara toda la linea hasta el final
+
+		inline se creara un bloque con el tamanho que ocupe el elemento.
+
+		none significa que va a desaparecer
+
+		inline-block es una combinacion de ambos valores. una caja de este tipo se comporta como si fuera de bloque pero respecto a los elementos que la rodean es una caja inline.
 
 	position: esquema de posicionamiento || static, relative, absolute, fixed
 
@@ -382,10 +395,12 @@ Las unidades de medidas fijas son:
 Las unidades de medidas relativas son:
 
 	px: pixeles, relativo al dispositivo
-	rem: están basadas en el tamaño de la fuente del elemento html
+	rem: están basadas en el tamaño de la fuente del elemento html.
+		1 rem es igual al valor de fontsize del elemento raiz que es el elemento html. si la fuente del elemento raiz vale 15px, 2rem seran 30px.
 	em: relativo al tamaño de la fuente del elemento o su respectiva caja/elemento padre, 2em significaría 2 veces el tamaño de la fuente actual. Si no tenemos definido el tamaño de la fuente en su respectivo elemento padre, será el por defecto del navegador, generalmente 16px.
 	%: porcentaje, será relativo al elemento padre/la caja que la contiene.
 	vh y vw: son medidas de acuerdo al total del height y width de toda la pantalla, determinados por el porcentaje 1-100. 50vh será la mitad del alto y 50vw será la mitad del ancho.
+		cuando a un elemento en css le damos un valor de max-width y otro de min-width y a su vez le asignamos un width en valor de vw lo que le estamos diciendo al elemento es que dentro de ese margen que le dimos de max y min width, adapte su width al porcentaje de valor que le asignamos. si la pantalla no cumple con el max y min no va a cumplirse el width en valor de vw.
 
 	Las unidades de medida relativas sirven para generar un risponsive-design lo que significa que los tamaños se adaptan a las pantallas.
 
