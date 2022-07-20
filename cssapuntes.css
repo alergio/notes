@@ -109,7 +109,8 @@ Colores:
 
 	background-color: color de fondo || valores: =color
 
-	background-image: imagen de fondo || valores:  url(vínculo local o externo)
+	background-image: imagen de fondo || valores:  url(vínculo local o externo) y muchos mas, googlear.
+		puede soportar varios parametros donde podemos indicar una combinacion de valores por ejemplo un degrade y una imagen, todo junto.
 
 	backgound-repeat: repetición de la imagen de fondo || valores: repeat, repeat-x, repeat-y, no-repeat
 
@@ -118,6 +119,9 @@ Colores:
 	background-position: posición de la imagen de fondo || valores: percentage, length, left, center, right, top, bottom
 
 	background-size: tamaño de la imagen de fondo || valores: unidad de medida
+
+	background-clip:
+				https://developer.mozilla.org/es/docs/Web/CSS/background-clip
 
 	opacity: transparencia de un elemento || valores: 0 al 1.0 or %
 
@@ -139,6 +143,9 @@ Texto:
 	line-height: tamaño del espacio entre lineas || longitud, porcentaje
 
 	vertical-align: alineación vertical || val: top, middle, bottom, baseline, sub, super, valor
+
+	text-shadow: La propiedad text-shadow agrega sombra al texto. Acepta una lista de sombras separadas por coma, para aplicarlas al texto y a la propiedad text-decorations del elemento. Tambien se le puede asignar color.
+	Los parametros trabajan como offset-x y offset-y, el color puede ser en cualquier codificacion y tambien se le puede agregar blur-radius.
 
 
 Fuentes:
@@ -293,6 +300,13 @@ Modelos de cajas: márgenes, rellenos y bordes:
 	border-radius: curvatura del borde || longitud, porcentaje {1,4}
 
 
+content: propiedad compleja para anhadir contenido.
+		http://dis.um.es/~lopezquesada/documentos/IES_1213/LMSGI/curso/UT5/libroswebcss21/www.librosweb.es/referencia/css/content.html#:~:text=La%20propiedad%20content%20es%20una,insertarlo%20en%20la%20p%C3%A1gina%20HTML%20.
+	
+
+align-items: 
+		La propiedad CSS align-items establece el valor align-self sobre todos los descendientes directos de un grupo. La propiedad align-self indica la alineación de un elemento dentro del bloque que lo contiene.
+
 Comportamiento de los contenedores:
 
 	display: comportamiento del contenedor || inline, block, inline-block, none y mas..
@@ -304,7 +318,11 @@ Comportamiento de los contenedores:
 
 		inline-block es una combinacion de ambos valores. una caja de este tipo se comporta como si fuera de bloque pero respecto a los elementos que la rodean es una caja inline.
 
+		flex este valor significa flexbox y eso hay q estudiarlo
+			si le damos display valor flex a un elemento, los hijos directos de este contenedor se vuelven ítems flex. Como con todas las propiedades de CSS, se definen algunos valores iniciales, así que cuando creemos un contenedor flex todos los ítems flex contenidos se comportarán de la siguiente manera.
+
 	position: esquema de posicionamiento || static, relative, absolute, fixed
+		https://www.w3schools.com/css/css_positioning.asp
 
 	top; right; botom; left; : desplazamiento de la caja respecto al borde superior, derecho, inferior, izquierdo || longitud, porcentaje, alto 
 
@@ -313,8 +331,12 @@ Comportamiento de los contenedores:
 	clear: control de cajas adyacentes a las float || none, left, right, both
 
 	z-index: nivel de la capa || auto, número entero 
+		https://developer.mozilla.org/es/docs/Web/CSS/z-index
+		La propiedad CSS z-index indica el orden de un elemento posicionado y sus descendientes. Cuando varios elementos se superponen, los elementos con mayor valor z-index cubren aquellos con menor valor.
 
 	box-sizing: control de bordes y relleno en el comportamiento del contenedor || content-box, border-box
+		content-box es el comportamiento CSS por defecto para el tamaño de la caja (box-sizing). Si se define el ancho de un elemento en 100 pixeles, la caja del contenido del elemento tendrá 100 pixeles de ancho, y el ancho de cualquier borde o relleno ser añadirá al ancho final desplegado.
+		border-box le dice al navegador tomar en cuenta para cualquier valor que se especifique de borde o de relleno para el ancho o alto de un elemento. Es decir, si se define un elemento con un ancho de 100 pixeles. Esos 100 pixeles incluíran cualquier borde o relleno que se añadan, y la caja de contenido se encogerá para absorber ese ancho extra. Esto típicamente hace mucho más fácil dimensionar elementos.
 
 	visibility: muestra u oculta un elemento ocupando el espacio || visible, hidden
 
@@ -760,3 +782,28 @@ FUNCIONES CSS
 
 	repeat()
 	Represents a repeated fragment of the track list, allowing a large number of columns or rows that exhibit a recurring pattern.
+
+
+
+	REGLA
+
+	@import url();
+	@import "string";
+		https://www.w3schools.com/cssref/pr_import_rule.asp
+		es para importar css
+
+
+	@media 
+		Las media queries (en español "consultas de medios") son útiles cuando deseas modificar tu página web o aplicación en función del tipo de dispositivo (como una impresora o una pantalla) o de características y parámetros específicos (como la resolución de la pantalla o el ancho del viewport del navegador)
+
+		tiene un monton de usos y para eso se puede googlear, pero el mas comun es para usarlo like a condicional en la que le decimos para x pantalla comportate de esta manera y para x pantalal de esta otro. ej:
+			@media (min-width: 700px) { 
+				...
+			 }
+
+
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	VARIABLES CSS
+
+	En CSS, las propiedades personalizadas (también conocidas como variables) son entidades definidas por autores de CSS que contienen valores específicos que se pueden volver a utilizar en un documento. Se establecen mediante la notación de propiedades personalizadas (por ejemplo, --main-color: black;) y se acceden mediante la función var() (por ejemplo, color: var (--main-color);)
