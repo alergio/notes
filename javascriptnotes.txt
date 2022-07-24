@@ -19,3 +19,54 @@ Computers can perform mathematical operations on a number, but not on a string.
 
 Variables allow computers to store and manipulate data
 They do this by using a "label" to point to the data rather than using the data itself.
+
+las variables son un simple nombre que representa datos.
+
+en js se crean con 'var' , like this
+    
+    var ourName;
+
+    creamos una variable llamada ourName
+
+In JavaScript we end statements with semicolons. 
+
+- - - - - 
+
+ASIGNACION DE VALORES
+
+In JavaScript, you can store a value in a variable with the assignment operator (=)
+
+    myVariable = 5;
+
+    le asignamos el number value 5 a la variable myVariable
+
+???? If there are any calculations to the right of the = operator, those are performed before the value is assigned to the variable on the left of the operator. ????
+
+    var myVar;
+    myVar = 5;
+
+    First, this code creates a variable named myVar. 
+    Then, the code assigns 5 to myVar. 
+    Now, if myVar appears again in the code, the program will treat it as if it is 5.
+
+
+After a value is assigned to a variable using the assignment operator, you can assign the value of that variable to another variable using the assignment operator.
+
+    var myVar;
+    myVar = 5;
+    var myNum;
+    myNum = myVar;
+
+    declaramos una variable sin valor
+    le asignamos valor
+    declaramos una sin valor
+    le asignamos como valor el valor de la variable declarada antes
+
+
+podemos definir la variable y despues asignarle el valor
+o podemos definir la variable y asignarle el valor
+
+    var myVar = 5;
+
+    esto es lo mas comun
+
