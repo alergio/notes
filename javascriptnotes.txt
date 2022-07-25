@@ -22,9 +22,10 @@ They do this by using a "label" to point to the data rather than using the data 
 
 las variables son un simple nombre que representa datos.
 
-en js se crean con 'var' , like this
+en js se crean con 'var' o 'let', explico diferencias abajo, like this 
     
     var ourName;
+    let ourName;
 
     creamos una variable llamada ourName
 
@@ -78,4 +79,114 @@ you can also declare string variable like this
     "your name" is called a string literal. 
     A string literal, or string, is a series of zero or more characters enclosed in single or double quotes.
 
-    
+
+cuando declaramos una variable y no le damos valor, despues no podremos realizar operaciones matematicas o suma de strings ya que adoptan el valor de undefined.
+    pero si asignamos una variable y le damos valor, despues podemos realizar operaciones con esa variable.
+
+
+In JavaScript all variables and function names are case sensitive. This means that capitalization matters.
+    MYVAR is not the same as MyVar nor myvar. 
+        se recomienda no usar esta funcion del lenguaje para utilizar diferentes variables con las mismas letras pero con diferente casgin
+
+    La mejor practica en JS es camelCase.
+        Write variable names in JavaScript in camelCase.
+            In camelCase, multi-word variable names have the first word in lowercase and the first letter of each subsequent word is capitalized.
+
+            var someVariable;
+            var anotherVariableName;
+            var thisVariableNameIsSoLong;
+
+hay otro declarador de variables en JS que es let, like
+    let myVar;
+
+    la diferencia que tiene var y let es que var se puede sobreescribir definiendo una nueva variable con el mismo nombre
+        var name = "max";
+        var name = "ralph";
+
+        de esta manera la variable se le asignara el valor de max pero luego se reasignara el valor a ralph.
+        esto puede desencadenar en accidentes cuando tenemos un codigo muy largo y por error repetimos el nombre de una variable y sin querer le asignamos un nuevo valor.
+        
+        para eso se creo la nueva forma de definir variables bajo la palabra "let" que no permite sobreescribir una variable con otra.
+        si podemos cambiar el valor de la variable cuantas veces querramos con la asignacion de valores pero no podemos crear una variable con el mismo nombre.
+        es una buena practica definir las variables con let
+
+tambien hay otro declarador de variable que es const, like
+    const myVar;
+
+    este tipo de variables se denominan constantes y estos si jamas podran ser reasignados con un nuevo valor, se les asigna un valor cuando son declaradas y luego no es posible modificarlo, no se podra sobreescribi al igual que let pero tampoco se podra modificar su valor con una asignacion, por eso son constantes.
+
+    es comun en JS que las constantes se declaren en uppercase y las variables que son modificables en lowercase o camelCase. 
+
+    una variable puede alojar un calculo matematico.
+
+    const suma = 2 + 2
+    const multi = 2 * 2
+
+
+    tambien podemos realizar operaciones matematicas con asignacion de valores
+
+        let numVar = 2
+        numVar = numVar * 5
+
+        con las sumas podemos abreviarlo para agregarle 1 with the ++ operator.
+            i++;
+            is the equivalent of
+            i = i + 1;
+
+        lo mismo con las restas
+            i--;
+            is the equivalent of
+            i = i - 1;
+
+We can store decimal numbers in variables too. Decimal numbers are sometimes referred to as floating point numbers or floats.
+
+    const ourDecimal = 5.7;
+
+
+The remainder operator % gives the remainder of the division of two numbers.
+    el % da el RESTO de la division ente dos numeros
+    es como en la escuela dividiendo solo con numeros ENTEROS
+        5 % 2 = 1
+        because
+        5 / 2 = 2
+            y sobra 1
+            porque trabajamos en base a cuantas veces entra el 2 en el numero anterior
+
+    un buen metodo para saber si un numero es par es utilizar el operador % y si el resto es 0 significa que el numero es par.
+        17 % 2 = 1
+            17 es inpar
+
+    a veces el operador de RESTO (remainder operator) "%"   
+        se suele confundir con el operador de modulo MOD modulus
+        es bastante parecido    
+        but does not work properly with negative numbers
+
+In programming, it is common to use assignments to modify the contents of a variable
+    myVar = myVar + 5;
+
+    como esto es una operacion muy regular existe un operador especifico que facilita
+
+        += operator.
+
+        let myVar = 1;
+        myVar += 5;
+        console.log(myVar);
+            la consola mostrara 6.
+
+        same for the -=
+            and *=
+                and /=
+
+
+Escaping Literal Quotes in Strings = citas dentro de citas, comillas, string dentro de string
+    In JavaScript, you can escape a quote from considering it as an end of string quote by placing a backslash (\) in front of the quote.
+
+        const sampleStr = "Alan said, \"Peter is learning JavaScript\".";
+
+        This signals to JavaScript that the following quote is not the end of the string, but should instead appear inside the string. So if you were to print this to the console, you would get:
+
+            Alan said, "Peter is learning JavaScript".
+
+
+
+            
