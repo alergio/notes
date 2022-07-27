@@ -207,5 +207,3 @@ String values in JavaScript may be written with single or double quotes,
 
             goodStr above, you can use both quotes safely by using the backslash \ as an escape character.
 
-            
-
