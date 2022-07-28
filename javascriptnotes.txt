@@ -207,3 +207,109 @@ String values in JavaScript may be written with single or double quotes,
 
             goodStr above, you can use both quotes safely by using the backslash \ as an escape character.
 
+
+
+Escape Sequences in Strings
+    Quotes are not the only characters that can be escaped inside a string.
+
+    
+        Code	Output
+        \'	    single quote
+        \"	    double quote
+        \\	    backslash
+        \n	    newline
+        \r	    carriage return
+        \t	    tab
+        \b	    word boundary
+        \f	    form feed
+
+            const myStr = "FirstLine\n\t\\SecondLine\nThirdLine";
+
+            la consola mostrara 
+
+                FirstLine
+                    \SecondLine
+                ThirdLine
+                    
+
+
+Concatenating Strings with Plus Operator (+)
+    in strings  You can build a new string out of other strings by concatenating them together.
+
+        'My name is Alan,' + ' I concatenate.'
+    
+            Note: Watch out for spaces.
+                Concatenation does not add spaces between concatenated strings, so you'll need to add them yourself.
+        
+        const ourStr = "I come first. " + "I come second.";
+
+            console: I come first. I come second.
+
+
+Concatenating Strings with the Plus Equals Operator (+=)
+    concatenate a string onto the end of an existing string variable. 
+    This can be very helpful to break a long string over several lines.
+
+        let ourStr = "I come first. ";
+        ourStr += "I come second.";
+
+            watch out for spaces
+
+
+Constructing Strings with Variables
+    you can insert one or more variables into a string you're building.
+
+    const ourName = "freeCodeCamp";
+    const ourStr = "Hello, our name is " + ourName + ", how are you?";
+
+        the console will show... 
+            Hello, our name is freeCodeCamp, how are you?.
+
+
+Appending Variables to Strings
+    append variables to a string using the plus equals (+=) operator.
+
+        const anAdjective = "awesome!";
+        let ourStr = "freeCodeCamp is ";
+        ourStr += anAdjective;
+
+        value of ourStr in console...
+            freeCodeCamp is awesome!
+
+
+Find the Length of a String
+    find the length of a String value by writing .length after the string variable or string literal
+
+        console.log("Alan Peter".length);
+            the value 10 would be displayed in the console. Note that the space character between "Alan" and "Peter" is also counted.
+
+        let kk = "KK";
+        console.log(kk.length);
+
+
+Use Bracket Notation to Find the First Character in a String
+    Bracket notation is a way to get a character at a specific index within a string.
+
+    !important 
+        Most modern programming languages, like JavaScript, don't start counting at 1 like humans do.
+        They start at 0. 
+        This is referred to as Zero-based indexing.
+
+        const firstName = "Charles";
+        const firstLetter = firstName[0];
+            
+            firstLetter would have a value of the string C.
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
