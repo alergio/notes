@@ -245,6 +245,17 @@ Concatenating Strings with Plus Operator (+)
 
             console: I come first. I come second.
 
+    ejemplo concatenate with variables considering spaces between strings
+
+        const myNoun = "dog";
+        const myAdjective = "big";
+        const myVerb = "ran";
+        const myAdverb = "quickly";
+        
+        const wordBlanks = myAdjective + " " + myNoun + " " + myVerb + " " + myAdverb;
+  
+
+
 
 Concatenating Strings with the Plus Equals Operator (+=)
     concatenate a string onto the end of an existing string variable. 
@@ -299,17 +310,145 @@ Use Bracket Notation to Find the First Character in a String
         const firstLetter = firstName[0];
             
             firstLetter would have a value of the string C.
+
+            0 representa el primer caracter y asi podemos seleccionar el que querramos
+
+
+Use Bracket Notation to Find the Last Character in a String
+    For example, if const firstName = "Ada", you can get the value of the last letter of the string by using firstName[firstName.length - 1].
+
+        const firstName = "Ada";
+        const lastLetter = firstName[firstName.length - 1];
             
+            lastLetter would have a value of the string a
+
+        asi podemos seleccionar el que querramos
+
+Understand String Immutability
+    en js las variables con valores de tipo string no pueden ser modificados mediante las llaves [] para cambiar un caracter individual.
+
+        let myStr = "Bob";
+        myStr[0] = "J";
+
+            esto no funcionaria
+    
+    la unica manera de modificar un string es renombrandolo like this
+
+        let myStr = "Bob";
+        myStr = "Job";
 
 
 
+ARRAYS
+
+Store Multiple Values in one Variable using JavaScript Arrays
+
+    You start an array declaration with an opening square bracket [, end it with a closing square bracket ], 
+    and put a comma , between each entry, like this:
+
+        const sandwich = ["peanut butter", "jelly", "bread"];
+
+        with array we can store different type of data, like string and number
+
+
+Nest one Array within Another Array
+
+    const teams = [["Bulls", 23], ["White Sox", 45]];
+
+    This is also called a multi-dimensional array.
+
+
+Access Array Data with Indexes
+    We can access the data inside arrays using indexes.
+
+    Array indexes are written in the same bracket notation that strings use, 
+    except that instead of specifying a character, 
+    they are specifying an entry in the array. 
+    Like strings, arrays use zero-based indexing, 
+    so the first element in an array has an index of 0.
+
+        const array = [50, 60, 70];
+        console.log(array[0]);
+        const data = array[1];
+
+            The console.log(array[0]) prints 50, and data has the value 60.
+
+
+Modify Array Data With Indexes
+    Unlike strings, the entries of arrays are mutable and can be changed freely, 
+    even if the array was declared with const.
+
+    const ourArray = [50, 40, 30];
+    ourArray[0] = 15;
+
+        ourArray now has the value [15, 40, 30].
+
+            Note: There shouldn't be any spaces between the array name and the square brackets, like array [0]. 
+            Although JavaScript is able to process this correctly, this may confuse other programmers reading your code.
+
+
+Access Multi-Dimensional Arrays With Indexes
+
+    One way to think of a multi-dimensional array, is as an array of arrays.
+    When you use brackets to access your array, 
+    the first set of brackets refers to the entries in the outer-most (the first level) array, 
+    and each additional pair of brackets refers to the next level of entries inside.
+
+            const arr = [
+                [1, 2, 3],
+                [4, 5, 6],
+                [7, 8, 9],
+                [[10, 11, 12], 13, 14]
+            ];
+
+            arr[3];
+            arr[3][0];
+            arr[3][0][1];
+
+            console.log()
+                arr[3] is [[10, 11, 12], 13, 14], 
+                arr[3][0] is [10, 11, 12], 
+                and arr[3][0][1] is 11.
+
+
+            const myArray = [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
+            [[10, 11, 12], 13, 14],
+            ];
+
+            const myData = myArray[2][1];
+
+            console.log(myData)
+                8
+
+
+                    Note: There shouldn't be any spaces between the array name and the square brackets, 
+                    like array [0][0] and even this array [0] [0] is not allowed. 
+                    Although JavaScript is able to process this correctly, 
+                    this may confuse other programmers reading your code.
 
 
 
+Manipulate Arrays With push()
+    An easy way to append data to the end of an array is via the push() function.
+
+    .push() takes one or more parameters and "pushes" them onto the end of the array.
 
 
+            const arr1 = [1, 2, 3];
+            arr1.push(4);
+
+            const arr2 = ["Stimpson", "J", "cat"];
+            arr2.push(["happy", "joy"]);
+
+            arr1 now has the value [1, 2, 3, 4] 
+            and arr2 has the value ["Stimpson", "J", "cat", ["happy", "joy"]].
 
 
-
-
+            const myArray = [["John", 23], ["cat", 2]];
+            myArray.push(["dog", 3])
+            console.log(myArray)
+                [ [ 'John', 23 ], [ 'cat', 2 ], [ 'dog', 3 ] ]
 
