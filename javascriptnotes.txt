@@ -10,524 +10,703 @@ y sigue hasta q termina asi */
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 VARIABLES
 
-data is anything that is meaningful to the computer.
-JavaScript provides eight different data types which are 
-undefined, null, boolean, string, symbol, bigint, number, and object.
-For example, computers distinguish between numbers, such as the number 12, 
-and strings, such as "12", "dog", or "123 cats", which are collections of characters. 
-Computers can perform mathematical operations on a number, but not on a string.
+    data is anything that is meaningful to the computer.
+    JavaScript provides eight different data types which are 
+    undefined, null, boolean, string, symbol, bigint, number, and object.
+    For example, computers distinguish between numbers, such as the number 12, 
+    and strings, such as "12", "dog", or "123 cats", which are collections of characters. 
+    Computers can perform mathematical operations on a number, but not on a string.
 
-Variables allow computers to store and manipulate data
-They do this by using a "label" to point to the data rather than using the data itself.
+    Variables allow computers to store and manipulate data
+    They do this by using a "label" to point to the data rather than using the data itself.
 
-las variables son un simple nombre que representa datos.
+    las variables son un simple nombre que representa datos.
 
-en js se crean con 'var' o 'let', explico diferencias abajo, like this 
-    
-    var ourName;
-    let ourName;
-
-    creamos una variable llamada ourName
-
-In JavaScript we end statements with semicolons. 
-
-- - - - - 
-
-ASIGNACION DE VALORES
-
-In JavaScript, you can store a value in a variable with the assignment operator (=)
-
-    myVariable = 5;
-
-    le asignamos el number value 5 a la variable myVariable
-
-???? If there are any calculations to the right of the = operator, those are performed before the value is assigned to the variable on the left of the operator. ????
-
-    var myVar;
-    myVar = 5;
-
-    First, this code creates a variable named myVar. 
-    Then, the code assigns 5 to myVar. 
-    Now, if myVar appears again in the code, the program will treat it as if it is 5.
-
-
-After a value is assigned to a variable using the assignment operator, you can assign the value of that variable to another variable using the assignment operator.
-
-    var myVar;
-    myVar = 5;
-    var myNum;
-    myNum = myVar;
-
-    declaramos una variable sin valor
-    le asignamos valor
-    declaramos una sin valor
-    le asignamos como valor el valor de la variable declarada antes
-
-
-podemos definir la variable y despues asignarle el valor
-o podemos definir la variable y asignarle el valor
-
-    var myVar = 5;
-
-    esto es lo mas comun
-
-
-you can also declare string variable like this
-
-    var myName = "your name";
-
-    "your name" is called a string literal. 
-    A string literal, or string, is a series of zero or more characters enclosed in single or double quotes.
-
-
-cuando declaramos una variable y no le damos valor, despues no podremos realizar operaciones matematicas o suma de strings ya que adoptan el valor de undefined.
-    pero si asignamos una variable y le damos valor, despues podemos realizar operaciones con esa variable.
-
-
-In JavaScript all variables and function names are case sensitive. This means that capitalization matters.
-    MYVAR is not the same as MyVar nor myvar. 
-        se recomienda no usar esta funcion del lenguaje para utilizar diferentes variables con las mismas letras pero con diferente casgin
-
-    La mejor practica en JS es camelCase.
-        Write variable names in JavaScript in camelCase.
-            In camelCase, multi-word variable names have the first word in lowercase and the first letter of each subsequent word is capitalized.
-
-            var someVariable;
-            var anotherVariableName;
-            var thisVariableNameIsSoLong;
-
-hay otro declarador de variables en JS que es let, like
-    let myVar;
-
-    la diferencia que tiene var y let es que var se puede sobreescribir definiendo una nueva variable con el mismo nombre
-        var name = "max";
-        var name = "ralph";
-
-        de esta manera la variable se le asignara el valor de max pero luego se reasignara el valor a ralph.
-        esto puede desencadenar en accidentes cuando tenemos un codigo muy largo y por error repetimos el nombre de una variable y sin querer le asignamos un nuevo valor.
+    en js se crean con 'var' o 'let', explico diferencias abajo, like this 
         
-        para eso se creo la nueva forma de definir variables bajo la palabra "let" que no permite sobreescribir una variable con otra.
-        si podemos cambiar el valor de la variable cuantas veces querramos con la asignacion de valores pero no podemos crear una variable con el mismo nombre.
-        es una buena practica definir las variables con let
+        var ourName;
+        let ourName;
 
-tambien hay otro declarador de variable que es const, like
-    const myVar;
+        creamos una variable llamada ourName
 
-    este tipo de variables se denominan constantes y estos si jamas podran ser reasignados con un nuevo valor, se les asigna un valor cuando son declaradas y luego no es posible modificarlo, no se podra sobreescribi al igual que let pero tampoco se podra modificar su valor con una asignacion, por eso son constantes.
+    In JavaScript we end statements with semicolons. 
 
-    es comun en JS que las constantes se declaren en uppercase y las variables que son modificables en lowercase o camelCase. 
+    - - - - - 
 
-    una variable puede alojar un calculo matematico.
+    ASIGNACION DE VALORES
 
-    const suma = 2 + 2
-    const multi = 2 * 2
+    In JavaScript, you can store a value in a variable with the assignment operator (=)
 
+        myVariable = 5;
 
-    tambien podemos realizar operaciones matematicas con asignacion de valores
+        le asignamos el number value 5 a la variable myVariable
 
-        let numVar = 2
-        numVar = numVar * 5
+    ???? If there are any calculations to the right of the = operator, those are performed before the value is assigned to the variable on the left of the operator. ????
 
-        con las sumas podemos abreviarlo para agregarle 1 with the ++ operator.
-            i++;
-            is the equivalent of
-            i = i + 1;
+        var myVar;
+        myVar = 5;
 
-        lo mismo con las restas
-            i--;
-            is the equivalent of
-            i = i - 1;
-
-We can store decimal numbers in variables too. Decimal numbers are sometimes referred to as floating point numbers or floats.
-
-    const ourDecimal = 5.7;
+        First, this code creates a variable named myVar. 
+        Then, the code assigns 5 to myVar. 
+        Now, if myVar appears again in the code, the program will treat it as if it is 5.
 
 
-The remainder operator % gives the remainder of the division of two numbers.
-    el % da el RESTO de la division ente dos numeros
-    es como en la escuela dividiendo solo con numeros ENTEROS
-        5 % 2 = 1
-        because
-        5 / 2 = 2
-            y sobra 1
-            porque trabajamos en base a cuantas veces entra el 2 en el numero anterior
+    After a value is assigned to a variable using the assignment operator, you can assign the value of that variable to another variable using the assignment operator.
 
-    un buen metodo para saber si un numero es par es utilizar el operador % y si el resto es 0 significa que el numero es par.
-        17 % 2 = 1
-            17 es inpar
+        var myVar;
+        myVar = 5;
+        var myNum;
+        myNum = myVar;
 
-    a veces el operador de RESTO (remainder operator) "%"   
-        se suele confundir con el operador de modulo MOD modulus
-        es bastante parecido    
-        but does not work properly with negative numbers
-
-In programming, it is common to use assignments to modify the contents of a variable
-    myVar = myVar + 5;
-
-    como esto es una operacion muy regular existe un operador especifico que facilita
-
-        += operator.
-
-        let myVar = 1;
-        myVar += 5;
-        console.log(myVar);
-            la consola mostrara 6.
-
-        same for the -=
-            and *=
-                and /=
+        declaramos una variable sin valor
+        le asignamos valor
+        declaramos una sin valor
+        le asignamos como valor el valor de la variable declarada antes
 
 
-Escaping Literal Quotes in Strings = citas dentro de citas, comillas, string dentro de string
-    In JavaScript, you can escape a quote from considering it as an end of string quote by placing a backslash (\) in front of the quote.
+    podemos definir la variable y despues asignarle el valor
+    o podemos definir la variable y asignarle el valor
 
-        const sampleStr = "Alan said, \"Peter is learning JavaScript\".";
+        var myVar = 5;
 
-        This signals to JavaScript that the following quote is not the end of the string, but should instead appear inside the string. So if you were to print this to the console, you would get:
-
-            Alan said, "Peter is learning JavaScript".
+        esto es lo mas comun
 
 
-String values in JavaScript may be written with single or double quotes, 
-    as long as you start and end with the same type of quote. 
-    Unlike some other programming languages, 
-    single and double quotes work the same in JavaScript.
+    you can also declare string variable like this
+
+        var myName = "your name";
+
+        "your name" is called a string literal. 
+        A string literal, or string, is a series of zero or more characters enclosed in single or double quotes.
+
+
+    cuando declaramos una variable y no le damos valor, despues no podremos realizar operaciones matematicas o suma de strings ya que adoptan el valor de undefined.
+        pero si asignamos una variable y le damos valor, despues podemos realizar operaciones con esa variable.
+
+
+    In JavaScript all variables and function names are case sensitive. This means that capitalization matters.
+        MYVAR is not the same as MyVar nor myvar. 
+            se recomienda no usar esta funcion del lenguaje para utilizar diferentes variables con las mismas letras pero con diferente casgin
+
+        La mejor practica en JS es camelCase.
+            Write variable names in JavaScript in camelCase.
+                In camelCase, multi-word variable names have the first word in lowercase and the first letter of each subsequent word is capitalized.
+
+                var someVariable;
+                var anotherVariableName;
+                var thisVariableNameIsSoLong;
+
+    hay otro declarador de variables en JS que es let, like
+        let myVar;
+
+        la diferencia que tiene var y let es que var se puede sobreescribir definiendo una nueva variable con el mismo nombre
+            var name = "max";
+            var name = "ralph";
+
+            de esta manera la variable se le asignara el valor de max pero luego se reasignara el valor a ralph.
+            esto puede desencadenar en accidentes cuando tenemos un codigo muy largo y por error repetimos el nombre de una variable y sin querer le asignamos un nuevo valor.
             
-        const conversation = 'Finn exclaims to Jake, "Algebraic!"';
+            para eso se creo la nueva forma de definir variables bajo la palabra "let" que no permite sobreescribir una variable con otra.
+            si podemos cambiar el valor de la variable cuantas veces querramos con la asignacion de valores pero no podemos crear una variable con el mismo nombre.
+            es una buena practica definir las variables con let
+
+    tambien hay otro declarador de variable que es const, like
+        const myVar;
+
+        este tipo de variables se denominan constantes y estos si jamas podran ser reasignados con un nuevo valor, se les asigna un valor cuando son declaradas y luego no es posible modificarlo, no se podra sobreescribi al igual que let pero tampoco se podra modificar su valor con una asignacion, por eso son constantes.
+
+        es comun en JS que las constantes se declaren en uppercase y las variables que son modificables en lowercase o camelCase. 
+
+        una variable puede alojar un calculo matematico.
+
+        const suma = 2 + 2
+        const multi = 2 * 2
 
 
-         this becomes a problem if you need to use the outermost quotes within it.
+        tambien podemos realizar operaciones matematicas con asignacion de valores
 
-         a string has the same kind of quote at the beginning and end. But if you have that same quote somewhere in the middle, the string will stop early and throw an error.
+            let numVar = 2
+            numVar = numVar * 5
 
-         const goodStr = 'Jake asks Finn, "Hey, let\'s go on an adventure?"';
-         const badStr = 'Finn responds, "Let's go!"';
+            con las sumas podemos abreviarlo para agregarle 1 with the ++ operator.
+                i++;
+                is the equivalent of
+                i = i + 1;
 
-            badStr will throw an error.
+            lo mismo con las restas
+                i--;
+                is the equivalent of
+                i = i - 1;
 
-            goodStr above, you can use both quotes safely by using the backslash \ as an escape character.
+    We can store decimal numbers in variables too. Decimal numbers are sometimes referred to as floating point numbers or floats.
 
-
-
-Escape Sequences in Strings
-    Quotes are not the only characters that can be escaped inside a string.
-
-    
-        Code	Output
-        \'	    single quote
-        \"	    double quote
-        \\	    backslash
-        \n	    newline
-        \r	    carriage return
-        \t	    tab
-        \b	    word boundary
-        \f	    form feed
-
-            const myStr = "FirstLine\n\t\\SecondLine\nThirdLine";
-
-            la consola mostrara 
-
-                FirstLine
-                    \SecondLine
-                ThirdLine
-                    
+        const ourDecimal = 5.7;
 
 
-Concatenating Strings with Plus Operator (+)
-    in strings  You can build a new string out of other strings by concatenating them together.
+    The remainder operator % gives the remainder of the division of two numbers.
+        el % da el RESTO de la division ente dos numeros
+        es como en la escuela dividiendo solo con numeros ENTEROS
+            5 % 2 = 1
+            because
+            5 / 2 = 2
+                y sobra 1
+                porque trabajamos en base a cuantas veces entra el 2 en el numero anterior
 
-        'My name is Alan,' + ' I concatenate.'
-    
-            Note: Watch out for spaces.
-                Concatenation does not add spaces between concatenated strings, so you'll need to add them yourself.
+        un buen metodo para saber si un numero es par es utilizar el operador % y si el resto es 0 significa que el numero es par.
+            17 % 2 = 1
+                17 es inpar
+
+        a veces el operador de RESTO (remainder operator) "%"   
+            se suele confundir con el operador de modulo MOD modulus
+            es bastante parecido    
+            but does not work properly with negative numbers
+
+    In programming, it is common to use assignments to modify the contents of a variable
+        myVar = myVar + 5;
+
+        como esto es una operacion muy regular existe un operador especifico que facilita
+
+            += operator.
+
+            let myVar = 1;
+            myVar += 5;
+            console.log(myVar);
+                la consola mostrara 6.
+
+            same for the -=
+                and *=
+                    and /=
+
+
+    Escaping Literal Quotes in Strings = citas dentro de citas, comillas, string dentro de string
+        In JavaScript, you can escape a quote from considering it as an end of string quote by placing a backslash (\) in front of the quote.
+
+            const sampleStr = "Alan said, \"Peter is learning JavaScript\".";
+
+            This signals to JavaScript that the following quote is not the end of the string, but should instead appear inside the string. So if you were to print this to the console, you would get:
+
+                Alan said, "Peter is learning JavaScript".
+
+
+    String values in JavaScript may be written with single or double quotes, 
+        as long as you start and end with the same type of quote. 
+        Unlike some other programming languages, 
+        single and double quotes work the same in JavaScript.
+                
+            const conversation = 'Finn exclaims to Jake, "Algebraic!"';
+
+
+            this becomes a problem if you need to use the outermost quotes within it.
+
+            a string has the same kind of quote at the beginning and end. But if you have that same quote somewhere in the middle, the string will stop early and throw an error.
+
+            const goodStr = 'Jake asks Finn, "Hey, let\'s go on an adventure?"';
+            const badStr = 'Finn responds, "Let's go!"';
+
+                badStr will throw an error.
+
+                goodStr above, you can use both quotes safely by using the backslash \ as an escape character.
+
+
+
+    Escape Sequences in Strings
+        Quotes are not the only characters that can be escaped inside a string.
+
         
-        const ourStr = "I come first. " + "I come second.";
+            Code	Output
+            \'	    single quote
+            \"	    double quote
+            \\	    backslash
+            \n	    newline
+            \r	    carriage return
+            \t	    tab
+            \b	    word boundary
+            \f	    form feed
 
-            console: I come first. I come second.
+                const myStr = "FirstLine\n\t\\SecondLine\nThirdLine";
 
-    ejemplo concatenate with variables considering spaces between strings
+                la consola mostrara 
 
-        const myNoun = "dog";
-        const myAdjective = "big";
-        const myVerb = "ran";
-        const myAdverb = "quickly";
+                    FirstLine
+                        \SecondLine
+                    ThirdLine
+                        
+
+
+    Concatenating Strings with Plus Operator (+)
+        in strings  You can build a new string out of other strings by concatenating them together.
+
+            'My name is Alan,' + ' I concatenate.'
         
-        const wordBlanks = myAdjective + " " + myNoun + " " + myVerb + " " + myAdverb;
-  
-
-
-
-Concatenating Strings with the Plus Equals Operator (+=)
-    concatenate a string onto the end of an existing string variable. 
-    This can be very helpful to break a long string over several lines.
-
-        let ourStr = "I come first. ";
-        ourStr += "I come second.";
-
-            watch out for spaces
-
-
-Constructing Strings with Variables
-    you can insert one or more variables into a string you're building.
-
-    const ourName = "freeCodeCamp";
-    const ourStr = "Hello, our name is " + ourName + ", how are you?";
-
-        the console will show... 
-            Hello, our name is freeCodeCamp, how are you?.
-
-
-Appending Variables to Strings
-    append variables to a string using the plus equals (+=) operator.
-
-        const anAdjective = "awesome!";
-        let ourStr = "freeCodeCamp is ";
-        ourStr += anAdjective;
-
-        value of ourStr in console...
-            freeCodeCamp is awesome!
-
-
-Find the Length of a String
-    find the length of a String value by writing .length after the string variable or string literal
-
-        console.log("Alan Peter".length);
-            the value 10 would be displayed in the console. Note that the space character between "Alan" and "Peter" is also counted.
-
-        let kk = "KK";
-        console.log(kk.length);
-
-
-Use Bracket Notation to Find the First Character in a String
-    Bracket notation is a way to get a character at a specific index within a string.
-
-    !important 
-        Most modern programming languages, like JavaScript, don't start counting at 1 like humans do.
-        They start at 0. 
-        This is referred to as Zero-based indexing.
-
-        const firstName = "Charles";
-        const firstLetter = firstName[0];
+                Note: Watch out for spaces.
+                    Concatenation does not add spaces between concatenated strings, so you'll need to add them yourself.
             
-            firstLetter would have a value of the string C.
+            const ourStr = "I come first. " + "I come second.";
 
-            0 representa el primer caracter y asi podemos seleccionar el que querramos
+                console: I come first. I come second.
 
+        ejemplo concatenate with variables considering spaces between strings
 
-Use Bracket Notation to Find the Last Character in a String
-    For example, if const firstName = "Ada", you can get the value of the last letter of the string by using firstName[firstName.length - 1].
-
-        const firstName = "Ada";
-        const lastLetter = firstName[firstName.length - 1];
+            const myNoun = "dog";
+            const myAdjective = "big";
+            const myVerb = "ran";
+            const myAdverb = "quickly";
             
-            lastLetter would have a value of the string a
-
-        asi podemos seleccionar el que querramos
-
-Understand String Immutability
-    en js las variables con valores de tipo string no pueden ser modificados mediante las llaves [] para cambiar un caracter individual.
-
-        let myStr = "Bob";
-        myStr[0] = "J";
-
-            esto no funcionaria
+            const wordBlanks = myAdjective + " " + myNoun + " " + myVerb + " " + myAdverb;
     
-    la unica manera de modificar un string es renombrandolo like this
 
-        let myStr = "Bob";
-        myStr = "Job";
 
+
+    Concatenating Strings with the Plus Equals Operator (+=)
+        concatenate a string onto the end of an existing string variable. 
+        This can be very helpful to break a long string over several lines.
+
+            let ourStr = "I come first. ";
+            ourStr += "I come second.";
+
+                watch out for spaces
+
+
+    Constructing Strings with Variables
+        you can insert one or more variables into a string you're building.
+
+        const ourName = "freeCodeCamp";
+        const ourStr = "Hello, our name is " + ourName + ", how are you?";
+
+            the console will show... 
+                Hello, our name is freeCodeCamp, how are you?.
+
+
+    Appending Variables to Strings
+        append variables to a string using the plus equals (+=) operator.
+
+            const anAdjective = "awesome!";
+            let ourStr = "freeCodeCamp is ";
+            ourStr += anAdjective;
+
+            value of ourStr in console...
+                freeCodeCamp is awesome!
+
+
+    Find the Length of a String
+        find the length of a String value by writing .length after the string variable or string literal
+
+            console.log("Alan Peter".length);
+                the value 10 would be displayed in the console. Note that the space character between "Alan" and "Peter" is also counted.
+
+            let kk = "KK";
+            console.log(kk.length);
+
+
+    Use Bracket Notation to Find the First Character in a String
+        Bracket notation is a way to get a character at a specific index within a string.
+
+        !important 
+            Most modern programming languages, like JavaScript, don't start counting at 1 like humans do.
+            They start at 0. 
+            This is referred to as Zero-based indexing.
+
+            const firstName = "Charles";
+            const firstLetter = firstName[0];
+                
+                firstLetter would have a value of the string C.
+
+                0 representa el primer caracter y asi podemos seleccionar el que querramos
+
+
+    Use Bracket Notation to Find the Last Character in a String
+        For example, if const firstName = "Ada", you can get the value of the last letter of the string by using firstName[firstName.length - 1].
+
+            const firstName = "Ada";
+            const lastLetter = firstName[firstName.length - 1];
+                
+                lastLetter would have a value of the string a
+
+            asi podemos seleccionar el que querramos
+
+    Understand String Immutability
+        en js las variables con valores de tipo string no pueden ser modificados mediante las llaves [] para cambiar un caracter individual.
+
+            let myStr = "Bob";
+            myStr[0] = "J";
+
+                esto no funcionaria
+        
+        la unica manera de modificar un string es renombrandolo like this
+
+            let myStr = "Bob";
+            myStr = "Job";
+
+
+////----------------------------------------------------------------////
+-------------------------------////////---------------------------------
+////----------------------------------------------------------------////
 
 
 ARRAYS
 
-Store Multiple Values in one Variable using JavaScript Arrays
+    Store Multiple Values in one Variable using JavaScript Arrays
 
-    You start an array declaration with an opening square bracket [, end it with a closing square bracket ], 
-    and put a comma , between each entry, like this:
+        You start an array declaration with an opening square bracket [, end it with a closing square bracket ], 
+        and put a comma , between each entry, like this:
 
-        const sandwich = ["peanut butter", "jelly", "bread"];
+            const sandwich = ["peanut butter", "jelly", "bread"];
 
-        with array we can store different type of data, like string and number
-
-
-Nest one Array within Another Array
-
-    const teams = [["Bulls", 23], ["White Sox", 45]];
-
-    This is also called a multi-dimensional array.
+            with array we can store different type of data, like string and number
 
 
-Access Array Data with Indexes
-    We can access the data inside arrays using indexes.
+    Nest one Array within Another Array
 
-    Array indexes are written in the same bracket notation that strings use, 
-    except that instead of specifying a character, 
-    they are specifying an entry in the array. 
-    Like strings, arrays use zero-based indexing, 
-    so the first element in an array has an index of 0.
+        const teams = [["Bulls", 23], ["White Sox", 45]];
 
-        const array = [50, 60, 70];
-        console.log(array[0]);
-        const data = array[1];
-
-            The console.log(array[0]) prints 50, and data has the value 60.
+        This is also called a multi-dimensional array.
 
 
-Modify Array Data With Indexes
-    Unlike strings, the entries of arrays are mutable and can be changed freely, 
-    even if the array was declared with const.
+    Access Array Data with Indexes
+        We can access the data inside arrays using indexes.
 
-    const ourArray = [50, 40, 30];
-    ourArray[0] = 15;
+        Array indexes are written in the same bracket notation that strings use, 
+        except that instead of specifying a character, 
+        they are specifying an entry in the array. 
+        Like strings, arrays use zero-based indexing, 
+        so the first element in an array has an index of 0.
 
-        ourArray now has the value [15, 40, 30].
+            const array = [50, 60, 70];
+            console.log(array[0]);
+            const data = array[1];
 
-            Note: There shouldn't be any spaces between the array name and the square brackets, like array [0]. 
-            Although JavaScript is able to process this correctly, this may confuse other programmers reading your code.
+                The console.log(array[0]) prints 50, and data has the value 60.
 
 
-Access Multi-Dimensional Arrays With Indexes
+    Modify Array Data With Indexes
+        Unlike strings, the entries of arrays are mutable and can be changed freely, 
+        even if the array was declared with const.
 
-    One way to think of a multi-dimensional array, is as an array of arrays.
-    When you use brackets to access your array, 
-    the first set of brackets refers to the entries in the outer-most (the first level) array, 
-    and each additional pair of brackets refers to the next level of entries inside.
+        const ourArray = [50, 40, 30];
+        ourArray[0] = 15;
 
-            const arr = [
+            ourArray now has the value [15, 40, 30].
+
+                Note: There shouldn't be any spaces between the array name and the square brackets, like array [0]. 
+                Although JavaScript is able to process this correctly, this may confuse other programmers reading your code.
+
+
+    Access Multi-Dimensional Arrays With Indexes multidimensional
+
+        One way to think of a multi-dimensional array, is as an array of arrays.
+        When you use brackets to access your array, 
+        the first set of brackets refers to the entries in the outer-most (the first level) array, 
+        and each additional pair of brackets refers to the next level of entries inside.
+
+                const arr = [
+                    [1, 2, 3],
+                    [4, 5, 6],
+                    [7, 8, 9],
+                    [[10, 11, 12], 13, 14]
+                ];
+
+                arr[3];
+                arr[3][0];
+                arr[3][0][1];
+
+                console.log()
+                    arr[3] is [[10, 11, 12], 13, 14], 
+                    arr[3][0] is [10, 11, 12], 
+                    and arr[3][0][1] is 11.
+
+
+                const myArray = [
                 [1, 2, 3],
                 [4, 5, 6],
                 [7, 8, 9],
-                [[10, 11, 12], 13, 14]
-            ];
+                [[10, 11, 12], 13, 14],
+                ];
 
-            arr[3];
-            arr[3][0];
-            arr[3][0][1];
+                const myData = myArray[2][1];
 
-            console.log()
-                arr[3] is [[10, 11, 12], 13, 14], 
-                arr[3][0] is [10, 11, 12], 
-                and arr[3][0][1] is 11.
+                console.log(myData)
+                    8
 
 
-            const myArray = [
-            [1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9],
-            [[10, 11, 12], 13, 14],
-            ];
-
-            const myData = myArray[2][1];
-
-            console.log(myData)
-                8
-
-
-                    Note: There shouldn't be any spaces between the array name and the square brackets, 
-                    like array [0][0] and even this array [0] [0] is not allowed. 
-                    Although JavaScript is able to process this correctly, 
-                    this may confuse other programmers reading your code.
+                        Note: There shouldn't be any spaces between the array name and the square brackets, 
+                        like array [0][0] and even this array [0] [0] is not allowed. 
+                        Although JavaScript is able to process this correctly, 
+                        this may confuse other programmers reading your code.
 
 
 
-Manipulate Arrays With push()
-    An easy way to append data to the end of an array is via the push() function.
+    Manipulate Arrays With push()
+        An easy way to append data to the end of an array is via the push() function.
 
-    .push() takes one or more parameters and "pushes" them onto the end of the array.
-
-
-            const arr1 = [1, 2, 3];
-            arr1.push(4);
-
-            const arr2 = ["Stimpson", "J", "cat"];
-            arr2.push(["happy", "joy"]);
-
-            arr1 now has the value [1, 2, 3, 4] 
-            and arr2 has the value ["Stimpson", "J", "cat", ["happy", "joy"]].
+        .push() takes one or more parameters and "pushes" them onto the end of the array.
 
 
-            const myArray = [["John", 23], ["cat", 2]];
-            myArray.push(["dog", 3])
-            console.log(myArray)
-                [ [ 'John', 23 ], [ 'cat', 2 ], [ 'dog', 3 ] ]
+                const arr1 = [1, 2, 3];
+                arr1.push(4);
+
+                const arr2 = ["Stimpson", "J", "cat"];
+                arr2.push(["happy", "joy"]);
+
+                arr1 now has the value [1, 2, 3, 4] 
+                and arr2 has the value ["Stimpson", "J", "cat", ["happy", "joy"]].
 
 
-
-Manipulate Arrays With pop()
-    Another way to change the data in an array is with the .pop() function.
-
-    .pop() is used to pop a value off of the end of an array.
-    We can store this popped off value by assigning it to a variable. 
-    In other words, .pop() removes the last element from an array and returns that element.
-    Any type of entry can be popped off of an array - numbers, strings, even nested arrays.
-
-            const threeArr = [1, 4, 6];
-            const oneDown = threeArr.pop();
-
-            console.log(oneDown);
-            console.log(threeArr);
-
-            The first console.log will display the value 6, 
-            and the second will display the value [1, 4].
-
-
-            const myArray = [["John", 23], ["cat", 2]];
-            const removedFromMyArray = myArray.pop();
-
-            console.log(removedFromMyArray);
-            console.log(myArray);
-
-                [ 'cat', 2 ]
-                [ [ 'John', 23 ] ]
+                const myArray = [["John", 23], ["cat", 2]];
+                myArray.push(["dog", 3])
+                console.log(myArray)
+                    [ [ 'John', 23 ], [ 'cat', 2 ], [ 'dog', 3 ] ]
 
 
 
-Manipulate Arrays With shift()
-    .shift() It works just like .pop(), except it removes the first element instead of the last.
+    Manipulate Arrays With pop()
+        Another way to change the data in an array is with the .pop() function.
 
-            const ourArray = ["Stimpson", "J", ["cat"]];
-            const removedFromOurArray = ourArray.shift();
+        .pop() is used to pop a value off of the end of an array.
+        We can store this popped off value by assigning it to a variable. 
+        In other words, .pop() removes the last element from an array and returns that element.
+        Any type of entry can be popped off of an array - numbers, strings, even nested arrays.
 
-            removedFromOurArray would have a value of the string Stimpson, 
-            and ourArray would have ["J", ["cat"]].
+                const threeArr = [1, 4, 6];
+                const oneDown = threeArr.pop();
+
+                console.log(oneDown);
+                console.log(threeArr);
+
+                The first console.log will display the value 6, 
+                and the second will display the value [1, 4].
+
+
+                const myArray = [["John", 23], ["cat", 2]];
+                const removedFromMyArray = myArray.pop();
+
+                console.log(removedFromMyArray);
+                console.log(myArray);
+
+                    [ 'cat', 2 ]
+                    [ [ 'John', 23 ] ]
+
+
+
+    Manipulate Arrays With shift()
+        .shift() It works just like .pop(), except it removes the first element instead of the last.
+
+                const ourArray = ["Stimpson", "J", ["cat"]];
+                const removedFromOurArray = ourArray.shift();
+
+                removedFromOurArray would have a value of the string Stimpson, 
+                and ourArray would have ["J", ["cat"]].
+
+
+                const myArray = [["John", 23], ["dog", 3]];
+                const removedFromMyArray = myArray.shift();
+
+                console.log(removedFromMyArray);
+                console.log(myArray);
+
+                    [ 'John', 23 ]
+                    [ [ 'dog', 3 ] ]
+
+
+
+    Manipulate Arrays With unshift()
+        .unshift() works exactly like .push(), 
+        but instead of adding the element at the end of the array, 
+        unshift() adds the element at the beginning of the array.
+
+            const ourArray = ["Stimpson", "J", "cat"];
+            ourArray.shift();
+            ourArray.unshift("Happy");
+
+            After the shift, ourArray would have the value ["J", "cat"]. 
+            After the unshift, ourArray would have the value ["Happy", "J", "cat"].
 
 
             const myArray = [["John", 23], ["dog", 3]];
-            const removedFromMyArray = myArray.shift();
+            myArray.shift();
+            myArray.unshift(["Paul", 35]);
 
-            console.log(removedFromMyArray);
             console.log(myArray);
 
-                [ 'John', 23 ]
-                [ [ 'dog', 3 ] ]
+                [ [ 'Paul', 35 ], [ 'dog', 3 ] ]
+
+    EXAMPLE creating a multidimensional array with a shopping list in a variable
+
+                one array containing several sub-arrays
+                first parameter contains the name of the product
+                second parameter contains the qty stock
+
+                    const myList = [
+                        ["Parafine", 15],
+                        ["Leash", 19],
+                        ["Peine", 12],
+                        ["Board", 5],
+                        ["Sches", 10]
+                    ];
+
+
+////----------------------------------------------------------------////
+-------------------------------////////---------------------------------
+////----------------------------------------------------------------////
+
+
+FUNCTIONS
+
+    Write Reusable JavaScript with Functions
+        In JavaScript, we can divide up our code into reusable parts called functions.
+
+            function functionName() {
+                console.log("Hello World");
+            }
+
+        You can call or invoke this function by using its name followed by parentheses, 
+            like this: functionName();
+
+        Each time the function is called it will print out the message Hello World on the dev console.
+        All of the code between the curly braces {} will be executed every time the function is called.
+
+            function reusableFunction() {
+                console.log("Hi World");
+            }
+            reusableFunction();
+
+            console shown the string "Hi World"
+
+
+Passing Values to Functions with Arguments
+
+        * 
+            parameter is a name
+            argument is a value
+
+        (placeholder in this case is like a entrada de data)
+    Parameters are variables that act as placeholders for the values that are to be input to a function when it is called. 
+    When a function is defined, it is typically defined along with one or more parameters.
+    The actual values that are input (or "passed") into a function when it is called are known as ARGUMENTS.
+
+        Here is a function with two parameters, param1 and param2:
+
+            function testFun(param1, param2) {
+               console.log(param1, param2);
+            }
+
+        Then we can call testFun like this: 
+            testFun("Hello", "World");
+         We have passed two string arguments, Hello and World. 
+         Inside the function, param1 will equal the string Hello and param2 will equal the string World. 
+         Note that you could call testFun again with different arguments 
+         and the parameters would take on the value of the new arguments
+
+         example
+
+            function functionWithArgs(param1, param2){
+               console.log(param1 + param2)
+            }
+            functionWithArgs("Hello", "World")
+
+            so their console it will show 
+                 HelloWorld 
+
+
+Return a Value from a Function with Return
+
+    We can pass values into a function with arguments. 
+    You can use a return statement to send a value back out of a function.
+
+        DEVUELVE VALORES
+
+    Example
+
+        function plusThree(num) {
+            return num + 3;
+        }
+        const answer = plusThree(5);
+
+            answer has the value 8.
+
+        
+        function timesFive(num){
+            return num * 5;
+        }
+        console.log(timesFive(1))
+ 
+            console it will show 5
+
+
+Global Scope and Functions
+    In JavaScript, scope refers to the visibility of variables
+    Variables which are defined outside of a function block have Global scope. 
+    This means, they can be seen everywhere in your JavaScript code.
+
+    Variables which are declared without the let or const keywords are automatically created in the global scope. 
+    This can create unintended consequences elsewhere in your code or when running a function again. 
+    You should always declare your variables with let or const.
+
+        example
+
+            const myGlobal = 10;     // variable global
+
+            function fun1() {
+                oopsGlobal = 5;      // variable global 
+            }
+
+            function fun2() {
+                var output = "";
+                if (typeof myGlobal != "undefined") {
+                    output += "myGlobal: " + myGlobal;
+                }
+                if (typeof oopsGlobal != "undefined") {
+                    output += " oopsGlobal: " + oopsGlobal;
+                }
+                console.log(output);
+            }
+                    myGlobal: 10 oopsGlobal: 5
+
+
+Local Scope and Functions
+    scope refers to the visibility of variables
+
+    Variables which are declared within a function, 
+    as well as the function parameters, have local scope. 
+    That means they are only visible within that function.
+
+    Here is a function myTest with a local variable called loc.
+
+            function myTest() {
+                const loc = "foo";
+                console.log(loc);
+            }
+
+            myTest();
+            console.log(loc);
+
+                The myTest() function call will display the string foo in the console. 
+                The console.log(loc) line (outside of the myTest function) will throw an error, 
+                as loc is not defined outside of the function.
 
 
 
-Manipulate Arrays With unshift()
-    .unshift() works exactly like .push(), 
-    but instead of adding the element at the end of the array, 
-    unshift() adds the element at the beginning of the array.
+            function myLocalScope() {
+                let myVar = "c'mon bro";
+                console.log('inside myLocalScope', myVar);
+            }
+            myLocalScope();
+            console.log('outside myLocalScope', myVar);                
 
-        const ourArray = ["Stimpson", "J", "cat"];
-        ourArray.shift();
-        ourArray.unshift("Happy");
-
-        After the shift, ourArray would have the value ["J", "cat"]. 
-        After the unshift, ourArray would have the value ["Happy", "J", "cat"].
+                inside myLocalScope c'mon bro
+                ReferenceError: myVar is not defined
 
 
-        const myArray = [["John", 23], ["dog", 3]];
-        myArray.shift();
-        myArray.unshift(["Paul", 35]);
+Global vs. Local Scope in Functions
+    It is possible to have both local and global variables with the same name.
+    When you do this, the local variable takes precedence over the global variable.
 
-        console.log(myArray);
+            const someVar = "Hat";
 
-            [ [ 'Paul', 35 ], [ 'dog', 3 ] ]
+            function myFun() {
+                const someVar = "Head";
+                return someVar;
+            }   
 
-
-
-
-
-
-
+                The function myFun will return the string Head 
+                because the local version of the variable is present.             
+            
