@@ -644,6 +644,8 @@ FUNCTIONS
         This can create unintended consequences elsewhere in your code or when running a function again. 
         You should always declare your variables with let or const.
 
+            cuando el valor de una variable es undefined se podria decir si fuera un string, que es un empty string
+
             example
 
                 const myGlobal = 10;     // variable global
@@ -1412,112 +1414,140 @@ FUNCTIONS
 
 OBJECTS
 
-Build JavaScript Objects
+    Build JavaScript Objects
 
-    Objects are similar to arrays, 
-    except that instead of using indexes to access and modify their data, 
-    you access the data in objects through what are called properties.
+        Objects are similar to arrays, 
+        except that instead of using indexes to access and modify their data, 
+        you access the data in objects through what are called properties.
 
-    Objects are useful for storing data in a structured way, 
-    and can represent real world objects, like a cat.
+        Objects are useful for storing data in a structured way, 
+        and can represent real world objects, like a cat.
 
-    Here's a sample cat object:
+        Here's a sample cat object:
 
-        const cat = {
-            "name": "Whiskers",
-            "legs": 4,
-            "tails": 1,
-            "enemies": ["Water", "Dogs"]
-        };
-
-    In this example, all the properties are stored as strings, 
-    such as name, legs, and tails. However, you can also use numbers as properties. 
-    You can even omit the quotes for single-word string properties, as follows:
-
-        const anotherObject = {
-            make: "Ford",
-            5: "five",
-            "model": "focus"
-        };
-
-    However, if your object has any non-string properties, 
-    JavaScript will automatically typecast them as strings.
-
-        another example
-
-            const myDog = {
-                name: "KMaron",
-                legs: 4,
-                tails: 1,
-                friends: ["everywhere", "with", "everywho"]
+            const cat = {
+                "name": "Whiskers",
+                "legs": 4,
+                "tails": 1,
+                "enemies": ["Water", "Dogs"]
             };
 
+        In this example, all the properties are stored as strings, 
+        such as name, legs, and tails. However, you can also use numbers as properties. 
+        You can even omit the quotes for single-word string properties, as follows:
 
-Accessing Object Properties with Dot (.) Notation
-    There are two ways to access the properties of an object: 
-    dot notation (.) and bracket notation ([]), similar to an array.
-
-    Dot notation is what you use when you know 
-    the name of the property you're trying to access ahead of time.
-
-        const myObj = {
-            prop1: "val1",
-            prop2: "val2"
-        };
-
-        const prop1val = myObj.prop1;
-        const prop2val = myObj.prop2;
-
-    prop1val would have a value of the string val1, and prop2val would have a value of the string val2.
-
-
-    The second way to access the properties of an object is bracket notation [].
-    If the property of the object you are trying to access 
-    has a space in its name, you will need to use bracket notation.
-    However, you can still use bracket notation on object properties without spaces.
-
-        const myObj = {
-            "Space Name": "Kirk",
-            "More Space": "Spock",
-            "NoSpace": "USS Enterprise"
-        };
-
-        myObj["Space Name"];
-        myObj['More Space'];
-        myObj["NoSpace"];
-
-    myObj["Space Name"] would be the string Kirk, 
-    myObj['More Space'] would be the string Spock, 
-    myObj["NoSpace"] would be the string USS Enterprise.
-
-    Note that property names with spaces in them must be in quotes (single or double).
-
-
-Accessing Object Properties with Variables
-    to access a property which is stored as the value of a variable. 
-    This can be very useful for iterating through an object's properties or when accessing a lookup table.
-
-            const dogs = {
-                Fido: "Mutt",
-                Hunter: "Doberman",
-                Snoopie: "Beagle"
+            const anotherObject = {
+                make: "Ford",
+                5: "five",
+                "model": "focus"
             };
 
-            const myDog = "Hunter";
-            const myBreed = dogs[myDog];
-            console.log(myBreed);
+        However, if your object has any non-string properties, 
+        JavaScript will automatically typecast them as strings.
 
-        The string Doberman would be displayed in the console.
+            another example
 
-    Note that we do not use quotes around the variable name when using it to access 
-    the property because we are using the value of the variable, not the name.
+                const myDog = {
+                    name: "KMaron",
+                    legs: 4,
+                    tails: 1,
+                    friends: ["everywhere", "with", "everywho"]
+                };
 
 
-Updating Object Properties
-    After you've created a JavaScript object, 
-    you can update its properties at any time 
-    just like you would update any other variable. 
-    You can use either dot or bracket notation to update.
+    Accessing Object Properties with Dot (.) Notation
+        There are two ways to access the properties of an object: 
+        dot notation (.) and bracket notation ([]), similar to an array.
+
+        Dot notation is what you use when you know 
+        the name of the property you're trying to access ahead of time.
+
+            const myObj = {
+                prop1: "val1",
+                prop2: "val2"
+            };
+
+            const prop1val = myObj.prop1;
+            const prop2val = myObj.prop2;
+
+        prop1val would have a value of the string val1, and prop2val would have a value of the string val2.
+
+
+        The second way to access the properties of an object is bracket notation [].
+        If the property of the object you are trying to access 
+        has a space in its name, you will need to use bracket notation.
+        However, you can still use bracket notation on object properties without spaces.
+
+            const myObj = {
+                "Space Name": "Kirk",
+                "More Space": "Spock",
+                "NoSpace": "USS Enterprise"
+            };
+
+            myObj["Space Name"];
+            myObj['More Space'];
+            myObj["NoSpace"];
+
+        myObj["Space Name"] would be the string Kirk, 
+        myObj['More Space'] would be the string Spock, 
+        myObj["NoSpace"] would be the string USS Enterprise.
+
+        Note that property names with spaces in them must be in quotes (single or double).
+
+
+    Accessing Object Properties with Variables
+        to access a property which is stored as the value of a variable. 
+        This can be very useful for iterating through an object's properties or when accessing a lookup table.
+
+                const dogs = {
+                    Fido: "Mutt",
+                    Hunter: "Doberman",
+                    Snoopie: "Beagle"
+                };
+
+                const myDog = "Hunter";
+                const myBreed = dogs[myDog];
+                console.log(myBreed);
+
+            The string Doberman would be displayed in the console.
+
+        Note that we do not use quotes around the variable name when using it to access 
+        the property because we are using the value of the variable, not the name.
+
+
+    Updating Object Properties
+        After you've created a JavaScript object, 
+        you can update its properties at any time 
+        just like you would update any other variable. 
+        You can use either dot or bracket notation to update.
+
+                const ourDog = {
+                    "name": "Camper",
+                    "legs": 4,
+                    "tails": 1,
+                    "friends": ["everything!"]
+                };
+
+        Since he's a particularly happy dog, let's change his name to the string Happy Camper.
+        Here's how we update his object's name property: 
+
+            ourDog.name = "Happy Camper"; 
+        or 
+            ourDog["name"] = "Happy Camper";
+
+        Now when we evaluate ourDog.name, instead of getting Camper, we'll get his new name, Happy Camper.
+
+
+    Add New Properties to a JavaScript Object
+        You can add new properties to existing JavaScript objects the same way you would modify them.
+        Here's how we would add a bark property to ourDog:
+
+            ourDog.bark = "bow-wow";
+        or
+            ourDog["bark"] = "bow-wow";
+
+        Now when we evaluate ourDog.bark, we'll get his bark, bow-wow.
+
 
             const ourDog = {
                 "name": "Camper",
@@ -1526,59 +1556,336 @@ Updating Object Properties
                 "friends": ["everything!"]
             };
 
-    Since he's a particularly happy dog, let's change his name to the string Happy Camper.
-    Here's how we update his object's name property: 
-
-        ourDog.name = "Happy Camper"; 
-    or 
-        ourDog["name"] = "Happy Camper";
-
-    Now when we evaluate ourDog.name, instead of getting Camper, we'll get his new name, Happy Camper.
+            ourDog.bark = "bow-wow";
 
 
-Add New Properties to a JavaScript Object
-    You can add new properties to existing JavaScript objects the same way you would modify them.
-    Here's how we would add a bark property to ourDog:
-
-        ourDog.bark = "bow-wow";
-    or
-        ourDog["bark"] = "bow-wow";
-
-    Now when we evaluate ourDog.bark, we'll get his bark, bow-wow.
-
-
-        const ourDog = {
-            "name": "Camper",
-            "legs": 4,
-            "tails": 1,
-            "friends": ["everything!"]
-        };
-
-        ourDog.bark = "bow-wow";
-
-
-Delete Properties from a JavaScript Object
-    We can also delete properties from objects like this:
-
-        delete ourDog.bark;
-
-            const ourDog = {
-                "name": "Camper",
-                "legs": 4,
-                "tails": 1,
-                "friends": ["everything!"],
-                "bark": "bow-wow"
-            };
+    Delete Properties from a JavaScript Object
+        We can also delete properties from objects like this:
 
             delete ourDog.bark;
 
-    After the last line shown above, ourDog looks like:
+                const ourDog = {
+                    "name": "Camper",
+                    "legs": 4,
+                    "tails": 1,
+                    "friends": ["everything!"],
+                    "bark": "bow-wow"
+                };
 
-            {
-            "name": "Camper",
-            "legs": 4,
-            "tails": 1,
-            "friends": ["everything!"]
-            }
+                delete ourDog.bark;
+
+        After the last line shown above, ourDog looks like:
+
+                {
+                "name": "Camper",
+                "legs": 4,
+                "tails": 1,
+                "friends": ["everything!"]
+                }
+
+
+    Using Objects for Lookups
+        Objects can be thought of as a key/value storage, like a dictionary.
+        If you have tabular data, you can use an object to lookup values 
+        rather than a switch statement or an if/else chain
+        This is most useful when you know that your input data is limited to a certain range.
+
+        Here is an example of a simple reverse alphabet lookup:
+
+                    const alpha = {
+                        1:"Z",
+                        2:"Y",
+                        3:"X",
+                        4:"W",
+                        ...
+                        24:"C",
+                        25:"B",
+                        26:"A"
+                    };
+
+                    const thirdLetter = alpha[2];
+                    const lastLetter = alpha[24];
+
+                    const value = 2;
+                    const valueLookup = alpha[value];
+
+                thirdLetter is the string Y
+                lastLetter is the string C
+                and valueLookup is the string Y.
+
+
+                        function phoneticLookup(val) {
+                            let result = "";
+
+                            const lookup = {
+                                alpha: "Adams",
+                                bravo: "Boston",
+                                charlie: "Chicago",
+                                delta: "Denver",
+                                echo: "Easy",
+                                foxtrot: "Frank"
+                            };
+
+                            result = lookup[val];
+                            return result;
+                        }
+
+                        phoneticLookup("charlie");
+
+
+    Testing Objects for Properties
+        Sometimes it is useful to check if the property of a given object exists or not.
+        We can use the 
+            .hasOwnProperty(propname)
+        method of objects to determine if that object has the given property name.
+        .hasOwnProperty() returns true or false if the property is found or not.
+
+        Example
+
+            const myObj = {
+                top: "hat",
+                bottom: "pants"
+            };
+
+            myObj.hasOwnProperty("top");
+            myObj.hasOwnProperty("middle");    
+
+        The first hasOwnProperty returns true, while the second returns false.
+
+            another example
+
+                    function checkObj(obj, checkProp) {
+                        if (obj.hasOwnProperty(checkProp)) {
+                            return obj[checkProp];
+                        } else {
+                            return "Not Found";
+                        }
+                    }
+
+
+    Manipulating Complex Objects
+        Sometimes you may want to store data in a flexible Data Structure. 
+        A JavaScript object is one way to handle flexible data. 
+        They allow for arbitrary combinations of strings, numbers, booleans, arrays, functions, and objects.
+
+            Here's an example of a complex data structure:
+
+                    const ourMusic = [
+                        {
+                            "artist": "Daft Punk",
+                            "title": "Homework",
+                            "release_year": 1997,
+                            "formats": [ 
+                                "CD", 
+                                "Cassette", 
+                                "LP"
+                            ],
+                            "gold": true
+                        }
+                    ];
+            
+            This is an array which contains one object inside.
+            The object has various pieces of metadata about an album.
+            It also has a nested formats array.
+            If you want to add more album records, 
+            you can do this by adding records to the top level array.
+
+            Objects hold data in a property, which has a key-value format. 
+            In the example above, "artist": "Daft Punk" 
+            is a property that has a key of artist and a value of Daft Punk.
+
+
+        Note: You will need to place a comma after every object in the array, unless it is the last object in the array.
+
+            example
+
+                const myMusic = [
+                {
+                    "artist": "Billy Joel",
+                    "title": "Piano Man",
+                    "release_year": 1973,
+                    "formats": [
+                        "CD",
+                        "8T",
+                        "LP"
+                    ],
+                    "gold": true
+                },
+                {
+                    "artist": "Jackie Oneil",
+                    "title": "Guitar HERO",
+                    "release_year": 2021,
+                    "formats": [
+                        "Spotify",
+                        "YT music"
+                    ],
+                    "gold": true
+                }
+                ];
+
+
+    Accessing Nested Objects
+        The sub-properties of objects can be accessed by chaining together the dot or bracket notation.
+
+        Here is a nested object:
+
+            const ourStorage = {
+                "desk": {
+                    "drawer": "stapler"
+                },
+                "cabinet": {
+                    "top drawer": { 
+                        "folder1": "a file",
+                        "folder2": "secrets"
+                    },
+                    "bottom drawer": "soda"
+                }
+            };
+
+            ourStorage.cabinet["top drawer"].folder2;
+            ourStorage.desk.drawer; 
+
+                ourStorage.cabinet["top drawer"].folder2 would be the string "secrets", 
+                and ourStorage.desk.drawer would be the string "stapler".
+
+
+            another example
+
+                const myStorage = {
+                    "car": {
+                        "inside": {
+                            "glove box": "maps",
+                            "passenger seat": "crumbs"
+                        },
+                        "outside": {
+                            "trunk": "jack"
+                        }
+                    }
+                };
+
+                const gloveBoxContents = myStorage.car.inside["glove box"];
+
+
+    Accessing Nested Arrays
+        objects can contain both nested objects and nested arrays. 
+        Similar to accessing nested objects, array bracket notation can be chained to access nested arrays.
+
+        Here is an example of how to access a nested array:
+
+                    const ourPets = [
+                        {
+                            animalType: "cat",
+                            names: [
+                                "Meowzer",
+                                "Fluffy",
+                                "Kit-Cat"
+                            ]
+                        },
+                        {
+                            animalType: "dog",
+                            names: [
+                                "Spot",
+                                "Bowser",
+                                "Frankie"
+                            ]
+                        }
+                    ];
+
+                    ourPets[0].names[1];      //  return Fluffy
+                    ourPets[1].names[0];      //  return Spot
+
+
+        another example
+
+                    const myPlants = [
+                        {
+                            type: "flowers",
+                            list: [
+                                "rose",
+                                "tulip",
+                                "dandelion"
+                            ]
+                        },
+                        {
+                            type: "trees",
+                            list: [
+                                "fir",
+                                "pine",
+                                "birch"
+                            ]
+                        }
+                    ];
+
+                    const secondTree = myPlants[1].list[1];     // return pine
+
+
+    EXERCISE THAT WORKS WITH OBJECTS AND OTHER JAVASCRIPT TOOLS <<<<<<<<<<<<
+
+        Record Collection
+
+        You are given an object literal representing a part of your musical album collection. 
+        Each album has a unique id number as its key and several other properties. 
+        Not all albums have complete information.
+
+        You start with an updateRecords function that takes an object literal, 
+        records, containing the musical album collection, 
+        an id, a prop (like artist or tracks), and a value. 
+        
+        Complete the function using the rules below to modify the object passed to the function.
+
+        . Your function must always return the entire record collection object.
+        . If prop isn't tracks and value isn't an empty string, update or set that album's prop to value.
+        . If prop is tracks but the album doesn't have a tracks property, create an empty array and add value to it.
+        . If prop is tracks and value isn't an empty string, add value to the end of the album's existing tracks array.
+        . If value is an empty string, delete the given prop property from the album.
+
+
+                                // Setup
+                                const recordCollection = {
+                                    2548: {
+                                        albumTitle: 'Slippery When Wet',
+                                        artist: 'Bon Jovi',
+                                        tracks: ['Let It Rock', 'You Give Love a Bad Name']
+                                    },
+                                    2468: {
+                                        albumTitle: '1999',
+                                        artist: 'Prince',
+                                        tracks: ['1999', 'Little Red Corvette']
+                                    },
+                                    1245: {
+                                        artist: 'Robert Palmer',
+                                        tracks: []
+                                    },
+                                    5439: {
+                                        albumTitle: 'ABBA Gold'
+                                    }
+                                };
+
+                                // esta es la solucion, de aca para abajo la propuesta estaba vacia
+                                function updateRecords(records, id, prop, value) {
+                                    if (prop !== "tracks" && value !== "") {
+                                        records[id][prop] = value;
+                                    } else if (prop === "tracks" && !records[id].hasOwnProperty("tracks")) {
+                                        records[id][prop] = [value];
+                                    } else if (prop === "tracks" && value !== "") {
+                                        records[id][prop].push(value);
+                                    } else if (value === "") {
+                                        delete records[id][prop];
+                                    }
+                                    return records;
+                                }
+
+                                updateRecords(recordCollection, 5439, 'artist', 'ABBA');
+
+////----------------------------------------------------------------////
+-------------------------------////////---------------------------------
+////----------------------------------------------------------------////
+
+
+JAVASCRIPT WHILE LOOPS
+
+
+Iterate with JavaScript While Loops
+
 
 
