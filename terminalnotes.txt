@@ -142,3 +142,331 @@ alias
 unalias nombreDelAlias
     para eliminar un alias
     
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CONSOLA LINUX
+
+rsync COMMAND
+
+Rsync o Remote Sync (Sincronización Remota) es una potente y versátil herramienta que nos permite copiar y sincronizar nuestros datos de forma local y remota entre diferentes directorios, discos y redes, muy útil para realizar copias de seguridad o migraciones de datos rápidas entre dos máquinas Linux.
+
+Es más rápido que el comando SCP (Secure Copy Protocol), ya que Rsync utiliza un protocolo de actualización remota que permite copiar únicamente las diferencias entre dos conjuntos de archivos. En la primera ejecución, copia todo el contenido de un archivo o directorio desde origen a destino, pero ejecuciones posteriores copia únicamente los bytes y los bloques que han sido modificados.
+
+Consume menos ancho de banda, ya que realiza la compresión y descompresión de los datos en ambos extremos con cada envío y recepción de los mismos.
+
+sintax
+
+        # rsync opciones origen destino
+
+Las opciones más comunes usadas con Rsync son:
+
+-v: verbose (muestra un registro de la transferencia).
+-h: human readable (muestra la salida numérica en un formato comprensible).
+-r: recursive (copia los datos de forma recursiva, pero no conserva las fechas ni los permisos de los datos de origen).
+-a: archive mode (copia los datos de forma recursiva, y además preserva los enlaces simbólicos, los propietarios, los permisos y las fechas de los datos de origen).
+-z: compress (comprime los datos durante la transferencia de los mismos).
+
+
+Instalando Rsync en Linux
+
+La mayoría de las distribuciones ya traen instalado Rsync por defecto. En el caso de que tu distribución no lo tenga instalado, puedes instalarlo fácilmente con los siguientes comandos:
+
+        1
+        # yum install rsync (para distribuciones basadas en Red Hat y Fedora)
+        1
+        # apt-get install rsync (para distribuciones basadas en Debian/Ubuntu)
+
+
+Una vez instalado, vamos a ver nuestros 10 ejemplos prácticos.
+
+
+1 – Copiar/sincronizar un archivo o directorio localmente
+
+    Con el siguiente comando, copiaremos el archivo «backup.tar.gz» localmente de un directorio a otro distinto, en este caso «/root/backups«. Verás que si el directorio de destino no existe, Rsync lo creará automáticamente.
+
+            [root@proxadmin]# rsync -zvh backup.tar.gz /root/backups/
+            created directory /root/backups
+            backup.tar.gz
+            sent 34.71M bytes received 31 bytes 3.27M bytes/sec
+            total size is 36.18M speedup is 1.10
+
+
+    Vamos a ver ahora cómo copiar localmente un directorio en lugar de un archivo. El siguiente comando, copiará el directorio «/home/proxadmin» dentro del directorio «/root/backups«.
+
+                [root@proxadmin]# rsync -avzh /home/proxadmin /root/backups/
+                sending incremental file list
+                proxadmin/
+                proxadmin/archivo1.txt
+                proxadmin/archivo2.txt
+                proxadmin/archivo3.txt
+                sent 8.99K bytes received 3 bytes 3.33M bytes/sec
+                total size is 8.99K speedup is 1.00
+
+
+2 – Copiar/sincronizar archivos y directorios remotamente
+
+    El siguiente comando copiará el directorio local «/home/proxadmin» al directorio «/home» de un servidor remoto (192.168.0.101).
+
+                [root@proxadmin]# rsync -avz proxadmin/ root@192.168.0.101:/home/
+                root@192.168.0.101's password:
+                sending incremental file list
+                ./
+                archivo1.txt
+                archivo2.txt
+                archivo3.txt
+                sent 93369 bytes received 91 bytes 9476.80 bytes/sec
+                total size is 91313 speedup is 1.00
+
+    ¿Y si lo que queremos es realizar lo mismo a la inversa? Imaginemos que queremos copiar el cotenido del directorio remoto «/home«, en el directorio local «/home/proxadmin«. Entonces este sería nuestro comando:
+
+            [root@proxadmin]# rsync -avzh root@192.168.0.101:/home/ /home/proxadmin/
+
+
+
+
+3 – Rsync a través de SSH
+
+    Rsync nos permite utilizar el protocolo SSH para la transferencia de archivos y directorios, de ese modo  nos aseguraremos de que nuestra conexión será segura y encriptada, de manera que nadie pueda capturar nuestros datos. En Rsync, podemos especificar fácilmente el protocolo que deseamos utilizar con la opción «-e» seguida del protocolo que deseamos utilizar. Por ejemplo:
+
+
+        [root@proxadmin]# rsync -avzhe ssh proxadmin/ root@192.168.0.101:/home/
+
+
+    ¿Y si el servidor al que deseamos conectarnos tiene un puerto distinto al puerto por defecto (22)? No hay problema, Rsync nos permite también especificar un puerto:
+
+        [root@proxadmin]# rsync -avzh -e 'ssh -p <numerodepuerto>' proxadmin/ root@192.168.0.101:/home/
+
+
+4 – Mostrar el progreso de la transferencia
+
+    Si deseamos poder visualizar el progreso de la transferencia desde un servidor a otro, el siguiente comando, con la opción «–progress» nos mostrará los archivos y el tiempo restante para finalizar la transferencia:
+
+
+        [root@proxadmin]# rsync -avzhe ssh --progress proxadmin/ root@192.168.0.101:/home/
+
+    
+5 – Incluir y excluir archivos o directorios
+
+    Las opciones «–include» y «–exclude» nos permiten indicar qué archivos o directorios deseamos incluir y excluir de nuestra transferencia de datos. En el siguiente ejemplo, le indicamos a Rsync que incluya sólo los archivos y directorios cuyo nombre comience por «R«, y que excluya el resto de archivos y directorios.
+
+
+            [root@proxadmin]# rsync -avze ssh --include 'R*' --exclude '*' root@192.168.0.101:/var/lib/rpm/ /root/rpm
+            root@192.168.0.101's password:
+            receiving incremental file list
+            created directory /root/rpm
+            ./
+            Requirename
+            Requireversion
+            sent 67 bytes received 167289 bytes 7438.04 bytes/sec
+            total size is 434176 speedup is 2.59
+
+
+6 – Eliminando archivos en el destino
+
+    Si un archivo o directorio no existe en el origen de los datos a transferir, pero sí existe en el destino, es posible que desees eliminarlo en el destino. Para ello usamos la opción «–delete«:
+
+        [root@proxadmin]# rsync -avz --delete root@192.168.0.101:/home
+
+    
+
+7 – Transferir sólo los archivos con un peso concreto
+
+    En ocasiones podemos necesitar copiar/sincronizar sólo los archivos que tengan un peso máximo, esto lo podemos conseguir con la opción «–max-size«. En este ejemplo copiaremos sólo los archivos que tengan como tamaño máximo 400k.
+
+
+            [root@proxadmin]# rsync -avzhe ssh --max-size='400k' proxadmin/ root@192.168.0.101:/home/
+
+
+
+8 – Eliminar automáticamente los archivos en origen tras la transferencia
+
+    Vamos a imaginar que tenemos un servidor de hosting donde cada noche se realizan copias de seguridad en local. Para mayor seguridad, queremos copiarlas a un servidor remoto y eliminarlas de local para recuperar espacio en el disco. Podemos ordenarle a Rsync que borre automáticamente los backups en el servidor de origen, después de haberlos transferido al servidor remoto, con la opción «–remove-source-files«.
+
+
+                [root@proxadmin]# rsync --remove-source-files -zvhe ssh backup.tar.gz root@192.168.0.101:/root/backups/backup.tar.gz
+                sent 14.71M bytes received 31 bytes 4.20M bytes/sec
+                total size is 16.18M speedup is 1.10
+                
+                [root@proxadmin]# ll backup.tar.gz
+                ls: backup.tar.gz: No such file or directory
+
+
+
+9 – Probar un comando Rsync sin realizar ningún cambio
+
+    Si eres nuevo en el uso de Rsync y todavía no sabes muy bien lo que estás haciendo al ejecutar el comando, es posible que cometas un error que copie o sincronice archivos y directorios no deseados, con la consecuente tediosa tarea de eliminarlos después en destino. Para evitar esto, tenemos la opción «–dry-run«, que te permite utilizar un comando para ver la salida sin llegar a ejecutar. Si el resultado es el deseo, sólo tendrás que volver a ejecutar el mismo comando eliminando la opción «–dry-run«.
+
+            [root@proxadmin]# rsync --dry-run --remove-source-files -zvhe ssh backup.tar.gz root@192.168.0.101:/root/backups/backup.tar.gz
+            sent 35 bytes received 15 bytes 100.00 bytes/sec
+            total size is 16.18M speedup is 323584.00 (DRY RUN)
+
+
+10 – Forzar la transferencia completa en lugar de sólo los cambios
+
+    Por defecto, Rsync sólo realiza una copia completa de los archivos la primera vez, luego simplemente copia/sincroniza los bloques y bytes que han cambiado desde la sincronización completa. Si quermos forzar a que realice una sincronización completa de nuevo, debemos usar la opicón «–W«:
+
+
+            [root@proxadmin]# rsync -zvhWe ssh backup.tar.gz root@192.168.0.101:/root/backups/
+
+
+
+
+
+
+
+
+Permisos básicos en GNU/Linux con chmod
+    
+    hay 3 atributos basicos para los archivos simples
+
+            Los caracteres atribuidos a los permisos son:
+
+                r quiere decir escritura y viene de Read
+                w quiere decir lectura y viene de Write
+                x quiere decir ejecución y viene de eXecute
+
+
+            Usando chmod para cambiar los permisos
+                
+                chmod (change mode) es el comando utilizado para cambiar permisos, 
+                se pueden agregar o remover permisos a uno o mas archivos con 
+                        + (mas) o – (menos)
+
+                
+                = Si los permisos de archivo de una clase de usuario se han de renovar, 
+                sin importar qué derechos tuvo antes, se usa el operador “=”.
+
+
+        Si quieres prevenirte de modificar un archivo importante, simplemente quita el permiso de escritura en tu «archivo» con el comando chmod
+
+                $ chmod -w tuArchivo
+
+
+        si quieres hacer un script ejecutable, escribe
+
+                $ chmod +x tuScript
+
+
+        si quieres remover o agregar todos los atributos a la vez
+
+                $ chmod -rwx archivo
+                $ chmod +rwx archivo
+
+
+        también puedes usar el signo = (igual) para establecer los permisos en una combinación exacta, este comando remueve los permisos de escritura y ejecución dejando solo el de lectura
+
+                $ chmod =r archivo
+
+
+
+    Estructura básica de permisos en directorios
+
+        En el caso de los directorios tenemos los mismo permisos, pero con un significado diferente.
+
+            >> Permiso de lectura en un directorio
+                Si un directorio tiene permiso de lectura, puedes ver los archivos que este contiene. Puedes usar un «ls (list directory)» para ver su contenido, que tengas permiso de lectura en un directorio no quiere decir que puedas leer el contenido de sus archivos si no tienes permiso de lectura en esos.
+
+            >> Permiso de escritura en un directorio.
+                Con el permiso de escritura puedes agregar, remover o mover archivos al directorio
+
+            >> Permiso de ejecución en un directorio.
+                Ejecución te permite usar el nombre del directorio cuando estas accediendo a archivos en ese directorio, es decir este permiso lo hace que se tome en cuenta en búsquedas realizadas por un programa, por ejemplo, un directorio sin permiso de ejecución no seria revisado por el comando find
+
+
+
+    Usuarios, Grupos y Otros
+
+    Ahora conocemos los 3 permisos y como agregar o remover estos, pero estos 3 permisos son almacenados en 3 lugares diferentes llamados.
+        
+        Usuario (u) proviene de user
+        Grupo (g) proviene de group
+        Otros (o) proviene de other
+
+
+
+        Cuando ejecutas
+
+            $ chmod =r archivo
+            Cambia los permisos en 3 lugares, cuando haces una lista de directorios con «ls -l» veras algo parecido a.
+
+            -r--r--r--    1  wada  users  4096 abr 13 19:30 archivo
+            nota esas 3 «r»s para los 3 diferentes tipos de permisos
+
+            donde:
+
+            x-------------x-------------x
+            |  permisos   |  pertenece  |
+            x-------------x-------------x
+            |  rwx------  | usuario     |
+            |  ---r-x---  | grupo       |
+            |  ------r-x  | otros       |
+            x-------------x-------------x
+        
+        podemos remover permisos para cada dueño; supongamos que tenemos un archivo:
+
+            -rwxr-xr-x    1  wada  users  4096 abr 13 19:30 archivo
+
+        Para remover los permisos de ejecución a grupos y otros basta con usar:
+
+                $ chmod g-x,o-x archivo
+
+            nuestro archivo quedara con estos permisos
+
+                -rwxr--r--    1  wada  users  4096 abr 13 19:30 archivo
+        
+            si deseas remover a usuario el permiso de escritura:
+
+                $ chmod u-x archivo
+                -r-xr--r--    1  wada  users  4096 abr 13 19:30 archivo
+        
+            Agregando y removiendo dos permisos a la vez:
+
+                $ chmod u-x+w archivo
+                -rw-r--r--    1  wada  users  4096 abr 13 19:30 archivo
+
+
+
+    chmod en octal
+
+        La representación octal de chmod es muy sencilla
+
+        Lectura tiene el valor de 4
+        Escritura tiene el valor de 2
+        Ejecución tiene el valor de 1
+
+        Entonces:
+
+        x-----x-----x-----------------------------------x
+        | rwx |  7  | Lectura, escritura y ejecución    |
+        | rw- |  6  | Lectura, escritura        |
+        | r-x |  5  | Lectura y ejecución       |
+        | r-- |  4  | Lectura               |
+        | -wx |  3  | Escritura y ejecución             |
+        | -w- |  2  | Escritura                         |
+        | --x |  1  | Ejecución             |
+        | --- |  0  | Sin permisos          |
+        x-----x-----x-----------------------------------x
+        Por lo tanto:
+
+        x------------------------x-----------x
+        |chmod u=rwx,g=rwx,o=rx  | chmod 775 | 
+        |chmod u=rwx,g=rx,o=     | chmod 760 |
+        |chmod u=rw,g=r,o=r      | chmod 644 |
+        |chmod u=rw,g=r,o=       | chmod 640 |
+        |chmod u=rw,go=          | chmod 600 |
+        |chmod u=rwx,go=         | chmod 700 |
+        x------------------------x-----------x
+
+    
+
+    
+    Posición de la cifra de la clase de usuario
+
+    Significado
+
+                1               Corresponde a la clase de usuario “propietario” (user).
+
+                2               Corresponde a la clase de usuario “grupo” (group).
+
+                3               Corresponde a la clase de usuario “otros” (other).
