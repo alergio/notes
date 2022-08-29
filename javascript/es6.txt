@@ -257,3 +257,475 @@ Set Default Parameters for Your Functions
 
     The console will display the strings Hello John and Hello Anonymous.
 
+    The default parameter kicks in when the argument is not specified (it is undefined). 
+    As you can see in the example above, the parameter name will receive its default 
+    value Anonymous when you do not provide a value for the parameter. 
+    You can add default values for as many parameters as you want.
+
+
+Map(), Filter(), Reduce()
+
+    The map() method is used for creating a new array from an existing one, 
+    applying a function to each one of the elements of the first array.
+    se le aplica la funcion asignada a cada uno de los elementos dentro del array.
+
+            const numbers = [1, 2, 3, 4];
+            const doubled = numbers.map(item => item * 2);
+            console.log(doubled); // [2, 4, 6, 8]
+
+
+    The filter() method takes each element in an array and it applies a conditional statement against it. 
+    If this conditional returns true, the element gets pushed to the output array. 
+    If the condition returns false, the element does not get pushed to the output array.
+    se le aplica una condicion a cada elemento dentro del array, si da true el elemento se guarda en el nuevo array y si no no
+
+            const numbers = [1, 2, 3, 4];
+            const evens = numbers.filter(item => item % 2 === 0);
+            console.log(evens); // [2, 4]
+
+            
+            const students = [
+                { name: 'Quincy', grade: 96 },
+                { name: 'Jason', grade: 84 },
+                { name: 'Alexis', grade: 100 },
+                { name: 'Sam', grade: 65 },
+                { name: 'Katie', grade: 90 }
+            ];
+            
+            const studentGrades = students.filter(student => student.grade >= 90);
+            return studentGrades; // [ { name: 'Quincy', grade: 96 }, { name: 'Alexis', grade: 100 }, { name: 'Katie', grade: 90 } ]
+
+    
+    The reduce() method reduces an array of values down to just one value.
+    To get the output value, it runs a reducer function on each element of the array.
+    para usar el reduce se tiene que llamar a una funcion con por lo menos dos parametros
+    que sera utilizada para cada item del array
+    accumulator - the returned value of the previous iteration
+    currentValue - the current item in the array
+
+    The initialValue argument is optional. If provided, 
+    it will be used as the initial accumulator value in the first call to the callback function.
+
+            arr.reduce(callback[, initialValue])
+
+
+                const numbers = [1, 2, 3, 4];
+                const sum = numbers.reduce(function (result, item) {
+                return result + item;
+                }, 0);
+                console.log(sum); // 10
+
+                    0+1   = 1
+                    1 + 2 = 3
+                    3 + 3 = 6
+                    6 + 4 = 10
+
+        In the next example, reduce() is used to transform an array of strings into a single object 
+        that shows how many times each string appears in the array. 
+        Notice this call to reduce passes an empty object {} as the initialValue parameter. 
+        This will be used as the initial value of the accumulator (the first argument) passed to the callback function.
+
+
+                    var pets = ['dog', 'chicken', 'cat', 'dog', 'chicken', 'chicken', 'rabbit'];
+
+                    var petCounts = pets.reduce(function(obj, pet){
+                        if (!obj[pet]) {
+                            obj[pet] = 1;
+                        } else {
+                            obj[pet]++;
+                        }
+                        return obj;
+                    }, {});
+
+                    console.log(petCounts); 
+
+                    /*
+                    Output:
+                    { 
+                        dog: 2, 
+                        chicken: 3, 
+                        cat: 1, 
+                        rabbit: 1 
+                    }
+                    */
+
+
+
+Use the Rest Parameter with Function Parameters
+    rest parameter for function parameters. With the rest parameter, 
+    you can create functions that take a variable number of arguments. 
+    These arguments are stored in an array that can be accessed later from inside the function.
+
+            function howMany(...args) {
+                return "You have passed " + args.length + " arguments.";
+            }
+            console.log(howMany(0, 1, 2)); // You have passed 3 arguments. 
+            console.log(howMany("string", null, [1, 2, 3], { }));   // You have passed 4 arguments..
+
+    The rest parameter eliminates the need to check the args array and 
+    allows us to apply map(), filter() and reduce() on the parameters array.
+
+    funcion que devuelve la suma de todos los parametros que le pasemos...
+
+        const sum = (...args) => {
+           return args.reduce((a, b) => a + b, 0);
+        }
+
+
+
+Use the Spread Operator to Evaluate Arrays In-Place
+    spread operator, which allows us to expand arrays and other 
+    expressions in places where multiple parameters or elements are expected.
+
+    The ES5 code below uses apply() to compute the maximum value in an array:
+
+            var arr = [6, 89, 3, 45];
+            var maximus = Math.max.apply(null, arr);
+            maximus would have a value of 89.
+
+    We had to use Math.max.apply(null, arr) because Math.max(arr) returns NaN. 
+    Math.max() expects comma-separated arguments, but not an array. 
+    The spread operator makes this syntax much better to read and maintain.
+
+            const arr = [6, 89, 3, 45];
+            const maximus = Math.max(...arr);
+            maximus would have a value of 89.
+
+    ...arr returns an unpacked array. In other words, it spreads the array.
+
+    However, the spread operator only works in-place, like in an argument to a function or in an array literal. 
+    The following code will not work:
+
+        const spreaded = ...arr;
+
+
+    example
+
+        const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+        let arr2;
+
+        arr2 = [...arr1];  // como el spread operator desglosa el array, para que arr 2 sea igual a arr1 hay que poner el  
+                                spread operator dentro de un array [] si no no funciona
+
+        console.log(arr2);  // = arr1
+
+
+
+Use Destructuring Assignment to Extract Values from Objects
+    Destructuring assignment is special syntax introduced in ES6, for neatly assigning values taken directly from an object.
+
+    Consider the following ES5 code:
+        
+            const user = { name: 'John Doe', age: 34 };
+
+            const name = user.name;
+            const age = user.age;
+
+        name would have a value of the string John Doe, and age would have the number 34.
+
+    Here's an equivalent assignment statement using the ES6 destructuring syntax:
+
+            const { name, age } = user;
+
+        Again, name would have a value of the string John Doe, and age would have the number 34.
+        Here, the name and age variables will be created and assigned the values of their respective values from the user object. 
+        You can see how much cleaner this is.
+        You can extract as many or few values from the object as you want.
+
+
+
+Use Destructuring Assignment to Assign Variables from Objects
+     assign a new variable name when extracting values. 
+     You can do this by putting the new name after a colon when assigning the value.
+
+    object:
+            const user = { name: 'John Doe', age: 34 };
+
+    Here's how you can give new variable names in the assignment:
+
+        const { name: userName, age: userAge } = user;
+
+    get the value of user.name and assign it to a new variable named userName
+
+    The value of userName would be the string John Doe, and the value of userAge would be the number 34.
+
+
+
+Use Destructuring Assignment to Assign Variables from Nested Objects
+     same principles
+
+            const user = {
+                johnDoe: { 
+                    age: 34,
+                    email: 'johnDoe@freeCodeCamp.com'
+                }
+            };
+
+    extract the values of object properties and assign them to variables with the same name:
+
+        const { johnDoe: { age, email }} = user;
+
+    And here's how you can assign an object properties' values to variables with different names:
+
+        const { johnDoe: { age: userAge, email: userEmail }} = user;
+
+
+
+Use Destructuring Assignment to Assign Variables from Arrays
+    ES6 makes destructuring arrays as easy as destructuring objects.
+
+    One key difference between the spread operator and array destructuring 
+    is that the spread operator unpacks all contents of an array into a comma-separated list. 
+    Consequently, you cannot pick or choose which elements you want to assign to variables.
+
+    Destructuring an array lets us do exactly that:
+
+        const [a, b] = [1, 2, 3, 4, 5, 6];
+        console.log(a, b);
+                            // a and b as 1, 2.
+
+    The variable a is assigned the first value of the array, 
+    and b is assigned the second value of the array. 
+    We can also access the value at any index in an array 
+    with destructuring by using commas to reach the desired index:
+
+            const [a, b,,, c] = [1, 2, 3, 4, 5, 6];
+            console.log(a, b, c);
+                                    // a, b, and c as 1, 2, 5.
+
+
+        con esta desestructuracion podemos alterar un valor de una variable por el valor de otra y esta por el de la anterior...
+
+            let a = 8, b = 6;
+            [a, b] = [b, a]
+
+        // a vale 6 y b vale 8
+
+        [a, b] = [b, a] // es igual a [8, 6] = [6, 8]
+        con la desestructuracion lo que hacemos es acceder a los valores de un array y al haber definido a y b
+        lo q hacemos ahi es a a = b y b = a ...
+
+
+
+Use Destructuring Assignment with the Rest Parameter to Reassign Array Elements
+    In some situations involving array destructuring, 
+    we might want to collect the rest of the elements into a separate array.
+
+    The result is similar to Array.prototype.slice(), as shown below:
+
+            const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
+            console.log(a, b);
+            console.log(arr);
+    
+    The console would display the values 1, 2 and [3, 4, 5, 7].
+
+    Variables a and b take the first and second values from the array. 
+    After that, because of the rest parameter's presence, arr gets the rest of the values in the form of an array. 
+    The rest element only works correctly as the last variable in the list. 
+    As in, you cannot use the rest parameter to catch a subarray that leaves out the last element of the original array.
+
+                        const source = [1,2,3,4,5,6,7,8,9,10];
+                        function removeFirstTwo(list) {
+                            const [a, b, ...arr] = list;
+                        return arr;
+                        }
+                        const arr = removeFirstTwo(source);
+
+
+        El método slice() devuelve una copia de una parte del array 
+        dentro de un nuevo array empezando por inicio hasta fin (fin no incluido). 
+
+        syntax
+                arr.slice([inicio [, fin]])
+
+        inicio
+            Índice donde empieza la extracción. El primer elemento corresponde con el índice 0.
+            Si el índice especificado es negativo, indica un desplazamiento desde el final del array. 
+            slice(-2)extrae los dos últimos elementos del array
+            Si inicio es omitido el valor por defecto es 0.
+            Si inicio es mayor a la longitud del array, se devuelve un array vacío.
+
+        fin
+            Índice que marca el final de la extracción. slice extrae hasta, pero sin incluir el final.
+            slice(1,4) extrae desde el segundo elemento hasta el cuarto (los elementos con índices 1, 2, y 3).
+            Con un índice negativo, fin indica un desplazamiento desde el final de la secuencia. 
+            slice(2,-1) extrae desde el tercer hasta el penúltimo elemento en la secuencia.
+            Si fin es omitido, slice extrae hasta el final de la secuencia (arr.length).
+            Si fin es mayor a la longitud del array, slice extrae hasta el final de la secuencia (arr.length).
+
+        retorna Un nuevo array con los valores extraídos.
+
+
+            var nombres = ['Rita', 'Pedro', 'Miguel', 'Ana', 'Vanesa'];
+            var masculinos = nombres.slice(1, 3);
+
+                // masculinos contiene ['Pedro','Miguel']
+
+
+
+Use Destructuring Assignment to Pass an Object as a Function's Parameters
+
+    In some cases, you can destructure the object in a function argument itself.
+
+        const profileUpdate = (profileData) => {
+            const { name, age, nationality, location } = profileData;
+        }
+
+    This effectively destructures the object sent into the function. This can also be done in-place:
+
+        const profileUpdate = ({ name, age, nationality, location }) => {
+
+        }
+
+    When profileData is passed to the above function, the values are 
+    destructured from the function parameter for use within the function.
+
+
+        another example
+
+            const stats = {
+                max: 56.78,
+                standard_deviation: 4.34,
+                median: 34.54,
+                mode: 23.87,
+                min: -0.75,
+                average: 35.85
+            };
+
+            const half = ({ max, min }) => (max + min) / 2;
+            console.log(half(stats));
+
+
+
+Create Strings using Template Literals
+
+    template literal. This is a special type of string that makes creating complex strings easier.
+
+                const person = {
+                    name: "Zodiac Hasbro",
+                    age: 56
+                };
+
+                const greeting = `Hello, my name is ${person.name}!
+                I am ${person.age} years old.`;
+
+                console.log(greeting);
+
+                    // Hello, my name is Zodiac Hasbro! and 
+                    // I am 56 years old..
+
+    the example uses backticks (`), not quotes (' or "), to wrap the string. 
+    the string is multi-line, both in the code and the output. 
+    The ${variable} syntax used above is a placeholder.
+    you won't have to use concatenation with the + operator anymore.
+    To add variables to strings, you just drop the variable in a template string and wrap it with ${ and }.
+    Similarly, you can include other expressions in your string literal, 
+    for example ${a + b}. This new way of creating strings gives you more flexibility to create robust strings.
+
+
+        example for this
+        
+        const result = {
+            success: ["max-length", "no-amd", "prefer-arrow-functions"],
+            failure: ["no-var", "var-on-top", "linebreak"],
+            skipped: ["no-extra-semi", "no-dup-keys"]
+        };
+
+        function makeList(arr) {
+            // Only change code below this line
+
+            const failureItems = [];
+            for (let i = 0; i < arr.length; i++) {
+                failureItems.push(`<li class="text-warning">${arr[i]}</li>`)
+            }
+
+            // Only change code above this line
+
+            return failureItems;
+        }
+
+        const failuresList = makeList(result.failure);
+        console.log(failuresList)
+
+
+
+Write Concise Object Literal Declarations Using Object Property Shorthand
+
+    ES6 adds some nice support for easily defining object literals.
+    Consider the following code:
+
+            const getMousePosition = (x, y) => ({
+                x: x,
+                y: y
+            });
+
+    getMousePosition is a simple function that returns an object containing two properties. 
+    ES6 provides the syntactic sugar to eliminate the redundancy of having to write x: x. 
+    You can simply write x once, and it will be converted tox: x (or something equivalent) under the hood. 
+    
+    Here is the same function from above rewritten to use this new syntax:
+
+        const getMousePosition = (x, y) => ({ x, y });
+
+        esta funcion va a retornar los valores que pasemos como parametros como valores de las propiedades x e y de un objeto.
+
+            getMousePosition("a", "b");     //  { x: 'a', y: 'b' }
+
+
+    another example
+
+        const createPerson = (name, age, gender) => {
+            // Only change code below this line
+            return { name, age, gender };
+            //   Only change code above this line
+        };
+
+            createPerson("Zodiac Hasbro", 56, "male")   //   {name: "Zodiac Hasbro", age: 56, gender: "male"}.
+
+
+
+Write Concise Declarative Functions with ES6
+
+    When defining functions within objects in ES5, we have to use the keyword function as follows:
+
+        const person = {
+            name: "Taylor",
+            sayHello: function() {
+                return `Hello! My name is ${this.name}.`;
+            }
+        };
+
+    With ES6, you can remove the function keyword and colon altogether 
+    when defining functions in objects. 
+    Here's an example of this syntax:
+
+        const person = {
+            name: "Taylor",
+            sayHello() {
+                return `Hello! My name is ${this.name}.`;
+            }
+        };
+
+        another example
+
+        // Only change code below this line
+        const bicycle = {
+            gear: 2,
+            setGear(newGear) {
+                this.gear = newGear;
+            }
+        };
+        // Only change code above this line
+        bicycle.setGear(3);
+        console.log(bicycle.gear);
+
+
+
+
+
+
+
+
+
+
+
