@@ -1,0 +1,171 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Basic Algorithm Scripting
+
+    Basic Algorithm Scripting
+    An algorithm is a series of step-by-step instructions that describe how to do something.
+
+    To write an effective algorithm, it helps to break a problem down into smaller parts 
+    and think carefully about how to solve each part with code.
+
+    In this course, you'll learn the fundamentals of algorithmic thinking by writing algorithms 
+    that do everything from converting temperatures to handling complex 2D arrays.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Convert Celsius to Fahrenheit
+
+    The formula to convert from Celsius to Fahrenheit is the temperature in Celsius times 9/5, plus 32.
+
+    You are given a variable celsius representing a temperature in Celsius. 
+    Use the variable fahrenheit already defined and assign it 
+    the Fahrenheit temperature equivalent to the given Celsius temperature. 
+    Use the formula mentioned above to help convert the Celsius temperature to Fahrenheit.
+
+
+
+Reverse a String
+    
+    Reverse the provided string.
+    You may need to turn the string into an array before you can reverse it.
+    Your result must be a string.
+
+        const reverseString = (str) => {
+            let reversedStr = ""
+            for (let i = str.length - 1; i >= 0; i--) {
+                reversedStr += str[i];
+            }
+            return reversedStr;
+        }
+
+        console.log(reverseString("hello"));        //      "olleh"
+
+
+
+Factorialize a Number
+
+    Return the factorial of the provided integer.
+
+    If the integer is represented with the letter n, a factorial is the product of all positive integers less than or equal to n.
+
+    Factorials are often represented with the shorthand notation n!
+
+    For example: 5! = 1 * 2 * 3 * 4 * 5 = 120
+
+    Only integers greater than or equal to zero will be supplied to the function
+
+
+    empece el ejercicio con esta solucion, mala pero valida
+
+        const factorialize = (num) => {
+            let a = []
+            for (let i = 1; i <= num; i++) {
+                a.push(i);
+            }
+            let b = 1
+            for (let i = 0; i < a.length-1; i++) {
+                b = b * a[i+1]
+            }
+            return b;
+        }
+
+        console.log(factorialize(5));       //      120
+
+
+    me puse a investigar y bueno.. 
+    primero una solucion mas sencilla
+
+            function factorialize(num) {
+                let product = 1;
+                for (let i = 2; i <= num; i++) {
+                    product *= i;
+                }
+                return product;
+            }
+
+            factorialize(5);        //      120
+
+
+    y otra que usa recursividad
+
+        Recursive Solution
+
+            This one starts easily since 0! = 1, so you can go ahead and simply return 1 there.
+
+            We can use that as an if in order to break the loop we’re going to create using a recursive function. 
+            It will check if the number you gave the function is 0 (which would be the end of your factorial chain). 
+            Functions “end” when they return anything. 
+            In fact, all functions without an explicit return statement will return undefined.
+
+            This is also why instead of having “finished”, a function is always said to “have returned”. And now this…
+
+        Understanding recursion
+
+            Recursion refers to a function repeating (calling) itself. 
+            In this case we are basically returning the given number (i.e. 5), 
+            multiplied by the function itself but this time the value passed to the num parameter is num-1 
+            (which initially translates to 4). 
+            The very function is going to run inside itself interesting, eh?
+
+        Understanding the flow
+
+            The first returned value can be visualized better if you think about 
+            those parenthesis operations you did in secondary school where you do 
+            the math inside every parenthesis from inside out, bracket and square bracket 
+            until you get a final result (a total). 
+            This time it’s the same thing, look at the program flow:
+
+            During the first execution of the function:
+
+                [num = 5]
+                Is 5 equal to 1 or 0? No —> Oki doki, let’s continue…
+
+                Returns:
+                (5 _(second execution: 4 _(third execution: 3 _(fourth execution: 2 _fifth execution: 1))))
+
+                What it returns can be viewed as (5*(4*(3*(2*1)))) or just 5 * 4 * 3 * 2 * 1, and the function will return 
+                the result of that operation: 120. Now, let’s check what the rest of the executions do:
+
+                During the rest of the executions:
+
+                Second Execution: num = 5-1 = 4 → is num 0 or 1? No
+                → return the multiplication between 4 and the next result when num is now 4-1.
+
+                Third Execution: num = 4 - 1 = 3 → is num 0 or 1? No
+                → return the multiplication between 3 and the next result when num is now 3-1.
+
+                Fourth Execution: num = 3-1 = 2 → is num 0 or 1? No
+                → return the multiplication between 2 and the next result when num is now 2-1.
+
+                Fifth Execution: num = 2-1 = 1 → is num 0 or 1? Yep
+                → return 1. And this is where the recursion stops because there are no more executions.
+
+
+        SOLUCION CON RECURSIVIDAD
+
+            function factorialize(num) {
+                if (num === 0) {
+                    return 1;
+                }
+                return num * factorialize(num - 1);
+            }
+
+            factorialize(5);        //      120
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
