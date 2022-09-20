@@ -157,15 +157,136 @@ Factorialize a Number
 
 
 
+Find the Longest Word in a String
+
+    Return the length of the longest word in the provided sentence.
+
+    Your response should be a number.
+
+        para resolver esto tuve que investigar sobre el metodo split() (lo agregue al doc methods.txt)
+        split en este caso me permitira separar un string en palabras y pushearlas a un array.
+
+        
+        solucion que cree:
+
+            const findLongestWordLength = (str) => {
+                let strArray = str.split(' ');
+                let maxLength = 0;
+                for (let i = 0; i < strArray.length; i++) {
+                    if (strArray[i].length > maxLength){
+                        maxLength = strArray[i].length;
+                    }
+                }
+                return maxLength;
+            }
+
+
+        tambien se podia hacer con map y mathmax
+
+            function findLongestWordLength(str) {
+                return Math.max(...str.split(" ").map(word => word.length));
+            }
+
+                We provide Math.max with the length of each word as argument, 
+                and it will simply return the highest of all.
+
+                str.split(" ") splits the string into an array, taking spaces as separators. 
+                It returns this array: 
+                [“The”,"quick,“brown”,“fox”,“jumped”,“over”,“the”,“lazy”,“dog”].
+
+                Then, we will make another array, 
+                made from the lengths of each element of the str.split(" ") array with map().
+
+                str.split(" ").map(word => word.length)     //  map itera con cada elemento de un array 
+                                                                y lo devuelve en otro array
+                returns [3, 5, 5, 3, 6, 4, 3, 4, 3]
+
+                Finally, we pass the array as argument for the Math.max function with the spread operator ...
+                para desglosarlo ya que Math.max trabaja con numeros, no con arrays.
+
+
+        tambien se podia hacer con .reduce() pero no lo he investigado
 
 
 
+Return Largest Numbers in Arrays
+
+    Return an array consisting of the largest number from each provided sub-array. 
+    For simplicity, the provided array will contain exactly 4 sub-arrays.
+
+    Remember, you can iterate through an array with a simple for loop, 
+    and access each member with array syntax arr[i].
+
+        the solution I found
+
+            function largestOfFour(arr) {
+                let largestArr = [];
+                for (let i = 0; i < arr.length; i++) {
+                    largestArr.push(Math.max(...arr[i]))
+                }
+                return largestArr;
+            }
+
+            console.log(largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]));
+
+                //  [ 5, 27, 39, 1001 ]
+
+            
+        this would have been better:
+
+            const largestOfFour = (arr) => arr.map(item => Math.max(...item));
+
+        the map method iterate with each of the arrays inside the arr and 
+        it was saving the highest in a new array that he retorned when he finished.
 
 
 
+Confirm the Ending
+
+    Check if a string (first argument, str) 
+    ends with the given target string (second argument, target).
+
+    This challenge can be solved with the .endsWith() method, 
+    which was introduced in ES2015. 
+    But for the purpose of this challenge, 
+    we would like you to use one of the JavaScript substring methods instead.
+
+        the solution:
+
+            const confirmEnding = (str, target) => {
+                let a = new RegExp(target + '$', 'i')
+                return a.test(str);
+            }
+
+            console.log(confirmEnding("Bastian", "n"));     //      true
 
 
+        and another solution
+
+            function confirmEnding(str, target) {
+                return str.slice(str.length - target.length) === target;
+            }
+
+        OR
+
+            function confirmEnding(str, target) {
+               return str.slice(-target.length) === target
+            }
 
 
+                First we use the slice method copy the string.
+                In order to get the last characters in str equivalent to the target's length we use the slice method.
+                The first parameter inside the slice method is the starting index 
+                and the second parameter would be the ending index.
+                For example str.slice(10, 17) would return give me.
+                In this case we only include one parameter 
+                which it will copy everything from the starting index.
+                We substract the length of str and the length of target, 
+                that way, we shall get the last remaining characters equivalent to the target's length.
+                Finally we compare the return result of slice to target and check if they have the same characters.
+
+                (for second case):
+                    If a negative number is provided as the first parameter to slice() , 
+                    the offset is taken backwards from the end of the string.
 
 

@@ -904,3 +904,16 @@ Remove Whitespace from Start and End
 
 
 
+
+another way to use regular expresions is with > new RegExp()
+
+    The constructor function takes either a string or a RegExp 
+    object as its first parameter and a string of optional flags as its second parameter.
+
+        const re = new RegExp('ab+c', 'i');
+
+    that is iqual to 
+
+        const re = /ab+c/i 
+
+
