@@ -290,3 +290,199 @@ Confirm the Ending
                     the offset is taken backwards from the end of the string.
 
 
+
+Repeat a String Repeat a String
+
+    Repeat a given string str (first argument) for num times (second argument). 
+    Return an empty string if num is not a positive number. 
+    For the purpose of this challenge, do not use the built-in .repeat() method.
+
+        my solution
+
+        function repeatStringNumTimes(str, num) {
+            let a = "";
+            for (let i = 1; i <= num; i++) {
+                a += str;
+            }
+            return a;
+        }
+
+        console.log(repeatStringNumTimes("abc", 3));
+
+
+    solution using recursive
+
+        function repeatStringNumTimes(str, num) {
+            if (num < 1) {
+                return "";
+            } else {
+                return str + repeatStringNumTimes(str, num - 1);
+            }
+        }
+
+
+
+Truncate a String
+
+    Truncate a string (first argument) if it is longer 
+    than the given maximum string length (second argument). 
+    Return the truncated string with a ... ending.
+
+        my solution
+
+            function truncateString(str, num) {
+                if (str.length > num) {
+                    let a = "";
+                    for (let i = 0; i < num; i ++) {
+                        a += str[i];
+                    }
+                    return a + "...";
+                } else {
+                    return str;
+                }
+            }
+
+            console.log(truncateString("A-tisket a-tasket A green and yellow basket", 8));
+
+
+        solution using slice()
+
+            function truncateString(str, num) {
+                if (str.length > num) {
+                    return str.slice(0, num) + "...";
+                } else {
+                    return str;
+                }
+            }
+
+                slice works with arrays and strings
+                he use two parameters (from, to) from is where the extraction begins and to is
+                where extraction ends but not including this value
+                    "hi bro".slice(0, 3) > return "hi " because "h" = 0, "i" = 1 and " " = 2
+
+
+
+Finders Keepers
+
+    Create a function that looks through an array arr and returns the first element in it that passes a  'truth test'.
+    This means that given an element x, the 'truth test' is passed if func(x) is true. 
+    If no element passes the test, return undefined.
+
+        my solution
+
+            function findElement(arr, func) {
+                let num = 0;
+                for (let i = 0; i < arr.length; i++) {
+                    num = arr[i]
+                    if (func(num)) {
+                    return num;
+                    } 
+                }
+                return undefined;
+            }
+
+            findElement([1, 2, 3, 4], num => num % 2 === 0);
+
+        
+        another
+
+            function findElement(arr, func) {
+              return arr[arr.map(func).indexOf(true)];
+            }
+
+                this will return the number within the array (arr[num]) 
+                that was mapped in the function and returned true
+
+
+
+Boo who
+
+    Check if a value is classified as a boolean primitive. 
+    Return true or false.
+
+    Boolean primitives are true and false.
+
+
+        my basic solution
+
+            const booWho = (bool) => {
+                if (bool === true || bool === false) {
+                    return true;
+                }
+                else { 
+                    return false; 
+                }
+            }
+
+                console.log(booWho(false));
+
+
+        another simple solution
+
+            const booWho = (bool) => typeof bool === "boolean";
+
+
+
+Title Case a Sentence
+
+    Return the provided string with the first letter of each word capitalized. 
+    Make sure the rest of the word is in lower case.
+
+    For the purpose of this exercise, you should also capitalize connecting words like the and of.
+
+
+        the solution that i searched because i couldn't solve this shit by myself
+
+            function titleCase(str) {
+                return str
+                    .toLowerCase()
+                    .replace(/(^|\s)\S/g, L => L.toUpperCase());
+            }
+
+        The solution works by first lowercasing all the characters in the string 
+        and then only uppercasing the first character of each word.
+
+        Lowercase the whole string using str.toLowerCase().
+        Replace every word’ first character to uppercase using .replace.
+        Search for character at the beginning of each word i.e.
+        matching any character following a space or matching the first character of the whole string, 
+        by using the following pattern.
+        Regex explanation:
+        Find all non-whitespace characters (\S)
+        At the beginning of string (^)
+        Or after any whitespace character (\s)
+        The g modifier searches for other such word pattern in the whole string and replaces them.
+
+
+
+Slice and Splice
+
+    You are given two arrays and an index.
+    Copy each element of the first array into the second array, in order.
+
+    Begin inserting elements at index n of the second array.
+
+    Return the resulting array. 
+    The input arrays should remain the same after the function runs.
+
+
+        function frankenSplice(arr1, arr2, n) {
+            let a = arr2.slice();
+            a.splice(n, 0, ...arr1)
+            return a;
+        }
+
+        console.log(frankenSplice([1, 2, 3], [4, 5, 6], 0));
+            //  [ 1, 2, 3, 4, 5, 6 ]
+
+
+
+
+
+
+
+
+
+
+
+

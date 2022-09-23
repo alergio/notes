@@ -1,8 +1,29 @@
+operators
 
+
+
+typeof
+
+    The typeof operator returns a string indicating the type of the operand's value.
+
+    console.log(typeof 42);
+    // expected output: "number"
+
+    console.log(typeof 'blubber');
+    // expected output: "string"
+
+    console.log(typeof true);
+    // expected output: "boolean"
+
+    console.log(typeof undeclaredVariable);
+    // expected output: "undefined"
+
+
+
+--------------------------------------------------------------------
 
 methods
 
-------------------------------------------------------------------
 
 
 .split()
@@ -91,8 +112,37 @@ Map()
 
             largestOfFour([[1, 2, 3], [4, 5, 6]]);  //  [3, 6]
 
+
+
+method .toLowerCase() 
+
+    will return the value of the string converted to lower case. The original string is not changed.
+
+    string.toLowerCase()
+
+    Examples
+    var shout = "I AM SHOUTING VERY LOUDLY"
+    var whisper = shout.toLowerCase()
+    
+    console.log(shout) // will return "I AM SHOUTING VERY LOUDLY"
+    console.log(whisper) // will return "i am shouting very loudly"
+
+    same for .toUpperCase()
         
 
+
+The replace() 
+    
+    method returns a new string with some or all matches of a pattern replaced by a replacement. 
+    The pattern can be a string or a RegExp, 
+    and the replacement can be a string or a function to be called for each match.
+
+    
+    str.replace(regexp|substr, newSubStr|function[, flags])
+
+        var str = 'Twas the night before Xmas...';
+        var newstr = str.replace(/xmas/i, 'Christmas');
+        console.log(newstr);  // Twas the night before Christmas...
 
 
 

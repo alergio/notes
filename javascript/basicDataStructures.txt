@@ -222,6 +222,7 @@ Copy Array Items Using slice()
     slice() takes only 2 parameters — the first is the index at which to begin extraction, 
     and the second is the index at which to stop extraction 
     (extraction will occur up to, but not including the element at this index). 
+    slice() without parameters, copy all content of the array.
     Consider this:
 
         let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];
