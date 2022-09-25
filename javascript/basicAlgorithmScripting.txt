@@ -477,12 +477,83 @@ Slice and Splice
 
 
 
+Falsy Bouncer
+
+    Remove all falsy values from an array.
+
+    Falsy values in JavaScript are false, null, 0, "", undefined, and NaN.
+
+    Hint: Try converting each value to a Boolean.
+
+
+    solution that tests if element into array is falsy or not
+
+        function bouncer(arr) {
+            let newArray = [];
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i]) newArray.push(arr[i]);
+            }
+            return newArray;
+        }
+
+    
+    solution using filter() method and boolean function
+
+        const bouncer = (arr) => arr.filter(Boolean);
 
 
 
+Where do I Belong
+
+    Return the lowest index at which a value (second argument) 
+    should be inserted into an array (first argument) once it has been sorted. 
+    The returned value should be a number.
+
+    For example, getIndexToIns([1,2,3,4], 1.5) should return 1 
+    because it is greater than 1 (index 0), but less than 2 (index 1).
+
+    Likewise, getIndexToIns([20,3,5], 19) should return 2 because once the array has been sorted 
+    it will look like [3,5,20] and 19 is less than 20 (index 2) and greater than 5 (index 1).
+            
+
+        my solution using sort()
+
+        function getIndexToIns(arr, num) {
+            arr.sort((a, b) => a-b);
+            for (let i = 0; i < arr.length; i++) {
+                if (num <= arr[i]) {
+                return i;
+                }
+            } 
+            return arr.length;
+            
+        }
+
+        console.log(getIndexToIns([10, 20, 30, 40, 50], 35));
 
 
+        another solution using filter()
+
+            function getIndexToIns(arr, num) {
+                return arr.filter(val => num > val).length;
+            }
+
+                filter always return an array that meets the conditions
+                so in this case, this filter returns an array which contains the numbers
+                that are less than num (second parameter)
+                and the length of this array is the number we are looking for
 
 
+        another solution using concat() and some methods
 
+            function getIndexToIns(arr, num) {
+                return arr
+                    .concat(num)
+                    .sort((a, b) => a - b)
+                    .indexOf(num);
+            }
 
+                We use method-chaining to invoke one method after another to solve the problem in a single line. 
+                First we create a new array with the contents of arr and num by using the concat() method
+                Then we use sort() with the callback arrow function (a, b) => return a-b to sort the numbers in ascending order
+                Lastly we return the position or index of num in the array with the indexOf() method
