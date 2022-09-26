@@ -557,3 +557,81 @@ Where do I Belong
                 First we create a new array with the contents of arr and num by using the concat() method
                 Then we use sort() with the callback arrow function (a, b) => return a-b to sort the numbers in ascending order
                 Lastly we return the position or index of num in the array with the indexOf() method
+
+
+
+Mutations
+
+    Return true if the string in the first element of the array 
+    contains all of the letters of the string in the second element of the array.
+
+    For example, ["hello", "Hello"], should return true 
+    because all of the letters in the second string are present in the first, ignoring case.
+    The arguments ["hello", "hey"] should return false because the string hello does not contain a y.
+    Lastly, ["Alien", "line"], should return true because all of the letters in line are present in Alien.
+
+
+        my solution (with help..)
+
+        function mutation(arr) {
+            let a = arr[0].toLowerCase();
+            let b = arr[1].toLowerCase();
+            for (let i = 0; i < b.length; i++) {
+                if (a.indexOf(b[i]) < 0) {
+                    return false;
+                } 
+            }
+            return true;
+        }
+
+
+        another solution making use split() and every()
+
+            const mutation = (arr) => 
+                arr[1].toLowerCase()
+                .split("")
+                .every((letter) => arr[0].toLowerCase().indexOf(letter) !== -1);
+
+            Grab the second string, lowercase and turn it into an array (with toLowerCase and split)
+            then make sure every one of its letters is a part of the lowercased first string.
+
+            con el every usando el parametro letter, revisamos cada item del array que devolvio split
+            (que va a ser todo el segundo item del array separado por cada caracter)
+            para hacer un retorno en true or false, primero pasamos el primer item del array a lowerCase 
+            para que este igual que el segundo y puedan ser comparables.
+            Despues chequeamos con el indexOf la presencia de cada caracter (letter) del segundo item del array
+            en el primer item del array, si el resultado de esto no da -1 (que significa que no esta presente)
+            retornara true, de lo contrario retornara false.
+
+
+
+Chunky Monkey
+
+    Write a function that splits an array (first argument) 
+    into groups the length of size (second argument) and returns them as a two-dimensional array.
+
+
+        my solution
+
+            function chunkArrayInGroups(arr, size) {
+                let a = [];
+                for (let i = 0; i < arr.length; i += size) {
+                    a.push(arr.slice(i, i + size));
+                }
+                return a;
+            }
+
+                console.log(chunkArrayInGroups(["a", "b", "c", "d"], 2));
+
+                    // [ [ 'a', 'b' ], [ 'c', 'd' ] ] 
+
+
+
+
+
+
+
+
+
+
+
