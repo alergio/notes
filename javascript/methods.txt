@@ -1,6 +1,13 @@
 operators
 
 
+number()
+    One way to convert a string into a number would be to use the Number() function.
+        
+        let quantity = "12";
+        quantity = Number(quantity);
+
+
 
 typeof
 
@@ -132,6 +139,16 @@ Map()
         so
 
             largestOfFour([[1, 2, 3], [4, 5, 6]]);  //  [3, 6]
+
+
+    if in a map() we want it to return an objet, 
+    we have to write the funcion between ({})
+    like:
+        .map(movie => ({title: movie.Title, rating: movie.imdbRating}));
+
+    when movie is an element of an array containing objects
+    where this objets contains properties like Title and imdbRating.
+    So this return an object because the function is between ({})
 
 
 
@@ -295,6 +312,13 @@ sort()
 
             los valores que devuelve, negativo, 0 o positivo son para decirle al sort donde ordenar.
 
+            sort espera recibir un valor negativo, 0 o positivo.
+            en base al valor que recibe, decide si a va antes o despues que b
+            a y b son elementos del array que esta queriendo ordenar
+            va a iterar una y otra vez hasta que compare todos los elementos del array
+
+            hay + del sort en functionalProgramming.txt
+
 
 
 concat()
@@ -361,6 +385,9 @@ every()
     If an element that causes callback to return false is found, the every method immediately returns false . 
     Otherwise, the every method returns true .
 
+    The every method works with arrays to check if every element passes a particular test. 
+    It returns a Boolean value - true if all values meet the criteria, false if not.
+
     In addition to array objects, the every method can be used by any object 
     that has a length property and that has numerically indexed property names. 
     every does not mutate the array on which it is called.
@@ -376,6 +403,144 @@ every()
 
 
 
+some()
+
+    The some method works with arrays to check if any element passes a particular test. 
+    It returns a Boolean value - true if any of the values meet the criteria, false if not.
+
+    For example, the following code would check if any element in the numbers array is less than 10:
+
+        const numbers = [10, 50, 8, 220, 110, 11];
+
+        numbers.some(function(currentValue) {
+            return currentValue < 10;
+        });
+
+    The some method would return true.
+
+    
+
+Array.prototype.forEach()
+
+    The forEach() method executes a provided function once for each array element.
+
+
+        const array1 = ['a', 'b', 'c'];
+        array1.forEach(element => console.log(element));
+
+        // expected output: "a"
+        // expected output: "b"
+        // expected output: "c"
+
+    no modifica el array original a menos que la funcion asignada lo haga
+    puede recibir mas parametros y tiene mas funcionalidades de las que fueron descriptas aca
+
+
+
+reduce()
+
+    es un poco complex asi que lo voy a explicar en espanhol
+
+    reduce trabaja sobre un array, puede recibir hasta 4 parametros pero vamos a trabajar solo con los 2 primeros
+    el primero es el acumulador y el segundo es el elemento del array sobre el que va a trabajar (iteracion)
+    trabaja con una funcion "callback" porque va a ejecutarse por cada elemento del array, y ademas de la funcion
+    tambien se le da un valor que va a ser el valor inicial para el acumulador
+
+            array.reduce((acumulador, elemento) => loQueQuierasRetornar, valorDelAcumuladorInicial)
+
+            let arr = [1, 2, 3];
+            arr.reduce((acu, ele) => acu + ele, 0);     //      6
+
+    acumulador significa que es el valor que retorna cada vez que se ejecuta la funcion
+    en ese ejemplo, empieza valiendo 0 porque es el valor que le dimos como segundo parametro de salida en la funcion
+    
+        empieza acu + ele === 0 + 1    //  1
+            ahora acu vale 1 
+        sigue acu + ele === 1 + 2   //   3
+            ahora acu vale 3
+        sigue acu + ele === 3 + 3   //  6
+            ahora acu vale 6
+
+    
+    NOTE: si el parametro de valor inicial para el acumulador se omite, tambien se omite la primer iteracion
+    y se pasa directamente a la segunda, utilizando el valor del primer elemento como valor de acumulacion
+    osea, en el caso anterior, el programa empieza en la segunda iteracion siendo el primer valor del Array
+    el valor de acu, osea empieza en 1 + 2
+
+
+    un ejemplo un poco mas complejo con objetos
+
+        const jogadores = [
+            { name: 'Neymar', numTag: 10, pos: 'attack' },
+            { name: 'Messi', numTag: 30, pos: 'attack' },
+            { name: 'Marquinhos', numTag: 3, pos: 'deffender' }
+        ];
+
+        let numTagsJogao = jogadores.reduce((obj, jogador) => { 
+            obj[jogador.name] = jogador.pos
+            return obj;
+        }, {});
+
+        console.log(numTagsJogao)       //      { Neymar: 'attack', Messi: 'attack', Marquinhos: 'deffender' }
+
+
+            ahi se ve una forma de asignar valores a un objeto
+            tiene 2 parametros de entrada (obj, jogador)
+            obj va a ser el acumulador y jogador es el elemento del array donde esta iterando
+            tiene a un objeto vacio {} como valor inicial del acumulador
+            asi que empieza asignando al objeto vacio el jogador.name como propiedad y jogador.numTag como valor
+            y retorna ese objeto, en cada iteracion vuelve a hacer una asignacion de valores a ese objeto
+
+
+
+.join()
+
+    The join method is used to join the elements of an array together to create a string. 
+    It takes an argument for the delimiter that is used to separate the array elements in the string.
+
+    Here's an example:
+
+        const arr = ["Hello", "World"];
+        const str = arr.join(" ");
+    
+    str would have a value of the string Hello World.
+
+
+
+trim()
+
+    The trim() method removes whitespace from both ends of a string and returns a new string, 
+    without modifying the original string. 
+    Whitespace in this context is all the whitespace characters 
+    (space, tab, no-break space, etc.) and all the line terminator characters (LF, CR, etc.).
+
+            const greeting = '   Hello world!   ';
+
+            console.log(greeting);
+            // expected output: "   Hello world!   ";
+
+            console.log(greeting.trim());
+            // expected output: "Hello world!";
+
+
+
+includes()
+
+    The includes() method determines whether an array includes a certain value among its entries, 
+    returning true or false as appropriate.
+
+        const array1 = [1, 2, 3];
+
+        console.log(array1.includes(2));
+        // expected output: true
+
+        const pets = ['cat', 'dog', 'bat'];
+
+        console.log(pets.includes('cat'));
+        // expected output: true
+
+        console.log(pets.includes('at'));
+        // expected output: false
 
 
 

@@ -162,7 +162,8 @@ Remove Items Using splice()
     of items in the array that splice() is being called upon. 
     And remember, arrays are zero-indexed, so to indicate the first element of an array, we would use 0. 
     splice()'s first parameter represents the index on the array from which to begin removing elements, 
-    while the second parameter indicates the number of elements to delete. 
+    while the second parameter indicates the number of elements to delete.
+    If the second argument is not provided, the default is to remove items through the end. 
     For example:
 
         let array = ['today', 'was', 'not', 'so', 'great'];
@@ -172,7 +173,7 @@ Remove Items Using splice()
     Here we remove 2 elements, beginning with the third element (at index 2). 
     array would have the value ['today', 'was', 'great'].
 
-    splice() not only modifies the array it's being called on, 
+    splice() not ONLY modifies the array it's being called on, 
     but it also returns a new array containing the value of the removed elements:
 
         let array = ['I', 'am', 'feeling', 'really', 'happy'];
