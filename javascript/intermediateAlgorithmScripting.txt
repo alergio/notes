@@ -78,6 +78,192 @@ Diff Two Arrays
 
 
 
+Seek and Destroy
+
+    You will be provided with an initial array (the first argument in the destroyer function), 
+    followed by one or more arguments. 
+    Remove all elements from the initial array that are of the same value as these arguments.
+
+    Note: You have to use the arguments object.
+
+        expected:
+
+            destroyer([1, 2, 3, 1, 2, 3], 2, 3);    //  [ 1, 1 ]
+            destroyer([3, 5, 1, 2, 2], 2, 3, 5)     //  [ 1 ]
+
+
+        solution 1:
+
+            function destroyer(arr) {
+                let a = [];
+
+                for (let i = 1; i < arguments.length; i++) {
+                    a.push(arguments[i]);
+                }
+
+                return arr
+                    .filter(item => !a.includes(item))
+            }
+
+        
+        solution 2:
+
+            function destroyer(arr) {
+                let a = Object.values(arguments).slice(1);
+
+                return arr
+                    .filter(item => !a.includes(item));
+            }
+
+
+        solution 3:
+
+            function destroyer(arr) {
+                const valsToRemove = Object.values(arguments).slice(1);
+                const filteredArray = [];
+
+                for (let i = 0; i < arr.length; i++) {
+                    let removeElement = false;
+                    for (let j = 0; j < valsToRemove.length; j++) {
+                        if (arr[i] === valsToRemove[j]) {
+                            removeElement = true;
+                        }
+                    }
+                    if (!removeElement) {
+                       filteredArray.push(arr[i]);
+                    }
+                }
+                return filteredArray;
+            }
+
+
+        solution 4: 
+
+            function destroyer(arr) {
+                const valsToRemove = Array.from(arguments).slice(1);
+                return arr.filter(val => !valsToRemove.includes(val));
+            }
+
+
+        solution 5
+
+            function destroyer(arr, ...valsToRemove) {
+                return arr.filter(elem => !valsToRemove.includes(elem));
+            }
+
+                this solution uses REST syntax to solve the problem
+
+
+
+Wherefore art thou
+
+    Make a function that looks through an array of objects (first argument) 
+    and returns an array of all objects that have matching name and value pairs (second argument). 
+    Each name and value pair of the source object has to be present in the object from the collection 
+    if it is to be included in the returned array.
+
+    For example, if the first argument is 
+    [{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], 
+    and the second argument is 
+    { last: "Capulet" }, 
+    then you must return the third object from the array (the first argument), 
+    because it contains the name and its value, that was passed on as the second argument.
+
+        para resolver este algoritmo es necesario iterar sobre el array 
+        consultar si el elemento (objeto) tiene la propiedad en cuestion y si el valor es el mismo
+        ademas como pueden ser varias propiedades, hay que hacer una segunda iteracion dentro de la primera
+        donde iterando en el objeto, iteramos con las propiedades para buscar que se cumpla que las contenga a todas
+        y todas coincidan con el mismo valor.
+        Esto es facil de resolverlo si hacemos uso de las funciones que nos provee javascript
+        podemos hacer un filtro sobre el objeto y luego un every sobre cada propiedad, haciendo un and 
+        para que ademas de estar presente, tenga el mismo valor.
+
+
+        solution 1:
+
+            function whatIsInAName(collection, source) {
+                const souceKeys = Object.keys(source);
+            
+                return collection.filter(obj => {
+                    for (let i = 0; i < souceKeys.length; i++) {
+                        if (!obj.hasOwnProperty(souceKeys[i]) ||
+                            obj[souceKeys[i]] !== source[souceKeys[i]]) {
+                        return false;
+                        }
+                    }
+                    return true;
+                    });
+            }
+
+            .   creamos la constante souceKeys que se convierte en un array con los nombers de las propiedades
+            que tiene el objeto source (2nd parameter) gracias al metodo Object.keys()
+            .   hacemos un filtro del array de objetos (1nd parameter) donde para cada objeto iteramos
+            por cada clave existente en el array de claves que creamos
+            .   para cada clave nos fijamos que el objeto la contenga y ademas tenga el mismo valor que el que
+            fue pasado en el objeto source, nos preparamos para retornarle un false a la funcion filter si en alguna
+            de las claves no se cumple alguna de estas condiciones.
+            .   despues de que itero en todas las claves, si todas cumplieron las condiciones se le retorna el 
+            booleano true al metodo filter y entonces el objeto pasa a estar dentro del array que va a ser retornado.
+            si algunas de las claves no cumplio, se le retorno false y el filter ya no lo agrega al array a retornar
+            entonces pasa al siguiente objeto
+            .   pasa al siguiente objeto en el array collection y hace las mismas verificaciones
+        
+
+        solution 2:
+
+            function whatIsInAName(collection, source) {
+                const sourceKeys = Object.keys(source);
+            
+                return collection
+                .filter(obj => sourceKeys
+                                .every(key => obj.hasOwnProperty(key) &&
+                                        obj[key] === source[key]));
+            }
+
+            .   creamos la constante souceKeys que se convierte en un array con los nombers de las propiedades
+            que tiene el objeto source (2nd parameter) gracias al metodo Object.keys()
+            .   hacemos un filtro del array pasado por parametro (collection) que contiene todos los objetos
+            sobre los que vamos a consultar. 
+            .   para cada objeto, iteramos sobre cada una de las claves que tengamos guardadas en sourceKeys
+            y una vez ahi (una iteracion dentro de la otra), con la facilidad del metodo every chequeamos
+            que todas las claves que tengamos registradas, esten presentes en el objeto sobre el que estamos
+            iterando y ademas que tengan el mismo valor en el objeto de la collection que en el objeto source.
+            .   si se cumplen ambas condiciones en todas las claves para el objeto iterado, este devolvera true
+            y sera almacenado en el array que filter() devuelve.
+
+
+        solution 3:
+
+            function whatIsInAName(collection, source) {
+                const souceKeys = Object.keys(source);
+            
+                return collection.filter(obj => souceKeys
+                    .map(key => obj.hasOwnProperty(key) && obj[key] === source[key])
+                    .reduce((a, b) => a && b));
+            }
+
+            esta solucion es un poquito mas rebuscada pero es bueno entenderla para entender como iterar
+            en arrays y objetos.
+            .   creamos la variable souceKeys explicada en los 2 ejemplos anteriores
+            .   filtramos por cada objeto dentro del array pasado como parametro de la funcion
+            .   para cada objeto, iteramos en el array de claves que creamos
+            .   hacemos un map del array es decir que iteramos en cada clave que tengamos guardada y nos
+            preparamos para devolver un array ya que .map siempre devuelve un array.
+            para cada clave, va a devolver un true si se cumplen las dos condiciones de estar presente en el objeto
+            y tener el mismo valor en el objeto que en el source, si no, va a devolver false.
+            .   esto va a devolver un array con booleanos, tantos booleanos como cantidad de claves
+            .   a este array se le hace un reduce donde itera por cada valor y se le pasa una condicion donde
+            ambos sean true. si el array tiene 1 o muchos booleanos y alguno de esos booleanos da false, ya 
+            esa condicion de && va a devolver un booleano false que es lo que va a recibir el filter para saber 
+            si agregar el objeto al array de retorno o no. todos los booleanos tienen que ser true para que 
+            el reduce devuelva true.
+
+
+
+
+
+
+
 
 
 

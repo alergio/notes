@@ -371,6 +371,11 @@ Use the Rest Parameter with Function Parameters
            return args.reduce((a, b) => a + b, 0);
         }
 
+        when using ...args to take all the arguments the func receives
+        automatically creates an array containing each of the arguments received by the func
+        in this case "args" will be the array
+        now i can map, filter or reduce this
+
 
 
 Use the Spread Operator to Evaluate Arrays In-Place
