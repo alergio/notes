@@ -260,6 +260,67 @@ Wherefore art thou
 
 
 
+Spinal Tap Case
+
+    Convert a string to spinal case. 
+    Spinal case is all-lowercase-words-joined-by-dashes.
+
+        spinalCase("This Is Spinal Tap")        should return the string this-is-spinal-tap.
+        spinalCase("thisIsSpinalTap")           should return the string this-is-spinal-tap.
+        spinalCase("The_Andy_Griffith_Show")    should return the string the-andy-griffith-show.
+        spinalCase("Teletubbies say Eh-oh")     should return the string teletubbies-say-eh-oh.
+        spinalCase("AllThe-small Things")       should return the string all-the-small-things.
+
+
+        para resolver este algoritmo es fundamental el uso de expresiones regulares........
+
+        
+        solution 1
+
+            function spinalCase(str) {
+                return str
+                    .trim()
+                    .split(/(?=[A-Z])|\s+|_+/)
+                    .join('-')
+                    .toLowerCase();
+            }
+
+                .   primero trimeamos el string por las dudas que tenga espacios de mas
+                .   despues hacemos un split que va a separar el string y alojarlo en variables separando cada palabra
+                con el patron que le dimos para que se cumpla
+                (?=[A-Z]) aca lo que hacemos es preguntarle al string si en algun lugar hay una mayuscula
+                y si eso devuelve true, es lo que el split recibe para hacer la separacion y donde eso se cumpla se separa
+                para estar en 2 elementos diferentes del array.
+                A esto le sumamos | (OR) \s (espacios), osea que si encuentra un espacio ese va a ser otro patron para hacer el split
+                y por ultimo | (OR) _ que significa que si encuentra algun _ tambien va a ser motivo de separacion para el split.
+                ademas estos dos ultimos tienen un + por las dudas de que haya varios espacios o _ pegados, todos van a ser agrupados y omitidos
+                .   despues de que tenemos el array bien separado por cada palabra, los joineamos con un '-' que es lo que pide el algoritmo
+                .   por ultimo los pasamos todos a lower case
+        
+
+        solution 2
+
+            function spinalCase(str) {
+                var regex = /\s+|_+/g;
+
+                str = str.replace(/([a-z])([A-Z])/g, "$1 $2");
+                
+                return str.replace(regex, "-").toLowerCase();
+            }
+
+                .   generamos regex para filtrar por ' ' y '_' donde ocurran 1 o + veces
+                .   hacemos que el string rastree los casos en los que haya una minuscula seguido de una mayuscula
+                y los separamos en grupos para poder hacer un replace citando esos grupos, los copiamos identicos pero con un espacio en el medio
+                .   retornamos el string ahora que esta separado por espacios si no lo estaba, remplazando con el patron que generamos primero
+                para sacar los espacios y _ y remplazarlos con '-', por ultimo pasamos todo a lowercase
+
+
+
+            
+
+
+
+
 
 
 
