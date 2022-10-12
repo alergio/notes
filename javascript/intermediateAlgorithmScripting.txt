@@ -316,19 +316,1077 @@ Spinal Tap Case
 
 
 
+Pig Latin
             
+    Pig Latin is a way of altering English Words. The rules are as follows:
+
+    - If a word begins with a consonant, take the first consonant or consonant cluster, 
+    move it to the end of the word, and add ay to it.
+
+    - If a word begins with a vowel, just add way at the end.
+
+    vowel      = aeiou
+    consonant != aeiou
+
+    Translate the provided string to Pig Latin. 
+    Input strings are guaranteed to be English words in all lowercase.
+
+    translatePigLatin("california") should return the string     aliforniacay.
+    translatePigLatin("paragraphs") should return the string     aragraphspay.
+    translatePigLatin("glove") should return the string          oveglay.
+    translatePigLatin("algorithm") should return the string      algorithmway.
+    translatePigLatin("eight") should return the string          eightway.
+    Should handle words where the first vowel comes in the middle of the word. 
+    translatePigLatin("schwartz") should return the string       artzschway.
+    Should handle words without vowels. 
+    translatePigLatin("rhythm") should return the string         rhythmay.
+
+        solution 1:
+
+            function translatePigLatin(str) {
+
+                if (str[0].match(/[aeiou]/i)) {
+                    return str += 'way';
+                }
+
+                let a = /([^aeiou]+)([aeiou]\w+)/i;
+                if (str.match(a)) {
+                    return str.replace(a, '$2$1ay')
+                }
+
+                return str += 'ay';
+
+            }
+
+        
+        solution 2:
+
+            function translatePigLatin(str) {
+                let consonantRegex = /^[^aeiou]+/;
+                let myConsonants = str.match(consonantRegex);
+                return myConsonants !== null
+                    ? str
+                        .replace(consonantRegex, "")
+                        .concat(myConsonants)
+                        .concat("ay")
+                    : str.concat("way");
+            }
+
+            .   consonantRegex es, que empiece con lo que sea diferente a vocal 1 o +
+            .   myConsonants es un array con el match del string, osea, es donde van a estar guardados
+            todos los consonantes al principio del string (dentro de un array, xq es lo que returna el match)
+            .   si el matcheo no dio null, al string se le remplaza todas las consonantes del principio por ""
+            osea se eliminan. despues se le concatena el contenido de myconsonants osea lo eliminado pasa al final
+            a esto le concatenamos un "ay" y ya quedo.
+            .   si el myconsonants dio null (solo puede dar null si hay una vocal al principio), 
+            se le concatena un "way" y listo.
+        
+
+        solution 3:
+
+            function translatePigLatin(str) {
+                var pigLatin = "";
+                var regex = /[aeiou]/gi;
+
+                if (str[0].match(regex)) {
+                    pigLatin = str + "way";
+                } else if (str.match(regex) === null) {
+                    pigLatin = str + "ay";
+                } else {
+                    var vowelIndice = str.indexOf(str.match(regex)[0]);
+                    pigLatin = str.substr(vowelIndice) + str.substr(0, vowelIndice) + "ay";
+                }
+
+                return pigLatin;
+            }
+
+            .   definimos un string vacio, y un regex pattern para hacer evaluaciones
+            .   si el primer carater del string mathea con nuestro patron, definimos al string vacio
+            con un + 'way' y ya esta listo para ser retornado
+            .   si el string no matchea con ninguna vocal en ningun momento (por ejemplo: "rhythm")
+            le agregamos "ay" al pigLatin y ya esta lito para ser retornado
+            .   creamos la variable vowelIndice que lo que hace es devolvernos el index de la primer vocal
+            en el string. str.match(regex) devuelve un array con todas las vocales que encontro en el string
+            ordenadas desde la primera hasta la ultima. str.match(regex)[0] nos devuelve la primera vocal
+            del string. haciendo un indexOf() en el string a nuestra primera vocal, encontramos donde esta ubicada
+            en el string.
+            .   definimos pigLatin como un substring del string desde la primera vocal hasta el final, a eso le agregamos
+            otro substr el str desde el caracter 0 hasta la vocal (eso significa que movimos los consonantes del principio
+            al final) y por ultimo le agregamos un "ay" y ya quedo listo.
+
+
+        solution 4:
+
+            function translatePigLatin(str) {
+                if (str.match(/^[aeiou]/)) return str + "way";
+
+                const consonantCluster = str.match(/^[^aeiou]+/)[0];
+                return str.substring(consonantCluster.length) + consonantCluster + "ay";
+            }
+
+            .   si el string matchea con una vocal al inicio, se retorna el string + way.
+            .   declaramos una constante que va a guardar todos los consonantes que estan al inicio
+            del string. match devuelve un array, el patron que le damos es todo lo que no sea vocal
+            y este al principio 1 o +. lo guarda en un array por eso seleccionamos el [0] para tener
+            el contenido en la constante como un string.
+            .   retornamos un substring del string que va desde el largo de nuestra constante hasta el final
+            (el largo de la constante significa que si tengo 4 consonantes, para el substr me voy a parar en el index
+            4 que es la primer vocal y voy a ir hasta el final del string). a esto le voy agregar el contenido
+            de nuestra constante, osea que movi las consonantes del principio al final y le agrego "ay".
+
+
+        solution 5:
+
+            function translatePigLatin(str) {
+                return str
+                    .replace(/^[aeiou]\w*/, "$&way")
+                    .replace(/(^[^aeiou]+)(\w*)/, "$2$1ay");
+            }
+
+            .   esta no la se explicar aun, el primer replace
+            Use replace() on the string, using a regular expression to check if the first letter 
+            is a consonant and adding way at the end in this case. 
+            If the first letter is a consonant nothing will happen at this point.
+            Use replace() again to check for consonants at the beginning of the word 
+            and to move it or them to the end of the word and add ay at the end.
 
 
 
+Search and Replace
+
+    Perform a search and replace on the sentence using the arguments provided and return the new sentence.
+
+    First argument is the sentence to perform the search and replace on.
+    Second argument is the word that you will be replacing (before).
+    Third argument is what you will be replacing the second argument with (after).
+
+    Note: Preserve the case of the first character in the original word when you are replacing it. 
+    For example if you mean to replace the word Book with the word dog, it should be replaced as Dog
+
+    myReplace("Let us go to the store", "store", "mall")                    //        Let us go to the mall.
+    myReplace("He is Sleeping on the couch", "Sleeping", "sitting")         //        He is Sitting on the couch.
+    myReplace("I think we should look up there", "up", "Down")              //        I think we should look down there.
+    myReplace("This has a spellngi error", "spellngi", "spelling")          //        This has a spelling error.
+    myReplace("His name is Tom", "Tom", "john")                             //        His name is John.
+    myReplace("Let us get back to more Coding", "Coding", "algorithms")     //        Let us get back to more Algorithms.
+
+    solution 1:
+
+        function myReplace(str, before, after) {
+            const re = new RegExp(before)
+
+            if (before[0].match(/^[A-Z]/)){
+                after    = after.split('')
+                after[0] = after[0].toUpperCase()
+                after    = after.join('')
+            }
+            if (before[0].match(/^[a-z]/)){
+                after    = after.split('')
+                after[0] = after[0].toLowerCase()
+                after    = after.join('')
+            }
+
+            return str.replace(re, after)
+
+        }
+
+    
+    solution 2:
+
+        function myReplace(str, before, after) {
+            var index = str.indexOf(before);
+
+            if (str[index] === str[index].toUpperCase()) {
+                after = after.charAt(0).toUpperCase() + after.slice(1);
+            } else {
+                after = after.charAt(0).toLowerCase() + after.slice(1);
+            }
+
+            return str.replace(before, after);
+        }
+
+    
+    solution 3:
+
+        function myReplace(str, before, after) {
+            if (/^[A-Z]/.test(before)) {
+                after = after[0].toUpperCase() + after.substring(1)
+            } else {
+                after = after[0].toLowerCase() + after.substring(1)
+            }
+
+            return str.replace(before, after);
+        }
+
+
+    solution 4:
+
+        function myReplace(str, before, after) {
+            if (before[0] === before[0].toUpperCase()) {
+                after = after.replace(after[0], after[0].toUpperCase());
+            }
+            return str.replace(before, after);
+        }
 
 
 
+DNA Pairing
+
+    Pairs of DNA strands consist of nucleobase pairs. 
+    Base pairs are represented by the characters AT and CG, which form building blocks of the DNA double helix.
+
+    The DNA strand is missing the pairing element. 
+    Write a function to match the missing base pairs for the provided DNA strand. 
+    For each character in the provided string, find the base pair character. 
+    Return the results as a 2d array.
+
+    For example, for the input GCG, return [["G", "C"], ["C","G"], ["G", "C"]]
+
+    The character and its pair are paired up in an array, and all the arrays are grouped into one encapsulating array.
+
+    pairElement("ATCGA") should return [["A","T"],["T","A"],["C","G"],["G","C"],["A","T"]].
+    pairElement("TTGAG") should return [["T","A"],["T","A"],["G","C"],["A","T"],["G","C"]].
+    pairElement("CTCTA") should return [["C","G"],["T","A"],["C","G"],["T","A"],["A","T"]].
+
+        solution 1:
+
+            function pairElement(str) {
+
+                let pairBase = [];
+
+                for (let i = 0; i < str.length; i++) {
+                    switch (str[i]) {
+                        case 'A':
+                            pairBase.push(['A', 'T']);
+                            break;
+                        case 'T':
+                            pairBase.push(['T', 'A']);
+                            break;
+                        case 'G':
+                            pairBase.push(['G', 'C']);
+                            break;
+                        case 'C':
+                            pairBase.push(['C', 'G']);
+                            break;
+                    }
+                }
+                return pairBase;
+            }
+
+        
+        solution 2:
+
+            function pairElement(str) {
+                    
+                let matchWithBasePair = function(char, pairedArray) {
+                    switch (char) {
+                        case "A":
+                            pairedArray.push(["A", "T"]);
+                            break;
+                        case "T":
+                            pairedArray.push(["T", "A"]);
+                            break;
+                        case "C":
+                            pairedArray.push(["C", "G"]);
+                            break;
+                        case "G":
+                            pairedArray.push(["G", "C"]);
+                            break;
+                    }
+                };
+
+                const paired = [];
+                for (let i = 0; i < str.length; i++) {
+                    matchWithBasePair(str[i], paired);
+                }
+
+                return paired;
+            }
+
+
+        solution 2:
+
+            function pairElement(str) {
+                var pairs = {
+                    A: "T",
+                    T: "A",
+                    C: "G",
+                    G: "C"
+                };
+                var arr = str.split("");
+                return arr.map(x => [x, pairs[x]]);
+            }
+
+        .   this is amazing, a beautiful solution
 
 
 
+Missing letters
+
+    Find the missing letter in the passed letter range and return it.
+
+    If all letters are present in the range, return undefined.
+
+    fearNotLetter("abce")                           //     d.
+    fearNotLetter("abcdefghjklmno")                 //     i.
+    fearNotLetter("stvwx")                          //     u.
+    fearNotLetter("bcdf")                           //     e.
+    fearNotLetter("abcdefghijklmnopqrstuvwxyz")     //     undefined.
+
+
+        solution 1:
+
+            function fearNotLetter(str) {
+
+                let ar = ["a","b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", 
+                "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+                let index = ar.indexOf(str.charAt(0));
+
+                for (let i = 0; i < str.length; i++) {
+                    if (str[i] !== ar[index]) {
+                        return ar[index]
+                    } else { index++ }
+                }
+                return undefined;
+            }
+
+        solution 2:
+
+            function fearNotLetter(str) {
+                for (let i = 0; i < str.length; i++) {
+                    const charCode = str.charCodeAt(i);
+                
+                    if (charCode !== str.charCodeAt(0) + i) {
+                        return String.fromCharCode(charCode - 1);
+                    }
+                }
+                return undefined;
+            }
+
+            .   para cada iteracion, charCode vale lo que el caracter iterado en charCode values
+            .   si el valor de charcode es diferente al que deberia tener siguiendo el orden alfabetico
+            ya que str.charCodeAt(0) devuelve lo que vale en charcode el primer item del string, y a eso le
+            sumamos i que es el valor del index del caracter en el string, que si todo estuviera OK la diferencia
+            seria proporcional a la del charCode. Asi que si ese valor no coincide, dado el patron que estamos siguiendo
+            es porque el caracter se salto una letra en el alfabeto asi que retornamos el valor de charcode - 1 en forma
+            de string. Por ejemplo si le pasamos a la funcion el string "ac", charcode vale lo que vale la a en charcode
+            por EJ 65. va a comparar si ese valor es diferente al del charcode de str[0] + i, en este caso son iguales.
+            con la c, le va asignar a charcode el valor de c en charcode, despues va a chequear si charcode
+            x EJ 67 es igual al valor de str.charCodeAt(0) + i (i vale 1 y el charcode vale 65) asi que va a comparar si
+            el valor de c (67) corresponde al valor que seguia segun el ptron que seguimos (66) que es la b.
+            si no se cumple, retorna el 66 de charcode to string osea la b.
+
+
+        solution 3:
+
+            function fearNotLetter(str) {
+                let currCharCode = str.charCodeAt(0);
+                let missing = undefined;
+
+                str
+                    .split("")
+                    .forEach(letter => {
+                    if (letter.charCodeAt(0) === currCharCode) {
+                        currCharCode++;
+                    } else {
+                        missing = String.fromCharCode(currCharCode);
+                    }
+                    });
+
+                return missing;
+            }
+
+
+        solution 4:
+
+            function fearNotLetter(str) {
+                for (let i = 1; i < str.length; ++i) {
+                    if (str.charCodeAt(i) - str.charCodeAt(i - 1) > 1) {
+                       return String.fromCharCode(str.charCodeAt(i - 1) + 1);
+                    }
+                }
+            }
 
 
 
+Sorted Union
+
+    Write a function that takes two or more arrays and returns 
+    a new array of unique values in the order of the original provided arrays.
+
+    In other words, all values present from all arrays should be included in their original order, 
+    but with no duplicates in the final array.
+
+    The unique numbers should be sorted by their original order, 
+    but the final array should not be sorted in numerical order.
+
+    Check the assertion tests for examples.
+
+    uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1])                //      [1, 3, 2, 5, 4]
+    uniteUnique([1, 2, 3], [5, 2, 1])                           //      [1, 2, 3, 5]
+    uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8])     //      [1, 2, 3, 5, 4, 6, 7, 8]
+    uniteUnique([1, 3, 2], [5, 4], [5, 6])                      //      [1, 3, 2, 5, 4, 6]
+    uniteUnique([1, 3, 2, 3], [5, 2, 1, 4], [2, 1])             //      [1, 3, 2, 5, 4]
+
+        solution 1:
+
+            function uniteUnique(...arr) {
+
+                let arr2 = []
+
+                return [].concat(...arr)
+                        .filter(el => arr2.indexOf(el) < 0
+                            ? arr2.push(el)
+                            : null);    
+            }
+
+            .   definiendo la funcion con el parametro con ... significa que puede recibir
+            todos los parametros que quiera pero los va a meter a todos en un array
+            .   definimos un array vacio para meter los valores que no se repiten ahi
+            y asi evaluar esa repiticion en el filter
+            .   [].concat(...arr) concatena cada array destructurado recibido en la funcion dentro
+            del array vacio que le pasamos al metodo concat. Aca con el '...' lo desestructuramos
+            si fuera [].concat(arr), concatenariamos cada array y cargariamos el array vacio con arrays
+            en lugar de con los valores que tiene cada array recibido como parametro de la func principal
+            osea que ahi tenemos un solo array con todos los valores que recibimos en diferentes arrays.
+            .   hacemos un filtro donde nos fijamos si cada valor del array esta presente en el arr2
+            vacio que creamos al principio de la funcion, si no esta presente lo pusheamos y si
+            esta presente no hacemos nada.
+            .   entonces aca como el filtro evalua y de esa evaluacion los que la pasan (true) los guarda
+            en un array que sera el retornado, los elementos que pasan la evaluacion son los que no estan presentes en el arr2.
+            y esos son los que nos va a retornar el filtro y es lo que necesitamos.
+            tanto el array que retorna ese filtro, como el arr2, ambos son el array que nosotros queremos
+
+
+        solution 2:
+
+            function uniteUnique(arr1, arr2, arr3) {
+
+                const finalArray = [];
+
+                for (let i = 0; i < arguments.length; i++) {
+                    const arrayArguments = arguments[i];
+
+                    for (let j = 0; j < arrayArguments.length; j++) {
+                        let indexValue = arrayArguments[j];
+
+                        if (finalArray.indexOf(indexValue) < 0) {
+                            finalArray.push(indexValue);
+                        }
+                    }
+                }
+
+                return finalArray;
+            }
+
+            .   hace mas o menos lo mismo que el programa anterior pero con loops en lugar de un filtro
+            y haciendo uso del objeto arguments.
+            .   primero itera en cada argumento, despues en cada item de cada argumento y ahi genera
+            un index que va a chequear si esta presente en el finalArray y si no esta lo pushea
+
+
+        solution 3:
+
+            function uniteUnique(arr) {
+                const args = [...arguments];
+                const result = [];
+                for (let i = 0; i < args.length; i++) {
+                    for (let j = 0; j < args[i].length; j++) {
+                        if (!result.includes(args[i][j])) {
+                            result.push(args[i][j]);
+                        }
+                    }
+                }
+                return result;
+            }
+
+            .   args es un array con cada argumento recibido (arr de arrs)
+            .   igual que antes itera con cada item de arg que es un arr y despues con cada item de ese arr
+            .   si el array vacio que creamos al principio no incluye cada valor, lo pushea.
+
+
+        solution 4:
+
+            const uniteUnique = (...arr) => [...new Set(arr.flat())];
+
+            .   ...arr crea un array con todos los argumentos recibidos, que tambien son arrays
+            .   arr.flat() desestrutura los arrays dentro del array para que quede solo un array con todos los valores
+            .   new Set(arr.flat()) crea un objeto set que solo va a tomar los valores del arr.flat() que no se repitan,
+            osea queda un objeto con valores unicos que no se repiten.
+            .   envolviendo esto entre [] lo metemos en un array, y colocando el spend operator (...) al principio
+            desestructuramos el objeto para que solo nos retorne un array con los valores.
+            [...new Set(arr.flat())] , es un array desestructurado de valores unicos y unidos dentro del arr.
+
+
+        solution 5:
+
+            function uniteUnique() {
+                return [...arguments]
+                    .flat()
+                    .filter((item, ind, arr) => arr.indexOf(item) === ind);
+            }
+
+            .   [...arguments] mete en un array todos los argumentos recibidos que como tambien son arrays
+            me queda un array de arrays, le hago un .flat() y me queda un solo array con todos los valores
+            .   le aplico un filtro donde le pongo los parametros de item (cada item del array iterando),
+            index (cada index del array iterando) y arr que es el array que se esta filtrando
+            .   si el index del item iterado en el array es igual al valor del index que esta iterando, el item
+            pasa el filtro y va a estar dentro del array retornado.
+            La cosa aca es que el indexOf siempre retorna el primer lugar donde encuentra el valor, entonces si 
+            tenemos dos veces en el array el item 5, la primera vez el index del 5 va a coincidir con el index iterado
+            pero la segunda, el index del 5 va a ser la primera vez que aparece el 5 en el array y el valor de index
+            iterado va a ser la segunda entonces no van a coincidir.
+
+
+
+    Convert HTML Entities
+
+        Convert the characters &, <, >, " (double quote), and ' (apostrophe), 
+        in a string to their corresponding HTML entities.
+
+        convertHTML("Dolce & Gabbana")                //       Dolce &amp; Gabbana.
+        convertHTML("Hamburgers < Pizza < Tacos")     //       Hamburgers &lt; Pizza &lt; Tacos.
+        convertHTML("Sixty > twelve")                 //       Sixty &gt; twelve.
+        convertHTML('Stuff in "quotation marks"')     //       Stuff in &quot;quotation marks&quot;.
+        convertHTML("Schindler's List")               //       Schindler&apos;s List.
+        convertHTML("<>")                             //       &lt;&gt;.
+        convertHTML("abc")                            //       abc.
+
+
+            solution 1:
+
+                function convertHTML(str) {
+                    return str
+                        .split('')
+                        .map(char => char == '&'
+                        ? char = '&amp;'
+                        : char == '<'
+                        ? char = '&lt;'
+                        : char == '>'
+                        ? char = '&gt;'
+                        : char == '"'
+                        ? char = '&quot;'
+                        : char == "'"
+                        ? char = '&apos;'
+                        : char = char)
+                        .join('')
+                }
+
+
+            solution 2:
+
+                function convertHTML(str) {
+                
+                    var temp = str.split("");
+
+                    for (var i = 0; i < temp.length; i++) {
+                        switch (temp[i]) {
+                            case "<":
+                                temp[i] = "&lt;";
+                                break;
+                            case "&":
+                                temp[i] = "&amp;";
+                                break;
+                            case ">":
+                                temp[i] = "&gt;";
+                                break;
+                            case '"':
+                                temp[i] = "&quot;";
+                                break;
+                            case "'":
+                                temp[i] = "&apos;";
+                                break;
+                        }
+                    }
+
+                    temp = temp.join("");
+                    return temp;
+                }
+
+            
+        solution 3:
+
+            function convertHTML(str) {
+
+                const htmlEntities = {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&apos;"
+                };
+
+                return str.replace(/([&<>\"'])/g, match => htmlEntities[match]);
+            }
+
+
+        solution 4:
+
+            function convertHTML(str) {
+
+                const htmlEntities = {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&apos;"
+                };
+
+                return str
+                    .split("")
+                    .map(entity => htmlEntities[entity] || entity)
+                    .join("");
+            }
+
+
+
+Sum All Odd Fibonacci Numbers
+
+    Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num.
+
+    The first two numbers in the Fibonacci sequence are 1 and 1. 
+    Every additional number in the sequence is the sum of the two previous numbers. 
+    The first six numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8.
+
+    For example, sumFibs(10) should return 10 because 
+    all odd Fibonacci numbers less than or equal to 10 are 1, 1, 3, and 5.
+
+    sumFibs(1) should return a number.
+    sumFibs(1000) should return 1785.
+    sumFibs(4000000) should return 4613732.
+    sumFibs(4) should return 5.
+    sumFibs(75024) should return 60696.
+    sumFibs(75025) should return 135721.
+
+        
+        solution 1:
+
+            function sumFibs(num) {
+                let prevNumber = 0;
+                let currNumber = 1;
+                let result = 0;
+                while (currNumber <= num) {
+                    if (currNumber % 2 !== 0) {
+                        result += currNumber;
+                    }
+                    currNumber += prevNumber;
+                    prevNumber = currNumber - prevNumber;
+                }
+
+                return result;
+            }
+
+
+        solution 2:
+
+            function sumFibs(num) {
+            
+                if (num <= 0) return 0;
+
+                const arrFib = [1, 1];
+                let nextFib = 0;
+
+                while ((nextFib = arrFib[0] + arrFib[1]) <= num) {
+                    arrFib.unshift(nextFib);
+                }
+
+                return arrFib.filter(x => x % 2 != 0).reduce((a, b) => a + b);
+            }
+
+
+
+Sum All Primes
+
+    A prime number is a whole number greater than 1 with exactly two divisors: 1 and itself. 
+    For example, 2 is a prime number because it is only divisible by 1 and 2. 
+    In contrast, 4 is not prime since it is divisible by 1, 2 and 4.
+
+    Rewrite sumPrimes so it returns the sum of all prime numbers that are less than or equal to num.
+
+    sumPrimes(10) should return a number.
+    sumPrimes(10) should return 17.
+    sumPrimes(977) should return 73156.
+
+        to solve this problem it was necessary to find a function 
+        that would answer if the number is prime or not
+
+        solution 1:
+
+            function isPrime(n) {
+                if(n < 2) return false;
+
+                for (var i = 2; i < n; i++) {
+                    if(n%i==0)
+                        return false;
+                }
+                return true;
+            }
+
+            function sumPrimes(num) {
+                let total = 0;
+                for (let i = 2; i <= num; i++)
+                    if(isPrime(i))
+                        total += i;
+                return total;
+            }
+
+
+
+Smallest Common Multiple
+
+    Find the smallest common multiple of the provided parameters that can be evenly divided by both, 
+    as well as by all sequential numbers in the range between these parameters.
+
+    The range will be an array of two numbers that will not necessarily be in numerical order.
+
+    For example, if given 1 and 3, find the smallest common multiple of both 1 and 3 
+    that is also evenly divisible by all numbers between 1 and 3. The answer here would be 6.
+    
+    smallestCommons([1, 5]) should return a     number.
+    smallestCommons([1, 5]) should return       60.
+    smallestCommons([5, 1]) should return       60.
+    smallestCommons([2, 10]) should return      2520.
+    smallestCommons([1, 13]) should return      360360.
+    smallestCommons([23, 18]) should return     6056820.
+
+        solution 1:
+
+            function smallestCommons(arr) {
+                let arr2 = arr.sort(function(a, b){return a-b});
+
+                for (let i = arr2[0] + 1; i > arr2[0] && i < arr2[1]; i++) {
+                    arr2.push(i)
+                }
+
+                for (let j = 1; j < 999999999; j++) {
+                    if (arr2.every(item => j % item == 0)){     
+                        return j;
+                    }
+                }
+            }
+
+
+        solution 2: no easy to understund, but there are maths
+
+            function smallestCommons(arr) {
+                // Setup
+                const [min, max] = arr.sort((a, b) => a - b);
+                const numberDivisors = max - min + 1;
+                
+                // Largest possible value for SCM
+                let upperBound = 1;
+                for (let i = min; i <= max; i++) {
+                   upperBound *= i;
+                }
+                
+                // Test all multiples of 'max'
+                for (let multiple = max; multiple <= upperBound; multiple += max) {
+                    
+                    // Check if every value in range divides 'multiple'
+                    let divisorCount = 0;
+                    for (let i = min; i <= max; i++) {
+                    
+                        // Count divisors
+                        if (multiple % i === 0) {
+                            divisorCount += 1;
+                        }
+                    }
+                    if (divisorCount === numberDivisors) {
+                        return multiple;
+                    }
+                }
+            }
+
+
+
+Drop it
+
+    Given the array arr, iterate through and remove each element starting from the first element 
+    (the 0 index) until the function func returns true when the iterated element is passed through it.
+
+    Then return the rest of the array once the condition is satisfied, 
+    otherwise, arr should be returned as an empty array.
+
+    dropElements([1, 2, 3, 4], function(n) {return n >= 3;}) should return [3, 4].
+    dropElements([0, 1, 0, 1], function(n) {return n === 1;}) should return [1, 0, 1].
+    dropElements([1, 2, 3], function(n) {return n > 0;}) should return [1, 2, 3].
+    dropElements([1, 2, 3, 4], function(n) {return n > 5;}) should return [].
+    dropElements([1, 2, 3, 7, 4], function(n) {return n > 3;}) should return [7, 4].
+    dropElements([1, 2, 3, 9, 2], function(n) {return n > 2;}) should return [3, 9, 2].
+
+        solution 1:
+
+            function dropElements(arr, func) {
+
+                let arr2 = [];
+
+                for (let i = 0; i < arr.length; i++) {
+                    if (func(arr[i])) {
+                        for (let j = i; j < arr.length; j++) {
+                            arr2.push(arr[j])
+                        }
+                        return arr2
+                    }
+                } 
+                return arr2;
+            }
+
+        
+        solution 2:
+
+            function dropElements(arr, func) {
+
+                while (arr.length > 0 && !func(arr[0])) {
+                    arr.shift();
+                }
+                return arr;
+
+            }
+
+
+        solution 3:
+
+            function dropElements(arr, func) {
+                let sliceIndex = arr.findIndex(func);
+                return arr.slice(sliceIndex >= 0 ? sliceIndex : arr.length);
+            }
+
+        
+        solution 4:
+
+            function dropElements(arr, func) {
+                let originalLen = arr.length;
+                for (let i = 0; i < originalLen; i++) {
+                    if (func(arr[0])) {
+                        break;
+                    } else {
+                        arr.shift();
+                    }
+                }
+                return arr;
+            }
+
+        
+        solution 5: use recursive
+
+            function dropElements(arr, func, i = 0) {
+                return i < arr.length && !func(arr[i])
+                    ? (dropElements(arr.slice(i + 1), func, i))
+                    : arr;
+            }
+
+
+
+Steamroller
+
+    Flatten a nested array. You must account for varying levels of nesting.
+
+        steamrollArray([[["a"]], [["b"]]]) should return ["a", "b"].
+        steamrollArray([1, [2], [3, [[4]]]]) should return [1, 2, 3, 4].
+        steamrollArray([1, [], [3, [[4]]]]) should return [1, 3, 4].
+        steamrollArray([1, {}, [3, [[4]]]]) should return [1, {}, 3, 4].
+        Your solution should not use the Array.prototype.flat() or Array.prototype.flatMap() methods.
+
+        solution 1: use recursion
+
+            function steamrollArray(arr) {
+
+                let arr2 = [];
+
+                for (let i = 0; i < arr.length; i++) {
+                    if (Array.isArray(arr[i])) {
+                        arr2.push(...steamrollArray(arr[i]))   
+                    } else {
+                        arr2.push(arr[i]) 
+                    }
+                }
+                return arr2;
+            }
+
+
+        solution 2:
+
+            function steamrollArray(arr) {
+                const flat = [].concat(...arr);
+                return flat.some(Array.isArray) ? steamrollArray(flat) : flat;
+            }
+
+
+        solution 3:
+
+            function steamrollArray(arr) {
+                return arr
+                    .toString()
+                    .replace(",,", ",") // "1,2,,3" => "1,2,3"
+                    .split(",") // ['1','2','3']
+                    .map(function(v) {
+                        if (v == "[object Object]") {
+                            // bring back empty objects
+                            return {};
+                        } else if (isNaN(v)) {
+                            // if not a number (string)
+                            return v;
+                        } else {
+                            return parseInt(v); // if a number in a string, convert it
+                        }
+                    });
+            }
+
+        
+        solution 4:
+
+            function steamrollArray(val,flatArr=[]) {
+                val.forEach(item => {
+                    if (Array.isArray(item)) steamrollArray(item, flatArr);
+                    else flatArr.push(item);
+                });
+                return flatArr;
+            }
+
+
+        solution 5:
+
+            function steamrollArray(arr, flatArr = []) {
+                const elem = arr.pop();
+                return elem
+                    ? !Array.isArray(elem)
+                    ? steamrollArray(arr, [elem, ...flatArr])
+                    : steamrollArray(arr.concat(elem), flatArr)
+                    : flatArr;
+            }
+
+
+        solution 6:
+
+            function steamrollArray(arr) {
+                // I'm a steamroller, baby
+                    var newArr = [];
+
+                    function check(val2) {
+                        if (!Array.isArray(val2)) {
+                            return newArr.push(val2);
+                        } else
+                            return val2.map(check);
+                    }
+
+                    arr.map(check);
+                    return newArr;
+            }
+
+
+
+Binary Agents
+
+    Return an English translated sentence of the passed binary string.
+
+    The binary string will be space separated.
+
+    binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111") should return the string Aren't bonfires fun!?
+
+    binaryAgent("01001001 00100000 01101100 01101111 01110110 01100101 00100000 01000110 01110010 01100101 01100101 01000011 01101111 01100100 01100101 01000011 01100001 01101101 01110000 00100001") should return the string I love FreeCodeCamp!
+
+    
+    solution 1:
+
+        function binaryAgent(str) {
+
+            return str
+                .split(' ')
+                .map(i => parseInt(i, 2))
+                .map(i => String.fromCharCode(i))
+                .join('')
+        }
+
+    
+    solution 2:
+
+        function binaryAgent(str) {
+            var biString = str.split(" ");
+            var uniString = [];
+
+            /*using the radix (or base) parameter in parseInt, we can convert the binary
+                number to a decimal number while simultaneously converting to a char*/
+
+            for (var i = 0; i < biString.length; i++) {
+                uniString.push(String.fromCharCode(parseInt(biString[i], 2)));
+            }
+
+            // we then simply join the string
+            return uniString.join("");
+        }
+
+
+    solution 3:
+
+        function binaryAgent(str) {
+            return String.fromCharCode(
+                ...str.split(" ").map(function(char) {
+                return parseInt(char, 2);
+                })
+            );
+        }
+
+    
+    solution 4: advanced shit
+
+        const binaryAgent = str => str.replace(/\d+./g, char => String.fromCharCode(`0b${char}`));
+
+        Find all groups of one or more digits followed by one other character
+        Replace with a string created from the specified sequence of UTF-16 code units
+        Use 0b to lead the code unit to express that a binary integer literal is being converted.
+
+
+
+Everything Be True
+
+    Check if the predicate (second argument) is truthy on all elements of a collection (first argument).
+
+    In other words, you are given an array collection of objects. 
+    The predicate pre will be an object property and you need to return true if its value is truthy. 
+    Otherwise, return false.
+
+    In JavaScript, truthy values are values that translate to true when evaluated in a Boolean context.
+
+    Remember, you can access object properties through either dot notation or [] notation.
+
+
+
+    truthCheck([{name: "Quincy", role: "Founder", isBot: false}, 
+    {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "isBot") should return false.
+
+    truthCheck([{name: "Quincy", role: "Founder", isBot: false}, 
+    {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "name") should return true.
+
+    truthCheck([{name: "Quincy", role: "Founder", isBot: false}, 
+    {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "role") should return false.
+
+    truthCheck([{name: "Pikachu", number: 25, caught: 3}, 
+    {name: "Togepi", number: 175, caught: 1}], "number") should return true.
+
+    truthCheck([{name: "Pikachu", number: 25, caught: 3}, 
+    {name: "Togepi", number: 175, caught: 1}, {name: "MissingNo", number: NaN, caught: 0}], "caught") should return false.
+
+    truthCheck([{name: "Pikachu", number: 25, caught: 3}, 
+    {name: "Togepi", number: 175, caught: 1}, {name: "MissingNo", number: NaN, caught: 0}], "number") should return false.
+
+    truthCheck([{name: "Quincy", username: "QuincyLarson"}, 
+    {name: "Naomi", username: "nhcarrigan"}, {name: "Camperbot"}], "username") should return false.
+
+    truthCheck([{name: "freeCodeCamp", users: [{name: "Quincy"}, 
+    {name: "Naomi"}]}, {name: "Code Radio", users: [{name: "Camperbot"}]}, {name: "", users: []}], "users") should return true.
+
+    truthCheck([{id: 1, data: {url: "https://freecodecamp.org", name: "freeCodeCamp"}}, 
+    {id: 2, data: {url: "https://coderadio.freecodecamp.org/", name: "CodeRadio"}}, {id: null, data: {}}], "data") should return true.
+
+    truthCheck([{id: 1, data: {url: "https://freecodecamp.org", name: "freeCodeCamp"}}, 
+    {id: 2, data: {url: "https://coderadio.freecodecamp.org/", name: "CodeRadio"}}, {id: null, data: {}}], "id") should return false.
+
+
+        solution 1:
+
+            function truthCheck(collection, pre) {
+                return collection.every(obj => obj[pre]);
+            }
 
 
 

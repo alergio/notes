@@ -1,6 +1,76 @@
 operators
 
 
+
+set object
+
+    The Set object lets you store unique values of any type, 
+    whether primitive values or object references.
+
+    Set objects are collections of values. A value in the Set may only occur once; 
+    it is unique in the Set's collection. You can iterate through the elements of a set in insertion order. 
+
+    Set()
+        Creates a new Set object.
+
+    Set.prototype.size
+        Returns the number of values in the Set object.
+
+    Set.prototype.add()
+        Inserts a new element with a specified value in to a Set object, 
+        if there isn't an element with the same value already in the Set.
+
+    Set.prototype.clear()
+        Removes all elements from the Set object.
+
+    Set.prototype.delete()
+        Removes the element associated to the value and returns a boolean asserting whether
+        an element was successfully removed or not. Set.prototype.has(value) will return false afterwards.
+
+    Set.prototype.has()
+        Returns a boolean asserting whether an element is present with the given value in the Set object or not.
+
+
+    using the set object
+
+        const mySet1 = new Set()
+
+        mySet1.add(1)           // Set [ 1 ]
+        mySet1.add(5)           // Set [ 1, 5 ]
+        mySet1.add(5)           // Set [ 1, 5 ]
+        mySet1.add('some text') // Set [ 1, 5, 'some text' ]
+        const o = {a: 1, b: 2}
+        mySet1.add(o)
+
+        mySet1.add({a: 1, b: 2})   // o is referencing a different object, so this is okay
+
+        mySet1.has(1)              // true
+        mySet1.has(3)              // false, since 3 has not been added to the set
+        mySet1.has(5)              // true
+        mySet1.has(Math.sqrt(25))  // true
+        mySet1.has('Some Text'.toLowerCase()) // true
+        mySet1.has(o)              // true
+
+        mySet1.size         // 5
+
+        mySet1.delete(5)    // removes 5 from the set
+        mySet1.has(5)       // false, 5 has been removed
+
+        mySet1.size         // 4, since we just removed one value
+
+        mySet1.add(5)       // Set [1, 'some text', {...}, {...}, 5] - a previously deleted item will be added as a new item, it will not retain its original position before deletion
+
+        console.log(mySet1)
+        // logs Set(5) [ 1, "some text", {…}, {…}, 5 ] in Firefox
+        // logs Set(5) { 1, "some text", {…}, {…}, 5 } in Chrome
+
+
+    tiene mas propiedades y mas usos que por ahora no voy a usar
+
+
+
+
+
 The arguments object
 
     arguments is an Array-like object accessible inside functions 
@@ -160,6 +230,42 @@ Math.max()
 
     wait for numbers separated by commas and returns the largest number
     or NaN if he can't solve it
+
+
+
+Math.sqrt()
+
+    The Math.sqrt() function returns the square root of a number.
+
+        function calcHypotenuse(a, b) {
+            return (Math.sqrt((a * a) + (b * b)));
+        }
+
+        console.log(calcHypotenuse(3, 4));
+        // expected output: 5
+
+        console.log(calcHypotenuse(5, 12));
+        // expected output: 13
+
+        console.log(calcHypotenuse(0, 0));
+        // expected output: 0
+
+        Math.sqrt(9); // 3
+
+
+
+findIndex()
+
+    The findIndex() method returns the index of the first element in an array 
+    that satisfies the provided testing function. 
+    If no elements satisfy the testing function, -1 is returned.
+
+
+        const array1 = [5, 12, 8, 130, 44];
+
+        const isLargeNumber = (element) => element > 13;
+
+        console.log(array1.findIndex(isLargeNumber));
 
 
 
@@ -627,6 +733,190 @@ Array.from()
         f(1, 2, 3);
 
         // [ 1, 2, 3 ]
+
+
+
+flat()
+
+    Array.prototype.flat()
+    The flat() method creates a new array with all sub-array elements 
+    concatenated into it recursively up to the specified depth.
+
+        const arr1 = [0, 1, 2, [3, 4]];
+
+        console.log(arr1.flat());
+        // expected output: [0, 1, 2, 3, 4]
+
+        const arr2 = [0, 1, 2, [[[3, 4]]]];
+
+        console.log(arr2.flat(2));
+        // expected output: [0, 1, 2, [3, 4]]
+
+    syntax
+
+        flat()
+        flat(depth)
+
+        The depth level specifying how deep a nested array structure should be flattened. Defaults to 1.
+
+
+            const arr = [1, 2, [3, 4]];
+
+            // To flat single level array
+            arr.flat();
+            // is equivalent to
+            arr.reduce((acc, val) => acc.concat(val), []);
+            // [1, 2, 3, 4]
+
+            // or with decomposition syntax
+            const flattened = (arr) => [].concat(...arr);
+
+
+    Flattening nested arrays
+
+        const arr1 = [1, 2, [3, 4]];
+        arr1.flat();
+        // [1, 2, 3, 4]
+
+        const arr2 = [1, 2, [3, 4, [5, 6]]];
+        arr2.flat();
+        // [1, 2, 3, 4, [5, 6]]
+
+        const arr3 = [1, 2, [3, 4, [5, 6]]];
+        arr3.flat(2);
+        // [1, 2, 3, 4, 5, 6]
+
+        const arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+        arr4.flat(Infinity);
+        // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    
+    The flat() method removes empty slots in arrays:
+
+        const arr5 = [1, 2, , 4, 5];
+        console.log(arr5.flat()); // [1, 2, 4, 5]
+
+        const array = [1, , 3, ["a", , "c"]];
+        console.log(array.flat()); // [ 1, 3, "a", "c" ]
+
+        const array2 = [1, , 3, ["a", , ["d", , "e"]]];
+        console.log(array2.flat()); // [ 1, 3, "a", ["d", empty, "e"] ]
+        console.log(array2.flat(2)); // [ 1, 3, "a", "d", "e"]
+
+
+    flat() have much more material.... 
+
+
+
+
+String.prototype.substr
+
+    The substr() method extracts parts of a string, 
+    beginning at the character at the specified position, 
+    and returns the specified number of characters.
+
+    Syntax
+    
+        string.substr(start, length);
+    
+  
+    Parameter   start	
+        Required. The position where to start the extraction. First character is at index 0.
+        If start is positive and greater than, or equal, to the length of the string, substr() returns an empty string.
+        If start is negative, substr() uses it as a character index from the end of the string.
+        If start is negative or larger than the length of the string, start is set to 0|
+        |length|Optional . The number of characters to extract. If omitted, it extracts the rest of the string|
+
+    Examples:
+
+        let str = "Hello world!";
+        let res = str.substr(1, 4);
+
+    The result of res will be:
+        ello
+
+
+
+charAt() 
+    
+    method returns the specified character from a string.
+
+    Syntax
+        
+        str.charAt(index)
+
+    index
+    An integer between 0 and 1-less-than the length of the string.
+
+
+        var anyString = 'Brave new world';
+
+        console.log(anyString.charAt(0));   // 'B'
+        console.log(anyString.charAt(1));   // 'r'
+        console.log(anyString.charAt(2));   // 'a'
+        console.log(anyString.charAt(3));   // 'v'
+        console.log(anyString.charAt(4));   // 'e'
+        console.log(anyString.charAt(999)); // ''
+
+
+
+charCodeAt()
+
+    The charCodeAt() method returns the numeric Unicode value of the character 
+    at the given index (except for unicode codepoints > 0x10000).
+
+    Syntax
+
+        str.charCodeAt(index)
+
+    index
+    An integer greater than or equal to 0 and less than the length of the string; 
+    if it is not a number, it defaults to 0.
+
+        'ABC'.charCodeAt(0);        // returns 65
+
+        var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+        document.write(str.charCodeAt(str.length - 1));     // Output: 90
+
+
+
+String.fromCharCode()
+
+    The static String.fromCharCode() method returns a string 
+    created by using the specified sequence of Unicode values.
+
+    Syntax
+
+        String.fromCharCode(num1[, ...[, numN]])
+
+    Parameters
+    num1, …, numN
+
+    A sequence of numbers that are Unicode values.
+        
+        String.fromCharCode(65, 66, 67);  // "ABC"
+
+        var test = String.fromCharCode(112, 108, 97, 105, 110);
+        document.write(test);       // Output: plain
+
+
+
+toString()
+
+    The toString() method returns a string representing the object.
+
+        const arr = [1, 2, 3];
+
+        arr.toString() // "1,2,3"
+
+    also it is good for flatted arrays
+
+        [[[1]], [3, [[4]]]].toString()
+
+        //1,3,4
+
+
+
 
 
 
