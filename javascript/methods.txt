@@ -226,6 +226,17 @@ methods
 
 
 
+reverse()
+
+    The JavaScript array reverse() method changes the sequence of elements of the given array and returns the reverse sequence. 
+    In other words, the arrays last element becomes first and the first element becomes the last. 
+    This method also made the changes in the original array.
+
+        var arr=["AngulaJS","Node.js","JQuery"];  
+        var rev=arr.reverse();  //  ["JQuery", "Node.js", "AngulaJS"]
+
+
+
 Math.max()
 
     wait for numbers separated by commas and returns the largest number
@@ -233,9 +244,40 @@ Math.max()
 
 
 
+Math.round()
+
+    The Math.round() function returns the value of a number rounded to the nearest integer.
+
+        console.log(Math.round(0.9));
+        // expected output: 1
+
+        console.log(Math.round(5.95), Math.round(5.5), Math.round(5.05));
+        // expected output: 6 6 5
+
+        console.log(Math.round(-5.05), Math.round(-5.5), Math.round(-5.95));
+        // expected output: -5 -5 -6
+
+
+
+Math Pow
+    
+    Math.pow() returns the value of a number to the power of another number.
+
+    Math.pow(base, exponent) , where base is the base number and exponent is the number by which to raise the base .
+
+    pow() is a static method of Math , therefore it is always called as Math.pow() rather than as a method on another object.
+
+        Math.pow(5, 2); // 25
+        Math.pow(7, 4); // 2401
+        Math.pow(9, 0.5); // 3
+        Math.pow(-8, 2); // 64
+        Math.pow(-4, 3); // -64
+
+
+
 Math.sqrt()
 
-    The Math.sqrt() function returns the square root of a number.
+    The Math.sqrt() function returns the square /cuadrada/ root of a number.
 
         function calcHypotenuse(a, b) {
             return (Math.sqrt((a * a) + (b * b)));

@@ -1390,3 +1390,243 @@ Everything Be True
 
 
 
+
+Arguments Optional
+
+    Create a function that sums two arguments together. 
+    If only one argument is provided, then return a function that expects one argument and returns the sum.
+
+    For example, addTogether(2, 3) should return 5, and addTogether(2) should return a function.
+
+    Calling this returned function with a single argument will then return the sum:
+
+        var sumTwoAnd = addTogether(2);
+        sumTwoAnd(3) returns 5.
+
+    If either argument isn't a valid number, return undefined.
+
+    addTogether(2, 3) should return 5.
+    addTogether(23, 30) should return 53.
+    addTogether(5)(7) should return 12.
+    addTogether("https://www.youtube.com/watch?v=dQw4w9WgXcQ") should return undefined.
+    addTogether(2, "3") should return undefined.
+    addTogether(2)([3]) should return undefined.
+    addTogether("2", 3) should return undefined.
+    addTogether(5, undefined) should return undefined.
+
+        solution 1:
+
+            function addTogether(x, y) {
+
+                if ([...arguments].some(el => typeof el != 'number')) {
+                    return undefined
+                }
+
+                if (arguments.length < 2) {
+                    return function(y) {
+
+                        if ([...arguments].some(el => typeof el != 'number')) {
+                            return undefined
+                        }
+
+                        return x + y
+                    }
+                }
+
+                return x + y
+            }
+
+
+        solution 2:
+
+            function addTogether() {
+                const [first, second] = arguments;
+                if (typeof(first) !== "number")
+                    return undefined;
+                if (arguments.length === 1)
+                    return (second) => addTogether(first, second);
+                if (typeof(second) !== "number")
+                    return undefined;
+                return first + second;
+            }
+
+
+        solution 3:
+
+            function addTogether(...args) {
+                const [first, second] = args;
+                if (args.length === 1 && typeof first === 'number') {
+                    return num => {
+                        if (typeof num === 'number') {
+                            return first + num;
+                        }
+                    }
+                }
+                if (typeof first === 'number' && typeof second === 'number') {
+                    return first + second;
+                }
+            }
+
+
+
+Make a Person
+
+    Fill in the object constructor with the following methods below:
+
+        getFirstName()
+        getLastName()
+        getFullName()
+        setFirstName(first)
+        setLastName(last)
+        setFullName(firstAndLast)
+        
+    Run the tests to see the expected output for each method. 
+    The methods that take an argument must accept only one argument and it has to be a string. 
+    These methods must be the only available means of interacting with the object.
+
+    No properties should be added. Object.keys(bob).length should always return 6.
+    bob instanceof Person should return true.
+    bob.firstName should return undefined.
+    bob.lastName should return undefined.
+    bob.getFirstName() should return the string Bob.
+    bob.getLastName() should return the string Ross.
+    bob.getFullName() should return the string Bob Ross.
+    bob.getFullName() should return the string Haskell Ross after bob.setFirstName("Haskell").
+    bob.getFullName() should return the string Haskell Curry after bob.setLastName("Curry").
+    bob.getFullName() should return the string Haskell Curry after bob.setFullName("Haskell Curry").
+    bob.getFirstName() should return the string Haskell after bob.setFullName("Haskell Curry").
+    bob.getLastName() should return the string Curry after bob.setFullName("Haskell Curry").
+
+
+        solution 1:
+
+            const Person = function(firstAndLast) {
+
+                let firstName = firstAndLast.split(' ')[0]
+                let lastName = firstAndLast.split(' ')[1]
+
+                this.getFirstName = function() {
+                    return firstName
+                };
+
+                this.getLastName = function() {
+                    return lastName
+                };
+
+                this.getFullName = function() {
+                    return firstName + ' ' + lastName;
+                };
+
+                this.setFirstName = function(first) {
+                    firstName = first
+                };
+
+                this.setLastName = function(last) {
+                    lastName = last
+                };
+
+                this.setFullName = function(firstAndLast) {
+                    firstName = firstAndLast.split(' ')[0]
+                    lastName = firstAndLast.split(' ')[1]
+                };
+
+            };
+
+
+
+Map the Debris
+
+    According to Kepler's Third Law, the orbital period  T  of two point masses orbiting each other in a circular or elliptic orbit is:
+
+    T=2πa3μ−−−√
+    
+    a  is the orbit's semi-major axis
+    μ=GM  is the standard gravitational parameter
+    G  is the gravitational constant,
+    M  is the mass of the more massive body.
+    Return a new array that transforms the elements' average altitude into their orbital periods (in seconds).
+
+    The array will contain objects in the format {name: 'name', avgAlt: avgAlt}.
+
+    The values should be rounded to the nearest whole number. The body being orbited is Earth.
+
+    The radius of the earth is 6367.4447 kilometers, and the GM value of earth is 398600.4418 km3s-2.
+
+    
+    orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]) 
+    should return [{name: "sputnik", orbitalPeriod: 86400}].
+    
+    orbitalPeriod([{name: "iss", avgAlt: 413.6}, {name: "hubble", avgAlt: 556.7}, {name: "moon", avgAlt: 378632.553}]) 
+    should return [{name : "iss", orbitalPeriod: 5557}, {name: "hubble", orbitalPeriod: 5734}, {name: "moon", orbitalPeriod: 2377399}].
+
+
+        solution 1:
+
+            function orbitalPeriod(arr) {
+                const GM = 398600.4418;
+                const earthRadius = 6367.4447;
+                const dosPi = 2 * Math.PI;
+                let arr2 = [];
+
+                function getOrbPeriod(obj) {
+                    const aCubo      = Math.pow(earthRadius + obj.avgAlt, 3);
+                    const squareRoot = Math.sqrt(aCubo / GM);
+                    const orbPeriod  = Math.round(dosPi * squareRoot);
+
+                    return orbPeriod;
+                }
+
+                for (let i = 0; i < arr.length; i++) {
+                    arr2.push({name: arr[i].name,
+                        orbitalPeriod: getOrbPeriod(arr[i])})
+                }
+
+                return arr2
+
+            }
+
+
+        solution 2:
+
+            function orbitalPeriod(arr) {
+                const GM = 398600.4418;
+                const earthRadius = 6367.4447;
+                const a = 2 * Math.PI;
+                const newArr = [];
+
+                const getOrbPeriod = function(obj) {
+                    const c = Math.pow(earthRadius + obj.avgAlt, 3);
+                    const b = Math.sqrt(c / GM);
+                    const orbPeriod = Math.round(a * b);
+                    // create new object
+                    return {name: obj.name, orbitalPeriod: orbPeriod};
+                };
+
+                for (let elem in arr) {
+                    newArr.push(getOrbPeriod(arr[elem]));
+                }
+
+                return newArr;
+            }
+
+
+        solution 3:
+
+            function orbitalPeriod(arr) {
+                const GM = 398600.4418;
+                const earthRadius = 6367.4447;
+                return arr.map(({ name, avgAlt }) => {
+                    const earth = earthRadius + avgAlt;
+                    const orbitalPeriod = Math.round(2 * Math.PI * Math.sqrt(Math.pow(earth, 3)/GM));
+                    return { name, orbitalPeriod };
+                });
+            }
+
+
+
+
+
+
+
+
+
