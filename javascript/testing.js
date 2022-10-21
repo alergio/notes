@@ -129,13 +129,13 @@ function checkCashRegister(price, cash, cid) {
   changes.push(pennyC, nickelC, quarterC, dimeC, dollarC, fiveDollarsC, tenDollarsC, twentyDollarsC, oneHundredDollarsC)
   let total = 0
   changes.map( el => {if (typeof el === "number") { total += el }})
-  let totalChange = however.map(ele => {
+ /* let totalChange = however.map(ele => {
     ele.map(ele2 => {
       if (typeof ele2 === "number"){
         ele2 = ele2 / 100
       }
     })
-  })
+  })*/
 
   if (afterSee.status == "INSUFFICIENT_FUNDS") {
     afterSee.change = []
