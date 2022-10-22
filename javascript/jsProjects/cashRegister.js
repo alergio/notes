@@ -1,12 +1,15 @@
 function checkCashRegister(price, cash, cid) {
 
-    let however = [];
+    // however va a guardar el cambio y aftersee es el objeto a retornar
+    let however  = [];
     let afterSee = {};
   
+    // changeC es el cambio total * 100 porque a js le cuesta trabajar con decimales
+    // cidFlat es porque los valores estan en un array anidado y para poder trabajar mas facil
     let changeC = (cash - price).toFixed(2) * 100
-
     let cidFlat = cid.flat()
 
+    // indexs en variables para un codigo mas visual
     const indexPenny   = cidFlat.indexOf("PENNY")
     const indexNickel  = cidFlat.indexOf("NICKEL")
     const indexDime    = cidFlat.indexOf("DIME")
@@ -17,6 +20,7 @@ function checkCashRegister(price, cash, cid) {
     const indexTwentyDollars     = cidFlat.indexOf("TWENTY")
     const indexOneHundredDollars = cidFlat.indexOf("ONE HUNDRED")
 
+    // el conteo de todas las monedas que tenemos en la caja y que se actualizan segun cambios
     let pennyC   = (cidFlat[indexPenny + 1] * 100).toFixed(2)
     let nickelC  = (cidFlat[indexNickel + 1] * 100).toFixed(2)
     let quarterC = (cidFlat[indexQuarter + 1] * 100).toFixed(2)
@@ -27,10 +31,12 @@ function checkCashRegister(price, cash, cid) {
     let twentyDollarsC     = (cidFlat[indexTwentyDollars + 1] * 100).toFixed(2)
     let oneHundredDollarsC = (cidFlat[indexOneHundredDollars + 1] * 100).toFixed(2)
   
-  function getDecimalChange(changeC) {
+  // funcion que hace el trabajo
+  function getChange(changeC) {
         
     for (let i = changeC; i > 0;){
 
+      // funcion para no repetir codigo, aca volvemos a estructurar el array del cambio para que sea anidado
       function updateChange(index, amount) {
         if (however.length > 0) {
           if (however.some(el => el.indexOf(index) >= 0)) {
@@ -122,20 +128,15 @@ function checkCashRegister(price, cash, cid) {
     
   }
 
-  getDecimalChange(changeC)
+  getChange(changeC)
 
 
   let changes = []
-  changes.push(pennyC, nickelC, quarterC, dimeC, dollarC, fiveDollarsC, tenDollarsC, twentyDollarsC, oneHundredDollarsC)
   let total = 0
-  changes.map( el => {if (typeof el === "number") { total += el }})
- /* let totalChange = however.map(ele => {
-    ele.map(ele2 => {
-      if (typeof ele2 === "number"){
-        ele2 = ele2 / 100
-      }
-    })
-  })*/
+  changes.push(pennyC, nickelC, quarterC, dimeC, dollarC, fiveDollarsC, tenDollarsC, twentyDollarsC, oneHundredDollarsC)
+  changes.map(el => {if (typeof el === "number") { total += el }})
+
+  however = however.map(arr => arr.map(item => typeof item === 'number' ? item /= 100 : item))
 
   if (afterSee.status == "INSUFFICIENT_FUNDS") {
     afterSee.change = []
@@ -148,13 +149,5 @@ function checkCashRegister(price, cash, cid) {
   }
 
 
-    return totalChange;
-  }
-  
-  /* console.log(checkCashRegister(17.32, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
-
-  console.log(checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]))
-
-  console.log(checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])) */
-
-  console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]))
+  return afterSee;
+}
