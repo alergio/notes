@@ -228,6 +228,8 @@ Pseudo-elementos:
 
 	::after || añade contenido al final del documento
 
+	::placeholder || The ::placeholder selector selects form elements with placeholder text, and let you style the placeholder text.
+
 
 Prefijo para los navegadores:
 	
@@ -269,6 +271,9 @@ Modelos de cajas: márgenes, rellenos y bordes:
 					}
 				tambien se puede modificar en dos parametros donde el primero es top y bot y el segundo es r y l
 
+				si fuera el mismo valor para todos lados puede declararse una sola vez
+					padding: 5px;
+
 	margin-top; marginm-right; margin-bottom; margin-left; : tamaño del margen superior, derechjo, inferior e izquierdo || longitud, porcentaje, auto 
 
 	margin: ancho de los margenes || longitud, porcentaje, auto {1,4}
@@ -278,7 +283,8 @@ Modelos de cajas: márgenes, rellenos y bordes:
 	EJ: selector {
 			margin: 5px 5px 5px 5px; top right bottom left
 		}
-		tambien se puede utilizar solo con 2 parametros donde el primero sera top y bottom y el segundo sera right y left
+		tambien se puede utilizar solo con 2 parametros 
+		donde el primero sera top y bottom y el segundo sera right y left
 
 	border-top-width; border-right-width; border-bottom-width; border-left-width; : anchura del borde superior, derecho, inferor o izquierdo || thin, medium, thick, longitud
 
@@ -295,9 +301,11 @@ Modelos de cajas: márgenes, rellenos y bordes:
 			ej: border-left: width style color;
 			border-left: 10px solid black;
 
-	border: ancho, estilo y color para los bordes (reducida) || =anterior
+	border: ancho, estilo y color para todos los bordes (reducida) || =anterior
+		border: 50px solid black;
 
 	border-radius: curvatura del borde || longitud, porcentaje {1,4}
+		border-radius: 5px;
 
 
 content: propiedad compleja para anhadir contenido.
@@ -592,7 +600,9 @@ FUNCIONES CSS
 	Contains a single calculation which must resolve to either a <number> or an <angle>.
 
 	Filter functions
-	The <filter-function> CSS data type represents a graphical effect that can change the appearance of an input image. It is used in the filter and backdrop-filter properties.
+	The <filter-function> CSS data type represents a 
+	graphical effect that can change the appearance of an input image. 
+	It is used in the filter and backdrop-filter properties.
 
 	blur()
 	Blurs the image.

@@ -1,0 +1,399 @@
+----------------------------------------------------------------------------------------------------------------------------------------
+
+    i have old css notes that i created a long time ago when i started
+    now i will resume my learning in css and decided to create some new notes
+
+    23/10/2022
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+display     #display 
+
+    block
+        The element generates a block element box, 
+        generating line breaks both before and after the element when in the normal flow.
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+overflow #overflow
+
+    sets the desired behavior for an element's overflow
+
+    The overflow property is specified as one or two keywords chosen from the list of values below. 
+    If two keywords are specified, the first applies to overflow-x and the second to overflow-y. 
+    Otherwise, both overflow-x and overflow-y are set to the same value.
+
+    visible
+        Content is not clipped and may be rendered outside the padding box.
+
+    hidden
+        Content is clipped if necessary to fit the padding box. 
+        No scrollbars are provided, and no support for allowing the user to scroll 
+        (such as by dragging or using a scroll wheel) is allowed. 
+        The content can be scrolled programmatically 
+        (for example, by setting the value of a property such as scrollLeft or the scrollTo() method), 
+        so the element is still a scroll container.
+
+    clip
+        Similar to hidden, the content is clipped to the element's padding box. 
+        The difference between clip and hidden is that the clip keyword also forbids all scrolling, including programmatic scrolling. 
+        The box is not a scroll container, and does not start a new formatting context. 
+        If you wish to start a new formatting context, you can use display: flow-root to do so.
+
+    scroll
+        Content is clipped if necessary to fit the padding box. 
+        Browsers always display scrollbars whether or not any content is actually clipped, 
+        preventing scrollbars from appearing or disappearing as content changes. Printers may still print overflowing content.
+
+    auto
+        Depends on the user agent. 
+        If content fits inside the padding box, it looks the same as visible, 
+        but still establishes a new block formatting context. 
+        Desktop browsers provide scrollbars if content overflows.
+
+    overlay
+        Behaves the same as auto, but with the scrollbars drawn on top of content instead of taking up space.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+filter property     #filter #filterproperty #propertyfilter #filter-p
+
+    The filter CSS property applies graphical effects like blur or color shift to an element. 
+    Filters are commonly used to adjust the rendering of images, backgrounds, and borders.
+
+    blur()
+        The blur(radius) function applies a Gaussian blur to the input image. 
+        The value of radius defines the value of the standard deviation to the Gaussian function, 
+        or how many pixels on the screen blend into each other, so a larger value will create more blur. 
+        The initial value for interpolation is 0. 
+        The parameter is specified as a CSS length, but does not accept percentage values.
+            filter: blur(5px)
+
+    brightness()
+        The brightness() function applies a linear multiplier to the input image, making it appear more or less bright. 
+        A value of 0% will create an image that is completely black. 
+        A value of 100% leaves the input unchanged. 
+        Other values are linear multipliers on the effect. 
+        Values of an amount over 100% are allowed, providing brighter results. 
+        The initial value for interpolation is 1.
+            filter: brightness(2)
+
+    contrast()
+        The contrast() function adjusts the contrast of the input image. 
+        A value of 0% will create an image that is completely gray. 
+        A value of 100% leaves the input unchanged. 
+        Values of an amount over 100% are allowed, providing results with more contrast. 
+        The initial value for interpolation is 1.
+            filter: contrast(200%)
+
+    dropshadow()    
+        The drop-shadow() function applies a drop shadow effect to the input image. 
+        A drop shadow is effectively a blurred, offset version of the 
+        input image's alpha mask drawn in a particular color, composited below the image. 
+        The function accepts a parameter of type <shadow>, 
+        with the exception that the inset keyword and spread parameter are not allowed. 
+        This function is similar to the more established box-shadow property; 
+        the difference is that with filters, some browsers provide hardware acceleration for better performance. 
+        The parameters of the <shadow> parameter are as follows:
+
+            <offset-x> <offset-y> (required)
+                These are two <length> values to set the shadow offset. 
+                <offset-x> specifies the horizontal distance. 
+                Negative values place the shadow to the left of the element. 
+                <offset-y> specifies the vertical distance. 
+                Negative values place the shadow above the element. 
+                If both values are 0, the shadow is placed behind the element 
+                (and may generate a blur effect if <blur-radius> and/or <spread-radius> is set).
+
+            <blur-radius> (optional)
+                This is a third <length> value. 
+                The larger this value, the bigger the blur, so the shadow becomes bigger and lighter. 
+                Negative values are not allowed. 
+                If not specified, it will be 0 (the shadow's edge is sharp).
+
+            <color> (optional)
+                See <color> values for possible keywords and notations. 
+                If not specified, the color used depends on the browser - 
+                it is usually the value of the <color> property, 
+                but note that Safari currently paints a transparent shadow in this case.
+
+        filter: drop-shadow(16px 16px 10px black)
+    
+    grayscale()
+        The grayscale() function converts the input image to grayscale (black and white). 
+        The value of amount defines the proportion of the conversion. 
+        A value of 100% is completely grayscale. 
+        A value of 0% leaves the input unchanged. 
+        Values between 0% and 100% are linear multipliers on the effect. 
+        The initial value for interpolation is 0.
+            filter: grayscale(100%)
+
+    hue-rotate()
+        The hue-rotate() function applies a hue rotation on the input image. 
+        The value of angle defines the number of degrees around the color circle the input samples will be adjusted. 
+        A value of 0deg leaves the input unchanged. 
+        The initial value for interpolation is 0. 
+        Though there is no maximum value; the effect of values above 360deg wraps around.
+            filter: hue-rotate(90deg)
+
+    invert()
+        The invert() function inverts the samples in the input image. 
+        The value of amount defines the proportion of the conversion. 
+        A value of 100% is completely inverted. 
+        A value of 0% leaves the input unchanged. 
+        Values between 0% and 100% are linear multipliers on the effect. 
+        The initial value for interpolation is 0.
+            filter: invert(100%)
+
+    opacity()
+        The opacity() function applies transparency to the samples in the input image. 
+        The value of amount defines the proportion of the conversion. 
+        A value of 0% is completely transparent. 
+        A value of 100% leaves the input unchanged. 
+        Values between 0% and 100% are linear multipliers on the effect. 
+        This is equivalent to multiplying the input image samples by amount. 
+        The initial value for interpolation is 1. 
+        This function is similar to the more established opacity property; 
+        the difference is that with filters, some browsers provide hardware acceleration for better performance.
+            filter: opacity(50%)
+
+    saturate()
+        The saturate() function saturates the input image. 
+        The value of amount defines the proportion of the conversion. 
+        A value of 0% is completely un-saturated. 
+        A value of 100% leaves the input unchanged. 
+        Other values are linear multipliers on the effect. 
+        Values of amount over 100% are allowed, providing super-saturated results. 
+        The initial value for interpolation is 1.
+            filter: saturate(200%)
+
+    sepia()
+        The sepia() function converts the input image to sepia. 
+        The value of amount defines the proportion of the conversion. 
+        A value of 100% is completely sepia. 
+        A value of 0% leaves the input unchanged. 
+        Values between 0% and 100% are linear multipliers on the effect. 
+        The initial value for interpolation is 0.
+            filter: sepia(100%)
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+transform property #transform #transformproperty #transform-property #propertytransform
+
+    The transform CSS property lets you rotate, scale, skew, or translate an element.
+    we use this with
+    Cartesian coordinates
+        In the Cartesian coordinate system, 
+        a two-dimensional point is described using two values: 
+        an x coordinate (abscissa) and a y coordinate (ordinate). 
+        This is represented by the vector notation (x, y).
+
+    matrix()
+        The matrix() CSS function defines a homogeneous 2D transformation matrix.
+        is specified with six values. 
+        The constant values are implied and not passed as parameters; 
+        the other parameters are described in the column-major order.
+        
+        matrix(a, b, c, d, tx, ty)
+            a b c d
+            Are <number>s describing the linear transformation.
+            tx ty
+            Are <number>s describing the translation to apply.
+        The values represent the following functions: 
+        matrix(scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY())
+
+            transform: matrix(1, 2, -1, 1, 80, 80);
+    
+
+    matrix3d()   
+        The matrix3d() CSS function defines a 3D transformation as a 4x4 homogeneous matrix.
+        The matrix3d() function is specified with 16 values. 
+        They are described in the column-major order.
+
+        matrix3d(a1, b1, c1, d1, a2, b2, c2, d2, a3, b3, c3, d3, a4, b4, c4, d4)
+            a1 b1 c1 d1 a2 b2 c2 d2 a3 b3 c3 d3
+            Are <number>s describing the linear transformation.
+            a4 b4 c4 d4
+            Are <number>s describing the translation to apply.
+     
+        see examples of this on the web
+
+
+    perspective()
+        The perspective() CSS function 
+        defines a transformation that sets the distance between the user and the z=0 plane, 
+        the perspective from which the viewer would be if the 2-dimensional interface were 3-dimensional.
+
+        The perspective distance used by perspective() is specified by a <length> value, 
+        which represents the distance between the user and the z=0 plane, or by none. 
+        The z=0 plane is the plane where everything appears in a 2-dimensional view, or the screen. 
+        Negative values are syntax errors. 
+        Values smaller than 1px (including zero) are clamped to 1px. 
+        Values other than none cause elements with positive z positions to appear larger, 
+        and elements with negative z positions to appear smaller. 
+        Elements with z positions equal to or larger than the perspective value disappear as though they are behind the user. 
+        Large values of perspective represent a small transformation; 
+        small values of perspective() represent a large transformation; 
+        perspective(none) represents perspective from infinite distance and no transformation. 
+            transform: perspective(400px)
+
+
+    rotate()
+        The rotate() CSS function defines a transformation that rotates 
+        an element around a fixed point on the 2D plane, without deforming it.
+        The fixed point that the element rotates around — mentioned above — 
+        is also known as the transform origin. This defaults to the center of the element
+
+        The amount of rotation created by rotate() is specified by an <angle>. 
+        If positive, the movement will be clockwise; 
+        if negative, it will be counter-clockwise. 
+        A rotation by 180° is called point reflection.
+            transform: rotate(45deg);
+
+
+    rotate3d()
+        see info about this on the web
+
+
+    rotateX()
+        The rotateX() CSS function defines a transformation that rotates 
+        an element around the abscissa (horizontal axis) without deforming it.
+        The amount of rotation created by rotateX() is specified by an <angle>. 
+        If positive, the movement will be clockwise; if negative, it will be counter-clockwise.
+            transform: rotateX(45deg);
+
+
+    rotateY()
+        The rotateY() CSS function defines a transformation 
+        that rotates an element around the ordinate (vertical axis) without deforming it.
+        The amount of rotation created by rotateY() is specified by an <angle>. 
+        If positive, the movement will be clockwise; if negative, it will be counter-clockwise.
+            transform: rotateY(180deg);
+
+    
+    rotateZ()
+        The rotateZ() CSS function defines a transformation 
+        that rotates an element around the z-axis without deforming it.
+        Note: rotateZ(a) is equivalent to rotate(a)
+        The amount of rotation created by rotateZ() is specified by an <angle>. 
+        If positive, the movement will be clockwise; if negative, it will be counter-clockwise.
+            transform: rotateZ(45deg);
+
+
+    scale()
+        The scale() CSS function defines a transformation that resizes an element on the 2D plane. 
+        Because the amount of scaling is defined by a vector, 
+        it can resize the horizontal and vertical dimensions at different scales.
+
+        This scaling transformation is characterized by a two-dimensional vector. 
+        Its coordinates define how much scaling is done in each direction. 
+        If both coordinates are equal, the scaling is uniform (as if using only one parameter)
+        
+        When a coordinate value is outside the [-1, 1] range, 
+        the element grows along that dimension; when inside, it shrinks. 
+        A negative value results in a point reflection in that dimension. 
+        The value 1 has no effect.
+
+        The scale() function is specified with either one or two values, 
+        which represent the amount of scaling to be applied in each direction.
+
+            scale(sx)
+            scale(sx, sy)
+            transform: scale(0.7); /* Equal to scaleX(0.7) scaleY(0.7) */
+
+    
+    scale3d()
+        see info about this on the web
+
+
+    scaleX()
+        The scaleX() CSS function defines a transformation 
+        that resizes an element along the x-axis (horizontally).
+        It modifies the abscissa of each element point by a constant factor, 
+        except when the scale factor is 1, in which case the function is the identity transform.
+            transform: scaleX(0.6);
+
+    
+    scaleY()
+        The scaleY() CSS function defines a transformation 
+        that resizes an element along the y-axis (vertically)
+        It modifies the ordinate of each element point by a constant factor, 
+        except when the scale factor is 1, in which case the function is the identity transform
+            transform: scaleY(0.6);
+
+
+    scaleZ()
+        The scaleZ() CSS function defines a transformation 
+        that resizes an element along the z-axis. 
+        This scaling transformation modifies the z-coordinate of each element point by a constant factor, 
+        except when the scale factor is 1, in which case the function is the identity transform.
+        Note: scaleZ(sz) is equivalent to scale3d(1, 1, sz).
+            transform: scaleZ(2)
+
+
+    skew()
+        The skew() CSS function defines a transformation 
+        that skews an element on the 2D plane.
+        This transformation is a shear mapping (transvection) 
+        that distorts each point within an element by a certain angle in the horizontal and vertical directions
+
+        The coordinates of each point are modified by a value proportionate 
+        to the specified angle and the distance to the origin. 
+        Thus, the farther from the origin a point is, the greater the value added to it.
+
+        The skew() function is specified with either one or two values, 
+        which represent the amount of skewing to be applied in each direction. 
+        If you only specify one value it is used for the x-axis and there will be no skewing on the y-axis.
+            transform: skew(10deg); /* Equal to skewX(10deg) */
+
+    skewX()
+        Skews an element in the horizontal direction.
+
+    skewY()
+        Skews an element in the vertical direction.
+
+
+    translate()
+        The translate() CSS function repositions 
+        an element in the horizontal and/or vertical directions. 
+        This transformation is characterized by a two-dimensional vector. 
+        Its coordinates define how much the element moves in each direction.
+            
+            /* Single <length-percentage> values */
+                transform: translate(200px);
+                transform: translate(50%);
+
+            /* Double <length-percentage> values */
+                transform: translate(100px, 200px);
+                transform: translate(100px, 50%);
+                transform: translate(30%, 200px);
+                transform: translate(30%, 50%);
+
+        translate(2px) is equivalent to translate(2px, 0) (if don't define the vertical direction it will be 0)
+
+    translate3d()
+        Translates an element in 3D space.
+        see info about this on the web
+
+    translateX()
+        Translates an element horizontally.
+
+    translateY()
+        Translates an element vertically.
+
+    translateZ()
+        Translates an element along the z-axis.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+

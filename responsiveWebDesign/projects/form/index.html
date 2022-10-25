@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>barrelWavesCamp Registration Form</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <div id="header">
+                <h1 id="title">Barrel Waves Camp</h1>
+                <p id="description">Welcome to the best camp in the surf world</p>
+            </div>
+            <div id="form">
+                <form id="survey-form">
+                    <div id="form-group">
+                        <label id="name-label" for="name" class="subtitle">Name</label>
+                        <input id="name" name="name" type="text" placeholder="Enter your name" class="input-form" required>
+                    </div>
+                    <div id="form-group">
+                        <label id="age-label" for="age" class="subtitle">Age</label>
+                        <input id="age" name="age" type="number" placeholder="Enter your age" class="input-form" required min="18" max="88">
+                    </div>
+                    <div id="form-group">
+                        <label id="number-label" for="number" class="subtitle">Number</label>
+                        <input id="number" name="number" type="number" placeholder="Enter your number" class="input-form" required min="18" max="88">
+                    </div>
+                    <div id="form-group">
+                        <label id="email-label" for="email" class="subtitle">Email</label>
+                        <input id="email" name="email" type="email" placeholder="Enter your email" class="input-form" required>
+                    </div>
+                    <div id="form-group">
+                        <p id="dropdown-label" for="dropdown" class="subtitle">What is your level of surfing?</p>
+                        <select id="dropdown">
+                            <option disabled selected value>Choose an option</option>                           
+                            <option value="beginner" class="optionselect">Beginner</option>
+                            <option value="intermediate" class="optionselect">Intermediate</option>
+                            <option value="advanced" class="optionselect">Advanced</option>
+                        </select>
+                    </div>
+                    <div id="form-group">
+                        <p id="label-wave" class="subtitle">Do you like barrel waves?</p>
+                        <label id="label-yes" class="options">
+                            <input name="barrel-wave" value="yes" type="radio" class="inline">
+                            Yes
+                        </label>
+                        <label id="label-yes-but" class="options">
+                            <input name="barrel-wave" value="yes-but" type="radio" class="inline">
+                            Yes but they are difficult
+                        </label>
+                        <label id="label-no" class="options">
+                            <input name="barrel-wave" value="no" type="radio" class="inline">
+                            No
+                        </label>
+                    </div>
+                    <div id="form-group">
+                        <p id="favourite-board" class="subtitle">Choose your favourite boards</p>
+                        <label id="label-shortboard" class="options">
+                            <input name="board" type="checkbox" value="shortboard" class="inline">
+                            Shortboard
+                        </label>
+                        <label id="label-evoboard" class="options">
+                            <input name="board" type="checkbox" value="evoboard" class="inline">
+                            Evoboard
+                        </label>
+                        <label id="label-longboard" class="options">
+                            <input name="board" type="checkbox" value="longboard" class="inline">
+                            Longboard
+                        </label>
+                    </div>
+                    <div id="form-group">
+                        <p id="p-comments" class="subtitle">Do you want to leave a comment?</p>
+                        <textarea id="comments"></textarea>
+                    </div>
+                    <div id="form-group-button">
+                        <button id="submit" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
