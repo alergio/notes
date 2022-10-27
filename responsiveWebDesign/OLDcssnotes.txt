@@ -292,7 +292,9 @@ Modelos de cajas: márgenes, rellenos y bordes:
 
 	border-color: color del borde (reducida) || color, transparent
 
-	border-top-style; border-right-style; border-bottom-style; border-left-style; : estilo del borde superior, derecho, inferior e izquierdo || none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset
+	border-top-style; border-right-style; border-bottom-style; border-left-style; : 
+		estilo del borde superior, derecho, inferior e izquierdo || 
+			none, hidden, dotted, dashed, solid, double, groove, ridge, inset, outset
 
 	border-style: estilo del borde (reducida) || =anterior + {1,4}
 
