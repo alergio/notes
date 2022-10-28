@@ -235,6 +235,37 @@ This can be contrasted with the two-dimensional model of CSS Grid Layout, which 
         The first value specified is flex-direction and the second value is flex-wrap.
 
 
+    Properties applied to flex items
+        To have more control over flex items we can target them directly. We do this by way of three properties:
+
+        flex-grow
+        flex-shrink
+        flex-basis
+
+        Before we can make sense of these properties we need to consider the concept of available space. 
+        What we are doing when we change the value of these flex properties is to 
+        change the way that available space is distributed amongst our items. 
+        This concept of available space is also important when we come to look at aligning items.
+
+        If we have three 100 pixel-wide items in a container which is 500 pixels wide, 
+        then the space we need to lay out our items is 300 pixels. 
+        This leaves 200 pixels of available space. 
+        If we don't change the initial values then flexbox will put that space after the last item.
+
+
+                                    container = 500px
+           <------------------------------------------------------------------>
+             ____________  ____________  ____________  
+            |One         ||Two         ||Three       |
+            |____________||____________||____________|      
+            ------------------------------------------------------------------
+                                                      <----------------------->
+                                                           available: 200px
+
+        If we instead would like the items to grow and fill the space, 
+        then we need to have a method of distributing the leftover space between the items. 
+        This is what the flex properties that we apply to the items themselves, will do.
+
 
 
 
