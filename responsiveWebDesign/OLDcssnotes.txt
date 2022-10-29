@@ -345,8 +345,16 @@ Comportamiento de los contenedores:
 		La propiedad CSS z-index indica el orden de un elemento posicionado y sus descendientes. Cuando varios elementos se superponen, los elementos con mayor valor z-index cubren aquellos con menor valor.
 
 	box-sizing: control de bordes y relleno en el comportamiento del contenedor || content-box, border-box
-		content-box es el comportamiento CSS por defecto para el tamaño de la caja (box-sizing). Si se define el ancho de un elemento en 100 pixeles, la caja del contenido del elemento tendrá 100 pixeles de ancho, y el ancho de cualquier borde o relleno ser añadirá al ancho final desplegado.
-		border-box le dice al navegador tomar en cuenta para cualquier valor que se especifique de borde o de relleno para el ancho o alto de un elemento. Es decir, si se define un elemento con un ancho de 100 pixeles. Esos 100 pixeles incluíran cualquier borde o relleno que se añadan, y la caja de contenido se encogerá para absorber ese ancho extra. Esto típicamente hace mucho más fácil dimensionar elementos.
+		content-box es el comportamiento CSS por defecto para el tamaño de la caja (box-sizing). 
+			Si se define el ancho de un elemento en 100 pixeles, 
+			la caja del contenido del elemento tendrá 100 pixeles de ancho, 
+			y el ancho de cualquier borde o relleno ser añadirá al ancho final desplegado.
+		border-box le dice al navegador tomar en cuenta para cualquier valor 
+			que se especifique de borde o de relleno para el ancho o alto de un elemento. 
+			Es decir, si se define un elemento con un ancho de 100 pixeles. 
+			Esos 100 pixeles incluíran cualquier borde o relleno que se añadan, 
+			y la caja de contenido se encogerá para absorber ese ancho extra. 
+			Esto típicamente hace mucho más fácil dimensionar elementos.
 
 	visibility: muestra u oculta un elemento ocupando el espacio || visible, hidden
 

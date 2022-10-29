@@ -8,6 +8,19 @@
 
 --------------------------------------------------------------------------------------------------
 
+FreeCodeCamp Docs:
+
+Flexbox is a one-dimensional CSS layout that can control the way items are spaced out and aligned within a container.
+
+    To use it, give an element a display property of flex. 
+    This will make the element a flex container. 
+    Any direct children of a flex container are called flex items.
+
+
+--------------------------------------------------------------------------------------------------
+
+Mozilla Docs:
+
 The Flexible Box Module, usually referred to as flexbox, 
 was designed as a one-dimensional layout model, 
 and as a method that could offer space distribution between items in an interface and powerful alignment capabilities. 
@@ -266,20 +279,194 @@ This can be contrasted with the two-dimensional model of CSS Grid Layout, which 
         then we need to have a method of distributing the leftover space between the items. 
         This is what the flex properties that we apply to the items themselves, will do.
 
+        The flex-basis property
+            The flex-basis is what defines the size of that item 
+            in terms of the space it leaves as available space. 
+            The initial value of this property is auto — in this case the browser looks to see if the items have a size. 
+            In the example above, all of the items have a width of 100 pixels and so this is used as the flex-basis.
+
+            If the items don't have a size then the content's size is used as the flex-basis. 
+            This is why when we just declare display: flex on the parent to create flex items, 
+            the items all move into a row and take only as much space as they need to display their contents.
+
+        The flex-grow property
+            With the flex-grow property set to a positive integer, flex items can grow along the main axis from their flex-basis. 
+            This will cause the item to stretch and take up any available space on that axis, 
+            or a proportion of the available space if other items are allowed to grow too.
+
+            If we gave all of our items in the example above a flex-grow value of 1 
+            then the available space in the flex container would be equally shared between our items 
+            and they would stretch to fill the container on the main axis.
+
+            The flex-grow property can be used to distribute space in proportion. 
+            If we give our first item a flex-grow value of 2, and the other items a value of 1 each, 
+            2 parts of the available space will be given to the first item 
+            (100px out of 200px in the case of the example above), 
+            1 part each the other two (50px each out of the 200px total).
+
+        The flex-shrink property
+            Where the flex-grow property deals with adding space in the main axis, 
+            the flex-shrink property controls how it is taken away. 
+            If we do not have enough space in the container to lay out our items, 
+            and flex-shrink is set to a positive integer, then the item can become smaller than the flex-basis. 
+            As with flex-grow, different values can be assigned in order to cause one item to shrink faster than others 
+            — an item with a higher value set for flex-shrink will shrink faster than its siblings that have lower values.
+
+            The minimum size of the item will be taken into account 
+            while working out the actual amount of shrinkage that will happen, 
+            which means that flex-shrink has the potential to appear less consistent than flex-grow in behavior.
+
+        Note: These values for flex-grow and flex-shrink are proportions. 
+        Typically if we had all of our items set to flex: 1 1 200px 
+        and then wanted one item to grow at twice the rate, we would set that item to flex: 2 1 200px. 
+        However you could also use flex: 10 1 200px and flex: 20 1 200px if you wanted.
+
+        Shorthand values for the flex properties
+            You will very rarely see the flex-grow, flex-shrink, and flex-basis properties used individually; 
+            instead they are combined into the flex shorthand. 
+            The flex shorthand allows you to set the three values in this order — flex-grow, flex-shrink, flex-basis.
+                ex: flex: 1 1 auto;
+
+        There are also some predefined shorthand values which cover most of the use cases. 
+        You will often see these used in tutorials, and in many cases these are all you will need to use. 
+        The predefined values are as follows:
+
+            flex: initial
+            flex: auto
+            flex: none
+            flex: <positive-number>
+
+            Setting flex: initial 
+            resets the item to the initial values of Flexbox. This is the same as flex: 0 1 auto. 
+            In this case the value of flex-grow is 0, so items will not grow larger than their flex-basis size. 
+            The value of flex-shrink is 1, so items can shrink if they need to rather than overflowing. 
+            The value of flex-basis is auto. Items will either use any size set on the item in the main dimension, 
+            or they will get their size from the content size.
+
+            Using flex: auto 
+            is the same as using flex: 1 1 auto; everything is as with flex:initial 
+            but in this case the items can grow and fill the container as well as shrink if required.
+
+            The shorthand you often see in tutorials is flex: 1 or flex: 2 and so on. 
+            This is as if you used flex: 1 1 0 or flex: 2 1 0 and so on, respectively. 
+            The items can grow and shrink from a flex-basis of 0.
 
 
+    Alignment, justification and distribution of free space between items
+        A key feature of flexbox is the ability to align and justify items on the main- and cross-axes, 
+        and to distribute space between flex items. 
+        Note that these properties are to be set on the flex container, not on the items themselves.
+
+        align-items
+            The align-items property will align the items on the cross axis.
+
+            The initial value for this property is stretch 
+            and this is why flex items stretch to the height of the flex container by default. 
+            This might be dictated by the height of the tallest item in the container, 
+            or by a size set on the flex container itself.
+
+            You could instead set align-items to flex-start 
+            in order to make the items line up at the start of the flex container, 
+            flex-end to align them to the end, or center to align them in the center.
+            See this in the live example — I have given the flex container a height 
+            in order that you can see how the items can be moved around inside the container. 
+            See what happens if you set the value of align-items to:
+                stretch
+                flex-start
+                flex-end
+                center
+            
+             <div class="box">
+                <div>One</div>
+                <div>Two</div>
+                <div>Three
+                    <br>has
+                    <br>extra
+                    <br>text
+                </div>
+            </div>
+
+            align-items: stretch
+            -___--___--______-------------------------------------------------------
+            |One||Two||Three | 
+            |   ||   ||has   |       
+            |   ||   ||extra |           
+            |   ||   ||text  | 
+            |   ||   ||      | 
+            |   ||   ||      |
+            |   ||   ||      |      
+            |   ||   ||      |
+            |___||___||______|
+            ------------------------------------------------------------------
 
 
+            align-items: flex-start
+            -___--___--_____-------------------------------------------------                 
+            |One||Two||Three|
+            |___||___||has  |
+                      |extra|
+                      |text |
+                      |_____|      
+            
+            
+            ------------------------------------------------------------------
 
 
+            align-items: flex-end
+            ------------------------------------------------------------------                 
+            
+             ___  ___  _____
+            |One||Two||Three|
+            |___||___||has  |
+                      |extra|
+                      |text |
+                      |_____|      
+            ------------------------------------------------------------------
 
 
+            align-items: center
+            ------------------------------------------------------------------                 
+             ___  ___  _____
+            |One||Two||Three|
+            |___||___||has  |
+                      |extra|
+                      |text |
+                      |_____|      
+            
+            ------------------------------------------------------------------
 
+            
+        justify-content
+            The justify-content property is used to align the items on the main axis, 
+            the direction in which flex-direction has set the flow. 
+            The initial value is flex-start which will line the items up at the start edge of the container, 
+            but you could also set the value to flex-end to line them up at the end, 
+            or center to line them up in the center.            
 
+            You can also use the value space-between to take all the spare space after the items have been laid out, 
+            and share it out evenly between the items so there will be an equal amount of space between each item. 
+            To cause an equal amount of space on the right and left of each item use the value space-around. 
+            With space-around, items have a half-size space on either end. 
+            Or, to cause items to have equal space around them use the value space-evenly. 
+            With space-evenly, items have a full-size space on either end.
 
+            with space-between, edge items stick to the edges and share the same amount of space between each other
+            ------------------------------------------------------------------
+             ________                    ________                    ________  
+            |One     |                  |Two     |                  |Three   |
+            |________|                  |________|                  |________|      
+            ------------------------------------------------------------------
 
+            with space-around, items share the same amount of space between each other, and half of that space on the edges
+            ---------------------------------------------------------------------
+                  ________               ________                ________  
+                 |One     |             |Two     |              |Three   |
+                 |________|             |________|              |________|      
+            ---------------------------------------------------------------------
 
-
-
-
-
+            with space-evenly, items they share the same amount of space between them and between the edges
+            --------------------------------------------------------------
+                     ________          ________          ________          
+                    |One     |        |Two     |        |Three   |        
+                    |________|        |________|        |________|              
+            --------------------------------------------------------------
