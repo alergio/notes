@@ -129,6 +129,7 @@ Colores:
 Texto:
 
 	text-indent: desplazamiento de la primera linea del texto || valores: longitud, porcentaje
+		definicion de indentacion
 
 	text-align: alineamiento del texto || valores: left, right, center, justify
 
@@ -217,7 +218,22 @@ Pseudo-clases para los estados de un elemento:
 
 	:focus || se activa cuando se tiene el foco sobre el elemento
 
-	:root || util para definir variables y que se puedan utilizar en todo el documento. Le darán un valor global a una variable pero esta podrá ser sobreeditada luego en cada elemento que se quiera
+	:root || util para definir variables y que se puedan utilizar en todo el documento. 
+	Le darán un valor global a una variable pero esta podrá ser sobreeditada luego en cada elemento que se quiera
+
+	:not 
+		The :not() CSS pseudo-class represents elements that do not match a list of selectors. 
+		Since it prevents specific items from being selected, it is known as the negation pseudo-class.
+			
+			:not( <complex-selector-list> )
+
+		:not(.foo) will match anything that isn't .foo, including <html> and <body>.
+		The :not pseudo-selector can be used to select all elements that do not match the given CSS rule.
+		
+			div:not(#example) {
+				color: red;
+			}
+		The above selects all div elements without an id of example.
 
 Pseudo-elementos:
 
@@ -343,8 +359,26 @@ Comportamiento de los contenedores:
 	top; right; botom; left; : desplazamiento de la caja respecto al borde superior, derecho, inferior, izquierdo || longitud, porcentaje, alto 
 
 	float: posicionamiento flotante || left, right, none 
+		The float property is used to place an element on the left or right of its container, 
+		allowing other content (such as text) to wrap around it.
+
+		The float property specifies whether an element should float to the left, right, or not at all.
+		Note: Absolutely positioned elements ignore the float property!
+
+		Let an image float to the right:
+			img  {
+				float: right;
+			}
+
+			es probable que a los elementos posteriores les tenga que poner un clear:right
 
 	clear: control de cajas adyacentes a las float || none, left, right, both
+		The clear property specifies what should happen with the element that is next to a floating element.
+		The clear CSS property sets whether an element must be moved below (cleared) 
+		floating elements that precede it. 
+		The clear property applies to floating and non-floating elements.
+		The floats that are relevant to be cleared are 
+		the earlier floats within the same block formatting context.
 
 	z-index: nivel de la capa || auto, número entero 
 		https://developer.mozilla.org/es/docs/Web/CSS/z-index
@@ -442,8 +476,12 @@ Las unidades de medidas relativas son:
 
 	px: pixeles, relativo al dispositivo
 	rem: están basadas en el tamaño de la fuente del elemento html.
-		1 rem es igual al valor de fontsize del elemento raiz que es el elemento html. si la fuente del elemento raiz vale 15px, 2rem seran 30px.
-	em: relativo al tamaño de la fuente del elemento o su respectiva caja/elemento padre, 2em significaría 2 veces el tamaño de la fuente actual. Si no tenemos definido el tamaño de la fuente en su respectivo elemento padre, será el por defecto del navegador, generalmente 16px.
+		1 rem es igual al valor de fontsize del elemento raiz que es el elemento html. 
+		si la fuente del elemento raiz vale 15px, 2rem seran 30px.
+	em: relativo al tamaño de la fuente del elemento o su respectiva caja/elemento padre, 
+		2em significaría 2 veces el tamaño de la fuente actual. 
+		Si no tenemos definido el tamaño de la fuente en su respectivo elemento padre, 
+		será el por defecto del navegador, generalmente 16px.
 	%: porcentaje, será relativo al elemento padre/la caja que la contiene.
 	vh y vw: son medidas de acuerdo al total del height y width de toda la pantalla, determinados por el porcentaje 1-100. 50vh será la mitad del alto y 50vw será la mitad del ancho.
 		cuando a un elemento en css le damos un valor de max-width y otro de min-width y a su vez le asignamos un width en valor de vw lo que le estamos diciendo al elemento es que dentro de ese margen que le dimos de max y min width, adapte su width al porcentaje de valor que le asignamos. si la pantalla no cumple con el max y min no va a cumplirse el width en valor de vw.
