@@ -151,6 +151,7 @@ Texto:
 Fuentes:
 
 	font-family: familia de fuentes, tipo de fuente || valores: nombre-familia, nombre-familia-genérica, *. Los nombres de familia de fuentes son sensibles a mayúsculas y minúsculas, y si incluyen espacios deben estar envueltos entre comillas. Por ejemplo, necesitas comillas para usar la fuente "Open Sans", pero no las necesitas para usar la fuente Lobster. se pueden tener fuentes de "fallback" en caso de que la primera falle o whatever, separadas por comas podemos poner todas las que querramos.
+	si la fuente tiene espacios, tiene que escribirse entre comillas.
 
 	font-style: estilo de la fuente || val: normal, italic, oblique
 
@@ -279,6 +280,8 @@ Modelos de cajas: márgenes, rellenos y bordes:
 	margin: ancho de los margenes || longitud, porcentaje, auto {1,4}
 		si aplicamos un valor de 0 auto en margin vamos a centrar un elemento.
 
+		margin: <top&bottom> <left&right>  // margin: 20px 20px
+
 	El margin puede ser modificado en sus 4 lados solamente con la propiedad de 'margin' siguiendo las agujas del reloj definiéndolas todas juntas separadas por espacio.
 	EJ: selector {
 			margin: 5px 5px 5px 5px; top right bottom left
@@ -312,6 +315,9 @@ Modelos de cajas: márgenes, rellenos y bordes:
 
 content: propiedad compleja para anhadir contenido.
 		http://dis.um.es/~lopezquesada/documentos/IES_1213/LMSGI/curso/UT5/libroswebcss21/www.librosweb.es/referencia/css/content.html#:~:text=La%20propiedad%20content%20es%20una,insertarlo%20en%20la%20p%C3%A1gina%20HTML%20.
+		https://developer.mozilla.org/en-US/docs/Web/CSS/content
+
+		suele usarse con el ::after o el ::before para anhadir contenido
 	
 
 align-items: 

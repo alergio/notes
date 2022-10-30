@@ -489,8 +489,79 @@ box-sizing property #box-sizingproperty #box-size
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
+object-fit property #object #objectfit #object-fit
 
+    The object-fit CSS property sets how the content of a replaced element, 
+    such as an <img> or <video>, should be resized to fit its container.
 
+    You can alter the alignment of the replaced element's content object 
+    within the element's box using the object-position property.
 
+    Values
+        
+        contain
+            The replaced content is scaled to maintain its aspect ratio while fitting within the element's content box. 
+            The entire object is made to fill the box, while preserving its aspect ratio, 
+            so the object will be "letterboxed" if its aspect ratio does not match the aspect ratio of the box.
 
+        cover
+            The replaced content is sized to maintain its aspect ratio while filling the element's entire content box. 
+            If the object's aspect ratio does not match the aspect ratio of its box, then the object will be clipped to fit.
 
+        fill
+            The replaced content is sized to fill the element's content box. 
+            The entire object will completely fill the box. 
+            If the object's aspect ratio does not match the aspect ratio of its box, then the object will be stretched to fit.
+
+        none
+            The replaced content is not resized.
+
+        scale-down
+            The content is sized as if none or contain were specified, 
+            whichever would result in a smaller concrete object size.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+gap property #gap
+
+    The gap CSS property sets the gaps (gutters) between rows and columns. 
+    It is a shorthand for row-gap and column-gap.
+
+    Note that grid-gap is an alias for this property.
+
+    This property is specified as a value for <'row-gap'> 
+    followed optionally by a value for <'column-gap'>. 
+    If <'column-gap'> is omitted, it's set to the same value as <'row-gap'>.
+
+    <'row-gap'> and <'column-gap'> are each specified as a <length> or a <percentage>
+
+        gap: 20px;
+        gap: 20px 10px;
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+::after pseudoelement #after
+
+    The ::after pseudo-element creates an element that is the last child of the selected element.
+    It is often used to add cosmetic content to an element with the content property. 
+    It is inline by default.
+
+    this is useful when we have a center aligned flex container and we need 
+    the last element to be left aligned, we can use this pseudoelement and set it to an empty
+    string in its content and set it to the same width as the images, so the last image will be align left
+
+        .exciting-text::after {
+            content: " <- EXCITING!";
+            color: green;
+        }
+
+        .boring-text::after {
+            content: " <- BORING";
+            color: red;
+        }
+
+        se usa para agregar contenido x al final de un elemento or however
+
+    https://developer.mozilla.org/en-US/docs/Web/CSS/::after   
+
+----------------------------------------------------------------------------------------------------------------------------------------
