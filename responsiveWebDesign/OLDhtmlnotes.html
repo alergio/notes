@@ -144,6 +144,11 @@ Funciona exactamente igual que video.
 <form></form> es una etiqueta para generar formularios y se utiliza del siguiente modo:
 Además, si al form le agregamos la propiedad action y le damos el valor de una ruta determinada, podremos configurar un ingreso de datos al servidor utilizando solamente HTML.
 
+role attribute: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles
+	To increase the page accessibility, 
+	the role attribute can be used to indicate the purpose behind an element on the page to assistive technologies. 
+	The role attribute is a part of the Web Accessibility Initiative (WAI), and accepts preset values.
+
 <form>
 	<input type="" name="">  es el ingreso de datos y se determina su tipo de dato y su nombre identificador de forma opcional para llamarlo luego en la parte de backend. El tipo de dato puede ser: text, password, number, email, color, range (configurable min y max para varios), date, time, radio (opciones), button (¿¿¿ si o si tiene que tener un value ???), submit (es un type de button) etc.
 		tipo file, para subir archivos
@@ -172,9 +177,22 @@ Además, si al form le agregamos la propiedad action y le damos el valor de una 
 				Acá hicimos un formulario donde el usuario solo puede elegir una de las dos respuestas y si a esto le agregaramos un botón podríamos enviar la información al servidor gracias a nuestra propiedad "action".
 
 	También tenemos el type de input "checkbox" (<input type="checkbox">) que nos va a ser muy útil cuando queremos darle al usuario varias opciones y que pueda elegir todas las que quiera. Cada checkbox al igual que los radios pueden estar anidados en un tag <label></label>. Si trabajamos con el input within label se relacionarán automáticamente. Para hacer un grupo de checkbox todos los input de ese grupo deben tener el mismo name. Es una buena práctica relacionar cada label con el mismo id que le asignemos al input mediante la palabra for.
-		Ejemplo práctico
-			<form action="route_to_server">
-				
+		Ejemplo práctico #submit
+			<form action="route_to_server" method="post">
+				The form-data can be sent as URL variables (with method="get")
+				 or as HTTP post transaction (with method="post").
+					Notes on GET:
+					Appends form-data into the URL in name/value pairs
+					The length of a URL is limited (about 3000 characters)
+					Never use GET to send sensitive data! (will be visible in the URL)
+					Useful for form submissions where a user wants to bookmark the result
+					GET is better for non-secure data, like query strings in Google
+					
+					Notes on POST:
+					Appends form-data inside the body of the HTTP request (data is not shown in URL)
+					Has no size limitations
+					Form submissions with POST cannot be bookmarked
+
 				Choose your favourite technologies.
 				<br>
 				<label for="JS"><input id="JS" type="checkbox" name="technologies">
@@ -235,6 +253,22 @@ Existen otros tipos de metas con otras funciones, ejemplos:
 <meta name="copyright" content="nombre de la empresa dueña del copyright">
 <meta name="robots" content="index/noindex"> esto sirve para indexar la página o no hacerlo. Si está indexada saldrá en el buscador de google buscando sus palabras clave pero si no lo está no lo hará.
 
+	viewport
+	The viewport is the user's visible area of a web page.
+	The viewport varies with the device, 
+	and will be smaller on a mobile phone than on a computer screen.
+	Before tablets and mobile phones, web pages were designed only for computer screens, 
+	and it was common for web pages to have a static design and a fixed size.
+	Then, when we started surfing the internet using tablets and mobile phones, 
+	fixed size web pages were too large to fit the viewport. 
+	To fix this, browsers on those devices scaled down the entire web page to fit the screen.
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	This gives the browser instructions on how to control the page's dimensions and scaling.
+	The width=device-width part sets the width of the page to follow the screen-width 
+	of the device (which will vary depending on the device).
+	The initial-scale=1.0 part sets the initial zoom level when the page is first loaded by the browser.
 
 <table>Esta etiqueta se utiliza para crear tablas</table> Dentro de la etiqueta table declaramos una fila con <tr></tr> y dentro de la fila declaramos cada uno de los datos con <td></td>. Ejemplo:
 <table>
@@ -273,8 +307,26 @@ Para estructurar distintas páginas web tenemos una serie de etiquetas:
 	Es el encabezado de la págima web. Lo principal o lo primero que se ve, la bienvenida a la pág.
 </header>
 
+<main>
+	El elemento HTML <main> representa el contenido principal del <body> de un documento o aplicación. 
+	El área principal del contenido consiste en el contenido que está directamente relacionado, 
+	o se expande sobre el tema central de un documento o la funcionalidad central de una aplicación. 
+	Este contenido debe ser único al documento, excluyendo cualquier contenido que se repita 
+	a través de un conjunto de documentos como barras laterales, enlaces de navegación, 
+	información de derechos de autor, logos del sitio y formularios de búsqueda 
+	(a menos, claro, que la función principal del documento sea un formulario de búsqueda).
+
+	Nota: no debe haber más de un elemento <main> en un documento, 
+		y este no debe ser descendiente de un elemento <article>, <aside>, <footer>, <header>, o <nav>.
+</main>
+
 <nav>
-	El nav es la barra de navegación de la página web y casi siempre va dentro del encabezado. El nav te permite ir a distintas partes de la página y siempre está presente para utilizar desde cualquier punto de la página. Ejemplos "ajustes de mi cuenta", un buscador, etc. Generalmente el contenido de una barra de navegación son puros enlaces y se colocan en forma de lista, un ejemplo sería el siguiente:
+	El nav es la barra de navegación de la página web y casi siempre va dentro del encabezado. 
+	El nav te permite ir a distintas partes de la página y siempre está presente para utilizar desde 
+	cualquier punto de la página. 
+	Ejemplos "ajustes de mi cuenta", un buscador, etc. 
+	Generalmente el contenido de una barra de navegación son puros enlaces 
+	y se colocan en forma de lista, un ejemplo sería el siguiente:
 </nav>
 
 <header>
@@ -309,6 +361,12 @@ Y otro elemento de la estructura es el footer. Que funcionará como pie de pági
 <footer>
 	Desarrollaremos el pie de página
 </footer>
+
+<address>: The Contact Address element
+	The <address> HTML element indicates that the enclosed HTML provides contact 
+		information for a person or people, or for an organization.
+		</address>
+	</address>
 
 <select> 
 	el elemento select lo utilizamos para crear un menu desplegable donde el usuario puede elegir opciones que las declaramos dentro del elemento option like a label.
@@ -355,3 +413,38 @@ En este caso como podemos ver lo que se hace es que el nombre de la clase del el
 
 Podemos agregarle estilo a nuestro HTML aplicando la propiedad "style" en cualquiera de nuestros elementos.
 También podemos hacerlo mediante la etiqueta <style></style> 
+
+
+Accessibility : 
+
+	one useful thing for greater accessibility is to add text inside a span that contains
+	a descriptive text but only for screen readers.
+	There is a common pattern to visually hide text for only screen readers to read.
+	This pattern is to set the following CSS properties:
+
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+
+
+accesskey
+	El atributo global accesskey provee un indicio para generar un atajo de teclado para el elemento actual . 
+	Este atributo consiste en una lista de caracteres separada por espacios (un único punto de código Unicode). 
+	El explorador usa el primero que existe en la distribución del teclado de la computadora .
+
+		https://developer.mozilla.org/es/docs/Web/HTML/Global_attributes/accesskey
+
+		Google Chrome	Alt + tecla
+
+			<button type="submit" accesskey="s">Submit</button>
+
+
+
+
+			

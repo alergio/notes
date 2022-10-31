@@ -51,12 +51,18 @@ El selector es el elemento o conjunto de elementos que queremos modificar. Los t
 			input[name="password"]
 		estoy llamando al atributo name de valor password que existe en un elemento input.
 
-	descendiente: se utiliza para poder editar un grupo de elementos que se encuentra dentro de otro elemento. El selector se define ordenado por prioridad de mayor a menor, si por ejemplo tenemos un h1 con un p dentro sería así "h1 p" es decir es para seleccionar un selector que está dentro de otro.
-		tambien podemos utilizarlo para seleccionar determinados elementos que tienen x clase podemos hacerlo asi ej: .meme p entonces todos los elementos p que tengan la clase meme van a estar seleccionados
+	descendiente: se utiliza para poder editar un grupo de elementos que se encuentra dentro de otro elemento. 
+		El selector se define ordenado por prioridad de mayor a menor, 
+		si por ejemplo tenemos un h1 con un p dentro sería así "h1 p" 
+		es decir es para seleccionar un selector que está dentro de otro.
+		tambien podemos utilizarlo para seleccionar determinados elementos 
+		que tienen x clase podemos hacerlo asi ej: .meme p 
+		entonces todos los elementos p que tengan la clase meme van a estar seleccionados
 
 	varios: para seleccionar varios selectores los podemos separar por ", " "selector1, selector2"
 
-	hijos: para seleccionar a todos los selectores hijos de un selector lo haremos con el signo ">" "sel1 > sel2" y así seleccionaremos todos los sel2 que estén dentro de sel1.
+	hijos: para seleccionar a todos los selectores hijos de un selector lo haremos con el signo ">" 
+	"sel1 > sel2" y así seleccionaremos todos los sel2 que estén dentro de sel1.
 
 	hermanos: para seleccionar selectores hermanos, es decir que tienen el mismo elemento padre. "+" "sel1 + sel2"
 
@@ -212,7 +218,7 @@ Pseudo-clases para los estados de un elemento:
 	
 	:visited || visitado por el usuario
 
-	:hover || modifica el estilo cuando un elemento apuntador pasa por encima
+	:hover || modifica el estilo cuando mouse pasa por encima
 
 	:active || se activa cuando el usuario pulsa el elemento
 
@@ -339,6 +345,19 @@ content: propiedad compleja para anhadir contenido.
 align-items: 
 		La propiedad CSS align-items establece el valor align-self sobre todos los descendientes directos de un grupo. La propiedad align-self indica la alineación de un elemento dentro del bloque que lo contiene.
 
+
+scroll-behavior: 
+	The scroll-behavior CSS property sets the behavior for a scrolling box 
+	when scrolling is triggered by the navigation or CSSOM scrolling APIs.
+
+		auto
+		The scrolling box scrolls instantly.
+
+		smooth
+		The scrolling box scrolls in a smooth fashion using a user-agent-defined 
+		timing function over a user-agent-defined period of time. 
+		User agents should follow platform conventions, if any.
+
 Comportamiento de los contenedores:
 
 	display: comportamiento del contenedor || inline, block, inline-block, none y mas..
@@ -410,6 +429,47 @@ Comportamiento de los contenedores:
 				box-shadow: offsetX offsetY blurRadius spreadRadius color;
 					box-shadow: 0px 0px 0px 5px green;
 
+	aspect-ratio
+		The aspect-ratio CSS property sets a preferred aspect ratio for the box, 
+		which will be used in the calculation of auto sizes and some other layout functions.
+
+		Values
+			auto
+			Replaced elements with an intrinsic aspect ratio use that aspect ratio, 
+			otherwise the box has no preferred aspect ratio. 
+			Size calculations involving intrinsic aspect ratio always work with the content box dimensions.
+
+			<ratio>
+			The box's preferred aspect ratio is the specified ratio of width / height. 
+			If height and the preceding slash character are omitted, height defaults to 1. 
+			Size calculations involving preferred aspect ratio 
+			work with the dimensions of the box specified by box-sizing.
+				aspect-ratio: 1 / 1;
+				aspect-ratio: 16 / 9;
+
+
+	padding-inline
+		The padding-inline-start CSS property defines the logical inline start padding of an element, 
+		which maps to a physical padding depending on the element's writing mode, 
+		directionality, and text orientation.
+		the physical property it maps to depends on the values set for writing-mode, 
+		direction, and text-orientation. 
+		Therefore, it could map to padding-top, padding-right, or padding-left
+
+	
+	margin-block
+		The margin-block CSS shorthand property defines the logical block start and end margins of an element, 
+		which maps to physical margins depending on the element's writing mode, 
+		directionality, and text orientation.
+		This property is a shorthand for the following CSS properties:
+		margin-block-start
+		margin-block-end
+		This property corresponds to the margin-top and margin-bottom, 
+		or the margin-right and margin-left properties, depending on the values defined 
+		for writing-mode, direction, and text-orientation.
+		The margin-block property may be specified using one or two values.
+		When one value is specified, it applies the same margin to both start and end.
+		When two values are specified, the first margin applies to the start, the second to the end.
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
@@ -483,7 +543,8 @@ Las unidades de medidas relativas son:
 		Si no tenemos definido el tamaño de la fuente en su respectivo elemento padre, 
 		será el por defecto del navegador, generalmente 16px.
 	%: porcentaje, será relativo al elemento padre/la caja que la contiene.
-	vh y vw: son medidas de acuerdo al total del height y width de toda la pantalla, determinados por el porcentaje 1-100. 50vh será la mitad del alto y 50vw será la mitad del ancho.
+	#viewport vh y vw: son medidas de acuerdo al total del height y width de toda la pantalla, 
+	determinados por el porcentaje 1-100. 50vh será la mitad del alto y 50vw será la mitad del ancho.
 		cuando a un elemento en css le damos un valor de max-width y otro de min-width y a su vez le asignamos un width en valor de vw lo que le estamos diciendo al elemento es que dentro de ese margen que le dimos de max y min width, adapte su width al porcentaje de valor que le asignamos. si la pantalla no cumple con el max y min no va a cumplirse el width en valor de vw.
 
 	Las unidades de medida relativas sirven para generar un risponsive-design lo que significa que los tamaños se adaptan a las pantallas.
@@ -597,10 +658,21 @@ FUNCIONES CSS
 	A comparison function that takes a minimum, central, and maximum value and represents its central calculation.
 
 	max()
-	A comparison function that represents the largest of a list of values.
+		A comparison function that represents the largest of a list of values.
+		The max() CSS function lets you set the largest (most positive) value 
+		from a list of comma-separated expressions as the value of a CSS property value. 
+		The max() function can be used anywhere a <length>, <frequency>, <angle>, 
+		<time>, <percentage>, <number>, or <integer> is allowed.
+
+		si el max recibe por ej dos parametros, 100px y 18vw significa que elegira el mas grande
+		mientras 18vw sea menos que 100px, el width sera de 100px y cuando 18vw sea mas q 100px
+		el ancho sera 18vw, osea el 18% del width. (search vw)
 
 	min()
-	A comparison function that represents the smallest of a list of values.
+		A comparison function that represents the smallest of a list of values.
+		same as max() but in reverse
+		elige el mas pequenho en lugar de el mas grande.
+		si tiene 100px y 18vw, si 18vw es menos q 100px sera 18vw, si 100px es menos 18vw sera 100px 	
 
 	abs() Experimental
 	Takes a calculation and returns the absolute value.
@@ -698,7 +770,8 @@ FUNCIONES CSS
 	Takes two color values and returns the result of mixing them in a given colorspace by a given amount.
 
 	color-contrast() Experimental
-	Takes a color value and compares it to a list of other color values, selecting the one with the highest contrast from the list.
+	Takes a color value and compares it to a list of other color values, 
+	selecting the one with the highest contrast from the list.
 
 	device-cmyk() Experimental
 	Used to express CMYK colors in a device-independent way.
