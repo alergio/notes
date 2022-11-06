@@ -362,6 +362,7 @@ Modelos de cajas: márgenes, rellenos y bordes:
 
 	border-radius: curvatura del borde || longitud, porcentaje {1,4}
 		border-radius: 5px;
+			tambien se aplica top-right-bottom-left // topbottom-rightleft
 
 
 content: propiedad compleja para anhadir contenido.
@@ -431,6 +432,7 @@ Comportamiento de los contenedores:
 	z-index: nivel de la capa || auto, número entero 
 		La propiedad CSS z-index indica el orden de un elemento posicionado y sus descendientes. 
 		Cuando varios elementos se superponen, los elementos con mayor valor z-index cubren aquellos con menor valor.
+		funciona con position absolute
 
 	box-sizing: control de bordes y relleno en el comportamiento del contenedor || content-box, border-box
 		content-box es el comportamiento CSS por defecto para el tamaño de la caja (box-sizing). 
