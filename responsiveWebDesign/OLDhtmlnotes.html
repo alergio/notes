@@ -270,18 +270,83 @@ Existen otros tipos de metas con otras funciones, ejemplos:
 	of the device (which will vary depending on the device).
 	The initial-scale=1.0 part sets the initial zoom level when the page is first loaded by the browser.
 
-<table>Esta etiqueta se utiliza para crear tablas</table> Dentro de la etiqueta table declaramos una fila con <tr></tr> y dentro de la fila declaramos cada uno de los datos con <td></td>. Ejemplo:
-<table>
-	<tr>
-		<td>Nombre</td>
-		<td>Apellido</td>
-	</tr>
-	<tr>
-		<td>Alejo</td>
-		<td>Maya</td>
-	</tr>
-</table>
-Las tablas pueden tener propiedades, como por ejemplo un borde y su grosor (border="1px"), pero lo mejor es hacer los estilos en CSS.
+<table>Esta etiqueta se utiliza para crear tablas</table> 
+
+	Dentro de la etiqueta table declaramos una fila con <tr></tr> 
+	The tr element is used to indicate a table row. 
+	
+	El elemento HTML <th> define una celda como encabezado de un grupo de celdas en una tabla. 
+		La naturaleza exacta de este grupo está definida por los atributos scope y headers.
+
+		colspan
+			This attribute contains a positive integer value that indicates over how many columns a cell is extended. 
+			Its default value is 1. If its value is set to 0, the cell is extended to the last element of the <colgroup>. 
+			Values higher than 1000 are clipped down to 1000.
+
+		rowspan
+			This attribute contains a positive integer value that indicates over how many rows a cells is extended. 
+			Its default value is 1. If its value is set to 0, 
+			the cell is extended to the last element of the table sections 
+			(<thead> (en-US), <tbody> (en-US) or <tfoot> (en-US)). 
+			Values higher than 65534 are clipped down to 65534.
+
+		scope
+			This enumerated attribute defines the cells that the header 
+			(defined in the <th>) element relates to. 
+				It may have the following values:
+			
+			row: The header relates to all cells of the row it belongs to.
+			
+			col: The header relates to all cells of the column it belongs to.
+			
+			rowgroup: The header belongs to a rowgroup and relates to all of its cells. 
+			These cells can be placed to the right or the left of the header, 
+			depending on the value of the dir attribute in the <table> element.
+			
+			colgroup: The header belongs to a colgroup and relates to all of its cells.
+			
+			auto
+	
+	declaramos cada uno de los datos con <td></td>.
+	<td>: The Table Data Cell element
+		The <td> HTML element defines a cell of a table that contains data. It participates in the table model.
+	
+	<caption>: The Table Caption element
+		The <caption> HTML element specifies the caption (or title) of a table.
+			HTML tables use the caption element to describe what the table is about. 
+			The caption element should always be the first child of a table, 
+			but can be positioned with the caption-side CSS property.
+
+	
+	The thead and tbody elements are used to indicate which portion of your table is the header, 
+	and which portion contains the primary data or content.
+
+	<thead>: The Table Head element
+		The <thead> HTML element defines a set of rows defining the head of the columns of the table.
+
+	<tbody>: The Table Body element
+		The <tbody> HTML element encapsulates a set of table rows (<tr> elements), 
+			indicating that they comprise the body of the table (<table>).
+
+	Ejemplo:
+	<table>
+		<caption>Identificacion</caption>
+		<thead>
+			<tr>
+				<td>Nombre</td>
+				<td>Apellido</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Alejo</td>
+				<td>Maya</td>
+			</tr>
+		</tbody>
+	</table>
+	Las tablas pueden tener propiedades, como por ejemplo un borde y su grosor (border="1px"), pero lo mejor es hacer los estilos en CSS.
+
+
 
 
 <link rel="icon" href="rutadelicono.ico"> En este caso la etiqueta link con el atributo rel en valor icon seguido del atributo href para llamar al valor de la etiqueta rel, es utilizado para agregarle un icono a la pagina web.

@@ -68,6 +68,22 @@ El selector es el elemento o conjunto de elementos que queremos modificar. Los t
 
 	pseudo-clases: se utiliza para darle un efecto a un elemento cuando le ponemos el mouse encima. Se define usando ":" "nombreElemento:hover"
 
+	un elemento de una determinada clase:
+		element[class~=theClass]
+			example: span[class~="sr-only"]
+
+	tambien una forma de seleccionar a todos los elementos q tengan una clase es asi:
+		element[class]
+		syntax will target any element that has a class attribute set, regardless of the attribute's value.
+
+		The key difference between element[class="X"] and element.X is that the first will select elements where the only class is total. 
+		The second will select elements where the class includes X.
+
+	[attribute="value"]
+		The [attribute="value"] selector targets any element that has an attribute with a specific value.
+		
+
+
 La propiedad es lo que queremos hacer con nuestro elemento, puede ser el color, tamaño, ancho, posicion, sombra, texto, bordes etc.
 	
 
@@ -197,16 +213,29 @@ Tablas:
 
 Pseudo-clases para selección de hijos o hermanos:
 
+	
 	:first-child || primer hijo
+	
 	:last-child || ultimo hijo 
+	
 	:first-of-type || primer hermano de su tipo
+		 is used to target the first element that matches the selector.
+
 	:last-of-type || ultimo "                "
+		does the exact opposite - it targets the last element that matches the selector.
+	
 	:only-child || hijos unicos
+	
 	:only-of-type || unicos hermanos de su tipo
+	
 	:empty || elementos que no tienen hijos
+	
 	:nth-child(n) || n elementos hijos
+	
 	:nth-last-child(n) || "  " contando desde el último
+	
 	:nth-of-type(n) || n elemento hijo de su tipo 
+	
 	:nth-last-of-type(n) || "  " comenzando desde el ultimo
 
 		EJ: p:last-child
@@ -400,8 +429,8 @@ Comportamiento de los contenedores:
 		the earlier floats within the same block formatting context.
 
 	z-index: nivel de la capa || auto, número entero 
-		https://developer.mozilla.org/es/docs/Web/CSS/z-index
-		La propiedad CSS z-index indica el orden de un elemento posicionado y sus descendientes. Cuando varios elementos se superponen, los elementos con mayor valor z-index cubren aquellos con menor valor.
+		La propiedad CSS z-index indica el orden de un elemento posicionado y sus descendientes. 
+		Cuando varios elementos se superponen, los elementos con mayor valor z-index cubren aquellos con menor valor.
 
 	box-sizing: control de bordes y relleno en el comportamiento del contenedor || content-box, border-box
 		content-box es el comportamiento CSS por defecto para el tamaño de la caja (box-sizing). 
@@ -471,6 +500,83 @@ Comportamiento de los contenedores:
 		When one value is specified, it applies the same margin to both start and end.
 		When two values are specified, the first margin applies to the start, the second to the end.
 
+
+	clip
+		The clip CSS property defines a visible portion of an element. 
+		The clip property applies only to absolutely positioned elements 
+		— that is, elements with position:absolute or position:fixed
+
+			Values
+				<shape()>
+					A rectangular <shape()> of the form rect(<top>, <right>, <bottom>, <left>). 
+					The <top> and <bottom> values are offsets from the inside top border edge of the box, 
+					while <right> and <left> are offsets from the inside left border edge of the box 
+					— that is, the extent of the padding box.
+
+					The <top>, <right>, <bottom>, and <left> values may be either a <length> or auto. 
+					If any side's value is auto, the element is clipped to that side's inside border edge.
+
+						clip: rect(119px, 255px, 229px, 80px);
+
+				auto
+					The element does not clip (default). 
+					This is different from rect(auto, auto, auto, auto), which clips to the element's inside border edges.
+
+	
+	clip-path
+		The clip-path CSS property creates a clipping region that sets what part of an element should be shown. 
+		Parts that are inside the region are shown, while those outside are hidden.
+
+		The clip-path property is specified as one or a combination of the values listed below.
+
+		Values
+			<clip-source>
+			A url() referencing an SVG <clipPath> element.
+
+			<basic-shape>
+			A shape whose size and position is defined by the <geometry-box> value. 
+			If no geometry box is specified, the border-box will be used as the reference box. One of:
+
+				inset()
+				Defines an inset rectangle.
+
+				circle()
+				Defines a circle using a radius and a position.
+
+				ellipse()
+				Defines an ellipse using two radii and a position.
+
+				polygon()
+				Defines a polygon using an SVG filling rule and a set of vertices.
+
+				path()
+				Defines a shape using an optional SVG filling rule and an SVG path definition.
+
+			all these values use a specific syntax that is not explained here
+
+		
+	lo siguiente es un ejemplo donde se ocultan elementos con determinada clase
+	que fueron creados para los lectores de pantalla pero no para que se vean por el usuario
+	es importante entender que muchas de esas propiedades son necesarias
+	por diversas razones que no puedo explicar ahora...
+	es para que no esten visibles ni en la vista de la pagina... entre otros..
+
+		span[class~="sr-only"] {
+			border: 0;
+			clip: rect(1px, 1px, 1px, 1px);
+			clip-path: inset(50%);
+			-webkit-clip-path: inset(50%);
+			height: 1px;
+			width: 1px;
+			overflow: hidden;
+			white-space: nowrap;
+			position: absolute;
+			padding: 0;
+			margin: -1px;
+		}
+
+
+
 -------------------------------------------------------------------------------------------------------------------------------------
 
 ESPECIFICIDAD
@@ -535,16 +641,20 @@ Las unidades de medidas fijas son:
 Las unidades de medidas relativas son:
 
 	px: pixeles, relativo al dispositivo
+
 	rem: están basadas en el tamaño de la fuente del elemento html.
 		1 rem es igual al valor de fontsize del elemento raiz que es el elemento html. 
 		si la fuente del elemento raiz vale 15px, 2rem seran 30px.
+
 	em: relativo al tamaño de la fuente del elemento o su respectiva caja/elemento padre, 
 		2em significaría 2 veces el tamaño de la fuente actual. 
 		Si no tenemos definido el tamaño de la fuente en su respectivo elemento padre, 
 		será el por defecto del navegador, generalmente 16px.
+
 	%: porcentaje, será relativo al elemento padre/la caja que la contiene.
+
 	#viewport vh y vw: son medidas de acuerdo al total del height y width de toda la pantalla, 
-	determinados por el porcentaje 1-100. 50vh será la mitad del alto y 50vw será la mitad del ancho.
+		determinados por el porcentaje 1-100. 50vh será la mitad del alto y 50vw será la mitad del ancho.
 		cuando a un elemento en css le damos un valor de max-width y otro de min-width y a su vez le asignamos un width en valor de vw lo que le estamos diciendo al elemento es que dentro de ese margen que le dimos de max y min width, adapte su width al porcentaje de valor que le asignamos. si la pantalla no cumple con el max y min no va a cumplirse el width en valor de vw.
 
 	Las unidades de medida relativas sirven para generar un risponsive-design lo que significa que los tamaños se adaptan a las pantallas.
@@ -653,6 +763,13 @@ FUNCIONES CSS
 
 	calc()
 	A math function that allows basic arithmetic to be performed on numerical CSS values.
+		CSS function that allows you to calculate a value based on other values. 
+		For example, you can use it to calculate the width of the viewport minus the margin of an element:
+
+		.example {
+			margin: 10px;
+			width: calc(100% - 20px);
+		}
 
 	clamp()
 	A comparison function that takes a minimum, central, and maximum value and represents its central calculation.
@@ -818,8 +935,11 @@ FUNCIONES CSS
 
 	linear-gradient()
 	Linear gradients transition colors progressively along an imaginary line.
-		funcionan bien en la propiedad background
-		lleva un primer parametro que significa la direccion hacia donde va a hacer el gradient y eso puede ser en diferentes medidas pero generalmente se usa grados y se describe como xdeg ej: 90deg. El segundo y tercer parametro son colores y es obligatorio minimo 2, y no tiene tope. A los colores se le puede dar un lenght en PX o % que va a representar la ubicacion que va a ocupar.
+		funcionan bien en la propiedad background o background-image
+		lleva un primer parametro que significa la direccion hacia donde va a hacer el gradient 
+		y eso puede ser en diferentes medidas pero generalmente se usa grados y se describe como xdeg ej: 90deg. tambien puede ser "to bottom" 
+		El segundo y tercer parametro son colores y es obligatorio minimo 2, y no tiene tope. 
+		A los colores se le puede dar un lenght en PX o % que va a representar la ubicacion que va a ocupar.
 
 	radial-gradient()
 	Radial gradients transition colors progressively from a center point (origin).
