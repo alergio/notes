@@ -452,6 +452,10 @@ transform property #transform #transformproperty #transform-property #propertytr
     translateZ()
         Translates an element along the z-axis.
 
+    
+    /* Multiple function values */
+    transform: translateX(10px) rotate(10deg) translateY(5px);
+
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 box-sizing property #box-sizingproperty #box-size
@@ -572,6 +576,10 @@ position property #position #positionproperty
 
 https://www.freecodecamp.org/news/learn-the-basics-the-css-position-property/#:~:text=The%20CSS%20position%20property%20defines,the%20position%20property%20can%20take.
 
+    un concepto sobre las posiciones es que a veces puede ser necesario que un elemento
+    al que queremos ubicar en referencia a su elemento padre seteando determinada posicion
+    para que esto suceda es necesario que el elemento padre tenga una posicion seteada.
+
     The CSS position property defines the position of an element in a document. 
     This property works with the left, right, top, bottom 
     and z-index properties to determine the final position of an element on a page.
@@ -634,3 +642,135 @@ https://www.freecodecamp.org/news/learn-the-basics-the-css-position-property/#:~
             even if that ancestor isn't the nearest actually scrolling ancestor.
 
 ----------------------------------------------------------------------------------------------------------------------------------------
+
+white-space property #whitespace #white-space
+
+    The white-space CSS property sets how white space inside an element is handled.
+
+    Values
+        normal
+            Sequences of white space are collapsed. 
+            Newline characters in the source are handled the same as other white space. 
+            Lines are broken as necessary to fill line boxes.
+
+        nowrap
+            Collapses white space as for normal, 
+            but suppresses line breaks (text wrapping) within the source.
+
+        pre
+            Sequences of white space are preserved. 
+            Lines are only broken at newline characters in the source and at <br> elements.
+
+        pre-wrap
+            Sequences of white space are preserved. 
+            Lines are broken at newline characters, at <br>, 
+            and as necessary to fill line boxes.
+
+        pre-line
+            Sequences of white space are collapsed. 
+            Lines are broken at newline characters, at <br>, 
+            and as necessary to fill line boxes.
+
+        break-spaces
+            The behavior is identical to that of pre-wrap, except that:
+
+        Any sequence of preserved white space always takes up space, 
+        including at the end of the line.
+        A line breaking opportunity exists after every preserved white space character, 
+        including between white space characters.
+        Such preserved spaces take up space and do not hang, 
+        and thus affect the box's intrinsic sizes (min-content size and max-content size).
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+transitions #transition #transitions
+
+    CSS transitions provide a way to control animation speed when changing CSS properties.
+    Instead of having property changes take effect immediately, 
+    you can cause the changes in a property to take place over a period of time. 
+    For example, if you change the color of an element from white to black, 
+    usually the change is instantaneous. With CSS transitions enabled, 
+    changes occur at time intervals that follow an acceleration curve,
+    all of which can be customized.
+
+    CSS transitions let you decide which properties to animate (by listing them explicitly), 
+    when the animation will start (by setting a delay), 
+    how long the transition will last (by setting a duration), 
+    and how the transition will run (by defining a timing function, 
+    e.g., linearly or quick at the beginning, slow at the end).
+
+    Defining transitions
+        CSS Transitions are controlled using the shorthand transition property. 
+        This is the best way to configure transitions
+
+    You can control the individual components of the transition with 
+    the following sub-properties:
+
+    transition-property
+        Specifies the name or names of the CSS properties to which transitions should be applied. 
+        Only properties listed here are animated during transitions; 
+        changes to all other properties occur instantaneously as usual.
+
+    transition-duration
+        Specifies the duration over which transitions should occur. 
+        You can specify a single duration that applies to all properties during the transition, 
+        or multiple values to allow each property to transition over a different period of time.
+        The transition-duration CSS property sets the length of time a transition 
+        animation should take to complete. 
+        By default, the value is 0s, meaning that no animation will occur.
+
+            transition-duration: 6s;
+            transition-duration: 120ms;
+            transition-duration: 1s, 15s; // una para cada propiedad indicada
+            transition-duration: 10s, 30s, 230ms; // una para cada propiedad indicada
+
+    transition-timing-function
+        ...
+
+    transition-delay
+        Defines how long to wait between the time a property is changed and the transition actually begins.
+
+            transition-delay: 250ms;
+            transition-delay: 1s;
+            transition-delay: 5s;
+
+
+    The transition CSS property is a shorthand property for transition-property, 
+    transition-duration, transition-timing-function, and transition-delay.
+    
+    Transitions enable you to define the transition between two states of an element. 
+    Different states may be defined using pseudo-classes 
+    like :hover or :active or dynamically set using JavaScript.
+
+        /* Apply to 1 property */
+        /* property name | duration */
+        transition: margin-right 4s;
+
+        /* property name | duration | delay */
+        transition: margin-right 4s 1s;
+
+        /* property name | duration | easing function */
+        transition: margin-right 4s ease-in-out;
+
+        /* property name | duration | easing function | delay */
+        transition: margin-right 4s ease-in-out 1s;
+
+        /* Apply to 2 properties */
+        transition: margin-right 4s, color 1s;
+
+    example
+
+        <a class="target">Hover over me</a>
+
+        .target {
+            font-size: 14px;
+            transition: font-size 4s 1s;
+        }
+
+        .target:hover {
+            font-size: 36px;
+        }
+
+
+
+
