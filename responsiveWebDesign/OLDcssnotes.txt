@@ -942,6 +942,38 @@ FUNCIONES CSS
 		y eso puede ser en diferentes medidas pero generalmente se usa grados y se describe como xdeg ej: 90deg. tambien puede ser "to bottom" 
 		El segundo y tercer parametro son colores y es obligatorio minimo 2, y no tiene tope. 
 		A los colores se le puede dar un lenght en PX o % que va a representar la ubicacion que va a ocupar.
+		si se omite el parametro de direccion, el primer color sera top y el segundo bot
+
+		You can specify where you want a gradient transition to complete by adding it to the color like this:
+			gradient-type(
+				color1,
+				color2 20%,
+				color3
+			);
+
+			Here, it will transition from color1 to color2 between 0% and 20% 
+			of the element and then transition to color3 for the rest.
+
+		Gradient transitions often gradually change from one color to another. 
+		You can make the change a solid line like this:
+
+			linear-gradient(
+				var(--first-color) 0%,
+				var(--first-color) 40%,
+				var(--second-color) 40%,
+				var(--second-color) 80%
+			);
+
+
+		You can add multiple gradients to an element by separating them with a comma (,) like this:
+
+			gradient1(
+				colors
+			),
+			gradient2(
+				colors
+			);
+
 
 	radial-gradient()
 	Radial gradients transition colors progressively from a center point (origin).
@@ -1075,4 +1107,26 @@ FUNCIONES CSS
 
 	VARIABLES CSS
 
-	En CSS, las propiedades personalizadas (también conocidas como variables) son entidades definidas por autores de CSS que contienen valores específicos que se pueden volver a utilizar en un documento. Se establecen mediante la notación de propiedades personalizadas (por ejemplo, --main-color: black;) y se acceden mediante la función var() (por ejemplo, color: var (--main-color);)
+	En CSS, las propiedades personalizadas (también conocidas como variables) 
+	son entidades definidas por autores de CSS que contienen valores específicos 
+	que se pueden volver a utilizar en un documento. 
+	Se establecen mediante la notación de propiedades personalizadas 
+	(por ejemplo, --main-color: black;) 
+	y se acceden mediante la función var() 
+	( por ejemplo, color: var(--main-color); )
+
+	Variables work from where they were declared to their children
+	variables are often declared in the :root selector. 
+	This is the highest level selector in CSS
+
+	Variable declarations begin with two dashes (-) 
+	and are given a name and a value like this: --variable-name: value;
+
+	To use a variable, put the variable name in parentheses with var in front of them like this: 
+		var(--variable-name). 
+	Whatever value you gave the variable will be applied to whatever property you use it on.
+
+	when a variable doesn't work we should add a fallback value to a variable
+	by putting it as the second value of where you use the variable like this
+		var(--variable-name, fallback-value)
+	the property will use the fallback value
