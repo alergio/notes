@@ -375,6 +375,20 @@ content: propiedad compleja para anhadir contenido.
 align-items: 
 		La propiedad CSS align-items establece el valor align-self sobre todos los descendientes directos de un grupo. La propiedad align-self indica la alineación de un elemento dentro del bloque que lo contiene.
 
+justify-items: 
+		mdn web docks
+		Basic keywords: one of the keyword values normal or stretch.
+		Baseline alignment: the baseline keyword, plus optionally one of first or last.
+		Positional alignment: one of: center, start, end, flex-start, 
+		flex-end, self-start, self-end, left, or right. Plus optionally safe or unsafe.
+
+place-items:
+		The place-items property can be used to set the align-items and justify-items values at the same time. 
+		The place-items property takes one or two values. 
+		If one value is provided, it is used for both the align-items and justify-items properties. 
+		If two values are provided, the first value is used for the align-items property 
+		and the second value is used for the justify-items property.
+
 
 scroll-behavior: 
 	The scroll-behavior CSS property sets the behavior for a scrolling box 
