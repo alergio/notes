@@ -456,6 +456,33 @@ transform property #transform #transformproperty #transform-property #propertytr
     /* Multiple function values */
     transform: translateX(10px) rotate(10deg) translateY(5px);
 
+
+transform-origin property
+
+    The transform-origin CSS property sets the origin for an element's transformations.
+    The transform origin is the point around which a transformation is applied. 
+    For example, the transform origin of the rotate() function is the center of rotation.
+
+    In effect, this property wraps a pair of translations around the element's other transformations. 
+    The first translation moves the transform origin to the true origin at ( 0 , 0 ) . 
+    Then the other transformations are applied, and because the transform origin is at ( 0 , 0 ) , 
+    those transformations act about the transform origin. 
+    Finally, the opposite translation is applied, moving the transform 
+    origin back to its original location. Consequently, this definition
+
+        transform-origin: -100% 50%;
+        transform: rotate(45deg);
+
+    results in the same transformation as
+
+        transform-origin: 0 0;
+        transform: translate(-100%, 50%) rotate(45deg) translate(100%, -50%);
+
+    syntax
+
+        /* x-offset-keyword | y-offset-keyword */
+        transform-origin: right top;
+
 ----------------------------------------------------------------------------------------------------------------------------------------
 
 box-sizing property #box-sizingproperty #box-size
@@ -782,3 +809,95 @@ column-width
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
+
+CSS animations
+
+    https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
+
+    To create a CSS animation sequence, you style the element you want to animate with the animation 
+    property or its sub-properties. This lets you configure the timing, duration, 
+    and other details of how the animation sequence should progress. 
+    This does not configure the actual appearance of the animation, which is done using the @keyframes
+
+        The sub-properties of the animation property are:
+
+            animation-delay
+                Specifies the delay between an element loading and the start of an animation 
+                sequence and whether the animation should start immediately 
+                from its beginning or partway through the animation.
+
+            animation-direction
+                Specifies whether an animation's first iteration should be forward or backward and whether 
+                subsequent iterations should alternate direction on each run 
+                through the sequence or reset to the start point and repeat.
+
+            animation-duration
+                Specifies the length of time in which an animation completes one cycle.
+
+            animation-fill-mode
+                Specifies how an animation applies styles to its target before and after it runs.
+
+            animation-iteration-count
+                Specifies the number of times an animation should repeat.
+
+            animation-name
+                Specifies the name of the @keyframes at-rule describing an animation's keyframes.
+
+            animation-play-state
+                Specifies whether to pause or play an animation sequence.
+
+            animation-timing-function
+                Specifies how an animation transitions through 
+                keyframes by establishing acceleration curves.
+                https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function
+
+
+Defining animation sequence using keyframes
+
+    The @keyframes at-rule is used to define the flow of a CSS animation. 
+    Within the @keyframes rule, you can create selectors for specific points in the animation sequence, 
+    such as 0% or 25%, or use from and to to define the start and end of the sequence.
+
+    After you've configured the animation's timing, you need to define the appearance of the animation. 
+    This is done by establishing one or more keyframes using the @keyframes at-rule. 
+    Each keyframe describes how the animated element 
+    should render at a given time during the animation sequence.
+
+    Since the timing of the animation is defined in the CSS style that configures the animation, 
+    keyframes use a <percentage> to indicate the time during the animation sequence 
+    at which they take place. 0% indicates the first moment of the animation sequence, 
+    while 100% indicates the final state of the animation. 
+    Because these two times are so important, they have special aliases: from and to. 
+    Both are optional. If from/0% or to/100% is not specified, 
+    the browser starts or finishes the animation using the computed values of all attributes.
+
+    You can optionally include additional keyframes that describe 
+    intermediate steps between the start and end of the animation.
+
+
+Using the animation shorthand
+    The animation shorthand is useful for saving space. 
+    examp:
+
+        p {
+            animation-duration: 3s;
+            animation-name: slidein;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+        
+    ...could be replaced by using the animation shorthand.
+
+        p {
+            animation: 3s infinite alternate slidein;
+        }
+
+    https://developer.mozilla.org/en-US/docs/Web/CSS/animation
+
+
+Setting multiple animation property values
+
+    https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations#setting_multiple_animation_property_values
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
