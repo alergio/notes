@@ -1,0 +1,77 @@
+REACT ES DECLARATIVO
+
+JSX es algo asi como javascript that looks a lot like html
+    en JSX class para elementos html es className
+
+    JSX es like a function que crea objetos JS simples para brindarle la informacion
+    al DOM sobre lo que tiene que representar en la web
+
+
+ReactDOM is a global variable 
+    that have a method called render
+
+        ReactDOM.render()
+    
+    that's expected by two parameters, the first is an HTML element
+    and the second is the position where i will put my html code
+
+        ReactDOM.render(<h1>Hello World</h1>, document.GetElementById("helloWorldBroder"))
+
+    el render() de ReactDOM solo puede renderizar 1 elemento, lo que significa que
+    si tenemos muchos elementos, tenemos que envolverlos a todos por ej en 1 div
+
+
+para guardar contenido html en una variable se usan parentesis()
+
+    const page = (
+        <div> ok </div>
+    )
+
+
+para la creacion de componentes se usa pascal case
+    that means
+
+        function ComponentName() {}
+
+    y despues se llaman en el ReactDOM.render() asi
+
+        ReactDOM.render(
+            <ComponentName />,
+            document.GetElementById("root")
+        )
+
+
+
+ejemplo de un componente dentro de otro
+
+            function Header() {
+                return (
+                        <header>
+                            <nav>
+                                <img src="./logo192.png" width="45px" />
+                            </nav>
+                        </header>
+                )
+            }
+
+            function Page() {
+                return(
+                    <div>
+                    --------------------------------
+                        <Header />
+                    --------------------------------
+                        <h1>Reasons for I'm excited to learn React</h1>
+                        <ul>
+                            <li>because i need a good job</li>
+                        </ul>
+                        <footer>
+                            <small>20xx /last name here/ development. All rights reserved.</small>
+                        </footer>
+                    </div>
+                )
+            }
+
+            ReactDOM.render(
+                <Page />,
+                document.getElementById("root")
+            )

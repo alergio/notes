@@ -465,7 +465,8 @@ Comportamiento de los contenedores:
 	box-shadow: aplica una o mas sombras alrededor de un elemento.
 		box-shadow: offsetX offsetY color;
 			box-shadow: 5px 5px red;
-		ademas el box shadow tiene un valor opcional llamado blurRadius que va como tercer parametro despues de los valores X e Y.
+		ademas el box shadow tiene un valor opcional llamado blurRadius 
+		que va como tercer parametro despues de los valores X e Y.
 			este blurRadius tiene la funcion de agregarle un borde difuminado al box shadow.
 			box-shadow: offsetX offsetY blurRadius color;
 				box-shadow: 5px 5px 5px green;
